@@ -43,15 +43,18 @@ public class ScreamController : MonoBehaviour
     {
       for (int i = 0; i < _screamParts.Count; ++i)
       {
+        // Pick the appropriate scream
         string screamPart = _screamParts[i];
         ScreamSoundDefinition screamSound = _screamMapping.GetScream(screamPart);
         var audioInstance = AudioManager.Instance.PlaySound(gameObject, screamSound.Sound);
-        // while (audioInstance.AudioSource.isPlaying)
-        // yield return null;
+        audioInstance.AudioSource.volume = 0;
+
+        // Wait for scream to be done or random interval
         float waitTime = _screamInterval.RandomValue;
         while (waitTime > 0 && audioInstance.AudioSource.isPlaying)
         {
           waitTime -= Time.unscaledDeltaTime;
+          audioInstance.AudioSource.volume = Mathfx.Damp(audioInstance.AudioSource.volume, 1, 0.25f, Time.unscaledDeltaTime * 3);
           yield return null;
         }
       }

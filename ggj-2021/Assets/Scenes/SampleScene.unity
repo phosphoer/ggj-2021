@@ -234,6 +234,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _screamMapping: {fileID: 11400000, guid: d0008d97b82cddb47b2c198c3d1b7eac, type: 2}
+  _screamInterval:
+    MinValue: 0.4
+    MaxValue: 0.5
 --- !u!4 &1787606262
 Transform:
   m_ObjectHideFlags: 0
