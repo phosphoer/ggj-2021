@@ -9,6 +9,8 @@ public class CameraControllerStack : Singleton<CameraControllerStack>
     set { _camera = value; }
   }
 
+  public IReadOnlyList<CameraControllerBase> Stack => _cameraControllers;
+
   public CameraControllerBase CurrentCameraController
   {
     get { return _cameraControllers.Count > 0 ? _cameraControllers[_cameraControllers.Count - 1] : null; }
@@ -24,6 +26,27 @@ public class CameraControllerStack : Singleton<CameraControllerStack>
 
   private List<CameraControllerBase> _cameraControllers = new List<CameraControllerBase>();
   private List<KeyValuePair<string, float>> _fovStack = new List<KeyValuePair<string, float>>();
+
+  private float _shakeTimer;
+  private float _shakeTime;
+  private float _shakeMagnitude;
+
+  public void CameraShakeFromPosition(Vector3 fromPos, float radius, float magnitude, float duration)
+  {
+    float dist = Vector3.Distance(_camera.transform.position, fromPos);
+    float shakeScale = 1.0f - Mathf.Clamp01(dist / radius);
+    if (shakeScale > 0)
+    {
+      CameraShake(shakeScale * magnitude, duration);
+    }
+  }
+
+  public void CameraShake(float magnitude, float duration)
+  {
+    _shakeTime = duration;
+    _shakeTimer = duration;
+    _shakeMagnitude = magnitude;
+  }
 
   public void PushController(CameraControllerBase cameraController)
   {
@@ -42,6 +65,17 @@ public class CameraControllerStack : Singleton<CameraControllerStack>
     {
       EnsureCameraStack();
     }
+  }
+
+  public void SwitchController(CameraControllerBase cameraController)
+  {
+    PopCurrentController();
+    PushController(cameraController);
+  }
+
+  public void PopCurrentController()
+  {
+    PopController(CurrentCameraController);
   }
 
   public void PushFovOverride(string key, float fov)
@@ -67,9 +101,10 @@ public class CameraControllerStack : Singleton<CameraControllerStack>
     EnsureCameraStack();
   }
 
-  public void SnapPositionToTarget()
+  public void SnapTransformToTarget()
   {
     _camera.transform.localPosition = Vector3.zero;
+    _camera.transform.localRotation = Quaternion.identity;
   }
 
   public void InterpolateToTarget(Vector3 position, Quaternion rotation)
@@ -100,7 +135,14 @@ public class CameraControllerStack : Singleton<CameraControllerStack>
       if (_fovStack.Count > 0)
         desiredFov = _fovStack[_fovStack.Count - 1].Value;
 
-      _camera.fieldOfView = Mathfx.Damp(_camera.fieldOfView, desiredFov, 0.5f, Time.unscaledDeltaTime * 2.0f);
+      _camera.fieldOfView = Mathfx.Damp(_camera.fieldOfView, desiredFov, 0.25f, Time.unscaledDeltaTime * 2.0f);
+    }
+
+    _shakeTimer -= Time.unscaledDeltaTime;
+    if (_shakeTimer > 0)
+    {
+      float shakeT = Mathf.Clamp01(_shakeTimer / _shakeTime);
+      _camera.transform.position += Random.onUnitSphere * Random.value * _shakeMagnitude * shakeT;
     }
   }
 

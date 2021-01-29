@@ -172,9 +172,15 @@ public static class Mathfx
     return viewportPos;
   }
 
-  public static Vector3 WorldToCanvasPosition(RectTransform canvas, Camera camera, Vector3 worldPos)
+  public static Vector3 WorldToCanvasPosition(RectTransform canvas, Camera camera, Vector3 worldPos, bool allowOffscreen = false)
   {
     Vector3 pos = camera.WorldToViewportPoint(worldPos);
+    if (pos.z < 0 && !allowOffscreen)
+    {
+      pos.y = 0;
+      pos.x = 1 - pos.x;
+    }
+
     pos = ViewportToCanvasPosition(canvas, pos);
     return pos;
   }
@@ -185,13 +191,6 @@ public static class Mathfx
     viewportPoint /= canvas.rect.size;
     Vector3 worldPos = camera.ViewportToWorldPoint(viewportPoint, Camera.MonoOrStereoscopicEye.Mono);
     return worldPos;
-  }
-
-  public static bool IsPointInViewport(Vector3 worldPosition, Camera camera)
-  {
-    Vector3 viewportPos = camera.WorldToViewportPoint(worldPosition);
-    return viewportPos.x > 0 && viewportPos.x < 1 &&
-           viewportPos.y > 0 && viewportPos.y < 1;
   }
 
   // https://answers.unity.com/questions/283192/how-to-convert-decibel-number-to-audio-source-volu.html
@@ -221,6 +220,20 @@ public static class Mathfx
     negativeBounds.max = Vector3.negativeInfinity;
     return negativeBounds;
   }
+
+  public static Vector3[] GetRectTransformCorners(RectTransform transform)
+  {
+    transform.GetWorldCorners(_rectWorldCorners);
+    return _rectWorldCorners;
+  }
+
+  public static Vector3 GetRectTransformWorldSize(RectTransform transform)
+  {
+    transform.GetWorldCorners(_rectWorldCorners);
+    return _rectWorldCorners[2] - _rectWorldCorners[0];
+  }
+
+  private static Vector3[] _rectWorldCorners = new Vector3[4];
 }
 
 public static class VectorExtensions
@@ -255,5 +268,37 @@ public static class VectorExtensions
   {
     v.z = z;
     return v;
+  }
+
+  public static float SquareDistance(this Vector3 v, Vector3 rhs)
+  {
+    return (rhs - v).sqrMagnitude;
+  }
+}
+
+public static class ColorExtensions
+{
+  public static Color WithR(this Color c, float r)
+  {
+    c.r = r;
+    return c;
+  }
+
+  public static Color WithG(this Color c, float g)
+  {
+    c.g = g;
+    return c;
+  }
+
+  public static Color WithB(this Color c, float b)
+  {
+    c.b = b;
+    return c;
+  }
+
+  public static Color WithA(this Color c, float a)
+  {
+    c.a = a;
+    return c;
   }
 }
