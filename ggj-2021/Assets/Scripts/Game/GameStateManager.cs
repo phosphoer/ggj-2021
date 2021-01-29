@@ -28,7 +28,7 @@ public class GameStateManager : Singleton<GameStateManager>
   public SoundBank WinAlert;
   public SoundBank LoseAlert;
   public CameraControllerBase MenuCamera;
-  public CameraControllerGame GameCamera;
+  public CameraControllerBase GameCamera;
 
   private GameStage _gameStage = GameStage.Invalid;
   private GameObject _mainMenuUI = null;
@@ -80,7 +80,7 @@ public class GameStateManager : Singleton<GameStateManager>
       OnEnterStage(newGameStage);
       _gameStage = newGameStage;
     }
-  } 
+  }
 
   public void OnExitStage(GameStage oldGameStage)
   {
