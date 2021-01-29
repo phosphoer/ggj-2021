@@ -8,23 +8,30 @@ public class GameStateManager : Singleton<GameStateManager>
   {
     Invalid,
     MainMenu,
-    Game,
+    DayIntro,
+    Daytime,
+    DayOutro,
     WinGame,
     LoseGame,
   }
 
-  public static event System.Action GameStarted;
+  public static event System.Action DayIntroStarted;
+  public static event System.Action DaytimeStarted;
+  public static event System.Action DayOutroStarted;
 
   public GameStage CurrentStage => _gameStage;
 
-  public GameStage EditorDefaultStage = GameStage.Game;
+  public GameStage EditorDefaultStage = GameStage.Daytime;
   public GameObject MainMenuUIPrefab;
-  public GameObject GameUIPrefab;
+  public GameObject DayIntroUIPrefab;
+  public GameObject DaytimeUIPrefab;
+  public GameObject DayOutroUIPrefab;
   public GameObject WinGameUIPrefab;
   public GameObject LoseGameUIPrefab;
 
   public SoundBank MusicMenuLoop;
-  public SoundBank MusicGameLoop;
+  public SoundBank MusicDayIntro;
+  public SoundBank MusicDayOutro;
   public SoundBank WinAlert;
   public SoundBank LoseAlert;
   public CameraControllerBase MenuCamera;
@@ -32,9 +39,37 @@ public class GameStateManager : Singleton<GameStateManager>
 
   private GameStage _gameStage = GameStage.Invalid;
   private GameObject _mainMenuUI = null;
-  private GameObject _gameUI = null;
+  private GameObject _dayIntroUI = null;
+  private GameObject _daytimeUI = null;
+  private GameObject _dayOutroUI = null;
   private GameObject _winGameUI = null;
   private GameObject _loseGameUI = null;
+
+  private DayIntroUIHandler _dayIntroUIHander = null;
+  private DayOutroUIHandler _dayOutroUIHander = null;
+
+  [SerializeField]
+  private SanityComponent _playerSanity = null;
+  public SanityComponent PlayerSanity
+  {
+    get { return _playerSanity; }
+  }
+
+  [SerializeField]
+  private ScreamBankComponent _screamBank = null;
+  public ScreamBankComponent ScreamBank
+  {
+    get { return _screamBank; }
+  }
+
+  public int TotalDays = 4;
+
+  [SerializeField]
+  private int _currentDay = 0;
+  public int CurrentDay
+  {
+    get { return _currentDay; }
+  }
 
   private void Awake()
   {
@@ -61,7 +96,34 @@ public class GameStateManager : Singleton<GameStateManager>
     {
       case GameStage.MainMenu:
         break;
-      case GameStage.Game:
+      case GameStage.DayIntro:
+        if (_dayIntroUIHander.IsComplete())
+        {
+          nextGameStage = GameStage.Daytime;
+        }
+        break;
+      case GameStage.Daytime:
+        if (!_playerSanity.HasSanityRemaining)
+        {
+          nextGameStage = GameStage.LoseGame;
+        }
+        else if (_screamBank != null && _screamBank.HasReachedScreamNoteGoal)
+        {
+          if (_currentDay + 1 >= TotalDays)
+          {
+            nextGameStage = GameStage.DayOutro;
+          }
+          else
+          {
+            nextGameStage = GameStage.WinGame;
+          }
+        }
+        break;
+      case GameStage.DayOutro:
+        if (_dayOutroUIHander.IsComplete())
+        {
+          nextGameStage = GameStage.DayIntro;
+        }
         break;
       case GameStage.WinGame:
         break;
@@ -97,17 +159,45 @@ public class GameStateManager : Singleton<GameStateManager>
           _mainMenuUI = null;
         }
         break;
-      case GameStage.Game:
+      case GameStage.DayIntro:
         {
-          if (MusicGameLoop != null)
+          if (MusicDayIntro != null)
           {
-            AudioManager.Instance.FadeOutSound(gameObject, MusicGameLoop, 1.0f);
+            AudioManager.Instance.FadeOutSound(gameObject, MusicDayIntro, 1.0f);
           }
+
+          CameraControllerStack.Instance.PopController(MenuCamera);
+
+          Destroy(_dayIntroUI);
+          _dayIntroUI = null;
+          _dayIntroUIHander = null;
+        }
+        break;
+      case GameStage.Daytime:
+        {
+          _playerSanity.OnCompletedDay();
 
           CameraControllerStack.Instance.PopController(GameCamera);
 
-          Destroy(_gameUI);
-          _gameUI = null;
+          Destroy(_daytimeUI);
+          _daytimeUI = null;
+        }
+        break;
+      case GameStage.DayOutro:
+        {
+          if (MusicDayOutro != null)
+          {
+            AudioManager.Instance.FadeOutSound(gameObject, MusicDayIntro, 1.0f);
+          }
+
+          CameraControllerStack.Instance.PopController(MenuCamera);
+
+          // Move on to the next day!
+          _currentDay++;
+
+          Destroy(_dayOutroUI);
+          _dayOutroUI = null;
+          _dayOutroUIHander = null;
         }
         break;
       case GameStage.WinGame:
@@ -139,18 +229,48 @@ public class GameStateManager : Singleton<GameStateManager>
           }
         }
         break;
-      case GameStage.Game:
+      case GameStage.DayIntro:
         {
-          if (MusicGameLoop != null)
+          _dayIntroUI = (GameObject)Instantiate(DaytimeUIPrefab, Vector3.zero, Quaternion.identity);
+          _dayIntroUIHander = _dayIntroUI.GetComponent<DayIntroUIHandler>();
+          _playerSanity.OnStartedDay(CurrentDay);
+          _screamBank.OnStartedDay(CurrentDay);
+
+          if (MusicDayIntro != null)
           {
-            AudioManager.Instance.FadeInSound(gameObject, MusicGameLoop, 1.0f);
+            AudioManager.Instance.FadeInSound(gameObject, MusicDayIntro, 3.0f);
           }
 
-          _gameUI = (GameObject)Instantiate(GameUIPrefab, Vector3.zero, Quaternion.identity);
+          CameraControllerStack.Instance.PushController(MenuCamera);
+
+          DayIntroStarted?.Invoke();
+        }
+        break;
+      case GameStage.Daytime:
+        {
+          _daytimeUI = (GameObject)Instantiate(DaytimeUIPrefab, Vector3.zero, Quaternion.identity);
+          _playerSanity.OnStartedDay(CurrentDay);
 
           CameraControllerStack.Instance.PushController(GameCamera);
 
-          GameStarted?.Invoke();
+          DaytimeStarted?.Invoke();
+        }
+        break;
+      case GameStage.DayOutro:
+        {
+          _dayOutroUI = (GameObject)Instantiate(DaytimeUIPrefab, Vector3.zero, Quaternion.identity);
+          _dayOutroUIHander = _dayIntroUI.GetComponent<DayOutroUIHandler>();
+          _playerSanity.OnCompletedDay();
+          _screamBank.OnCompletedDay();
+
+          if (MusicDayOutro != null)
+          {
+            AudioManager.Instance.FadeInSound(gameObject, MusicDayOutro, 3.0f);
+          }
+
+          CameraControllerStack.Instance.PushController(MenuCamera);
+
+          DayOutroStarted?.Invoke();
         }
         break;
       case GameStage.WinGame:
