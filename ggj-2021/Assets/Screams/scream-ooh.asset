@@ -12,5 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d1dbefd051061204984b3a4335d2125f, type: 3}
   m_Name: scream-ooh
   m_EditorClassIdentifier: 
+  Color: {r: 0.4269758, g: 0.65365976, b: 0.8962264, a: 1}
   Letters: ooh
   Sound: {fileID: 11400000, guid: 59f5e48455bd5594f9164d5d4dff191d, type: 2}

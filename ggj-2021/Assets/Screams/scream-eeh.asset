@@ -12,5 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d1dbefd051061204984b3a4335d2125f, type: 3}
   m_Name: scream-eeh
   m_EditorClassIdentifier: 
+  Color: {r: 0.42077398, g: 0.8207547, b: 0.36004803, a: 1}
   Letters: eeh
   Sound: {fileID: 11400000, guid: f98c4e8229e769e4f8593da26c708400, type: 2}

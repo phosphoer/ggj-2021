@@ -4,6 +4,12 @@ using System.Collections;
 
 public class ScreamController : MonoBehaviour
 {
+  public event System.Action<string> ScreamStarted;
+  public event System.Action ScreamEnded;
+  public event System.Action<ScreamSoundDefinition> ScreamSoundPlayed;
+
+  public bool IsScreaming => _screamRoutine != null;
+
   [SerializeField]
   private ScreamMappingDefinition _screamMapping = null;
 
@@ -13,28 +19,35 @@ public class ScreamController : MonoBehaviour
   private List<string> _screamParts = new List<string>();
   private Coroutine _screamRoutine;
 
+  [SerializeField]
+  private string _testScream = "aah eeh ooh";
+
   [ContextMenu("Test Scream")]
   public void DebugTestScream()
   {
-    StartScream("aah eeh ooh");
+    StartScream(_testScream);
   }
 
   public void StartScream(string screamString)
   {
-    if (_screamRoutine != null)
+    if (IsScreaming)
     {
-      StopCoroutine(_screamRoutine);
+      StopScream();
     }
 
     _screamParts.Clear();
     _screamParts.AddRange(screamString.Split(' '));
     _screamRoutine = StartCoroutine(ScreamLoopAsync());
+
+    ScreamStarted?.Invoke(screamString);
   }
 
   public void StopScream()
   {
     StopCoroutine(_screamRoutine);
     _screamRoutine = null;
+
+    ScreamEnded?.Invoke();
   }
 
   private IEnumerator ScreamLoopAsync()
@@ -46,8 +59,16 @@ public class ScreamController : MonoBehaviour
         // Pick the appropriate scream
         string screamPart = _screamParts[i];
         ScreamSoundDefinition screamSound = _screamMapping.GetScream(screamPart);
+        if (screamSound == null)
+        {
+          Debug.LogWarning($"Failed to get scream for sound: {screamPart}");
+          continue;
+        }
+
         var audioInstance = AudioManager.Instance.PlaySound(gameObject, screamSound.Sound);
         audioInstance.AudioSource.volume = 0;
+
+        ScreamSoundPlayed?.Invoke(screamSound);
 
         // Wait for scream to be done or random interval
         float waitTime = _screamInterval.RandomValue;
