@@ -4,15 +4,11 @@ using UnityEngine;
 
 public class SQSTester : MonoBehaviour
 {
-    private SQSManager sqsManager;
-
     // Start is called before the first frame update
     void Start()
     {
-        sqsManager= this.gameObject.GetComponent<SQSManager>();
-
         Debug.Log("Sending scream");
-        sqsManager.SendSQSMessage("AAAAAAhhhhhh!!!!");
+        SQSManager.Instance.SendSQSMessage("AAAAAAhhhhhh!!!!");
 
         StartCoroutine(DelayedFetchMessage());
     }
@@ -23,7 +19,7 @@ public class SQSTester : MonoBehaviour
         yield return new WaitForSeconds(3);
 
         Debug.Log("Fetching latest message");
-        sqsManager.FetchNewSQSMessages(OnReceivedSQSMessage);
+        SQSManager.Instance.FetchNewSQSMessages(OnReceivedSQSMessage);
     }    
 
     void OnReceivedSQSMessage(SQSManager.MessageResultType messageType, string message)

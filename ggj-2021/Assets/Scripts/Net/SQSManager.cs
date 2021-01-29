@@ -5,7 +5,7 @@ using System.Text;
 using UnityEngine;
 using UnityEngine.Networking;
 
-public class SQSManager : MonoBehaviour
+public class SQSManager : Singleton<SQSManager>
 {
     [System.Serializable]
     public class GamePayload
@@ -61,14 +61,9 @@ public class SQSManager : MonoBehaviour
 
     private bool hasPendingFetch= false;    
 
-    // Start is called before the first frame update
-    void Start()
+    private void Awake()
     {
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
+        SQSManager.Instance = this;
     }
 
     public void FetchNewSQSMessages(OnMessageReceived mesgRecvCallback)
