@@ -7,6 +7,9 @@ public class ScreamController : MonoBehaviour
   [SerializeField]
   private ScreamMappingDefinition _screamMapping = null;
 
+  [SerializeField]
+  private RangedFloat _screamInterval = new RangedFloat(0.5f, 1.0f);
+
   private List<string> _screamParts = new List<string>();
   private Coroutine _screamRoutine;
 
@@ -43,8 +46,14 @@ public class ScreamController : MonoBehaviour
         string screamPart = _screamParts[i];
         ScreamSoundDefinition screamSound = _screamMapping.GetScream(screamPart);
         var audioInstance = AudioManager.Instance.PlaySound(gameObject, screamSound.Sound);
-        while (audioInstance.AudioSource.isPlaying)
+        // while (audioInstance.AudioSource.isPlaying)
+        // yield return null;
+        float waitTime = _screamInterval.RandomValue;
+        while (waitTime > 0 && audioInstance.AudioSource.isPlaying)
+        {
+          waitTime -= Time.unscaledDeltaTime;
           yield return null;
+        }
       }
 
       yield return null;
