@@ -1,0 +1,33 @@
+{
+  "name": "ggj-2021-backend",
+  "version": "0.1.0",
+  "bin": {
+    "ggj-2021-backend": "bin/ggj-2021-backend.js"
+  },
+  "scripts": {
+    "build": "tsc",
+    "watch": "tsc -w",
+    "test": "jest",
+    "cdk": "cdk"
+  },
+  "devDependencies": {
+    "@aws-cdk/assert": "1.86.0",
+    "@types/jest": "^26.0.10",
+    "@types/node": "10.17.27",
+    "jest": "^26.4.2",
+    "ts-jest": "^26.2.0",
+    "aws-cdk": "1.86.0",
+    "ts-node": "^9.0.0",
+    "typescript": "~3.9.7"
+  },
+  "dependencies": {
+    "@aws-cdk/aws-apigateway": "^1.83.0",
+    "@aws-cdk/aws-lambda": "^1.83.0",
+    "@aws-cdk/core": "^1.83.0",
+    "@aws-solutions-constructs/aws-apigateway-lambda": "^1.83.0",
+    "@aws-solutions-constructs/aws-apigateway-sqs": "^1.83.0",
+    "install": "^0.13.0",
+    "npm": "^6.14.11",
+    "source-map-support": "^0.5.16"
+  }
+}
