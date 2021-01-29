@@ -163,8 +163,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d27be378e7988e34c9a62d2a48669e6d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  simpleQueingServiceURL: https://as94pmx8d2.execute-api.us-west-2.amazonaws.com/prod/
-  messagePollInterval: 5
+  simpleQueingServiceURL: https://xbiih0vg3c.execute-api.us-west-2.amazonaws.com/prod/
+  apiKey: 9bUJSVyao69ysDMW3Bqu16QliiHV7A9U9Iz9Kexz
+  enableLogging: 0
 --- !u!4 &684078844
 Transform:
   m_ObjectHideFlags: 0

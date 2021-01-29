@@ -55,7 +55,7 @@ public class SQSManager : MonoBehaviour
     };
     public delegate void OnMessageReceived(MessageResultType mesgType, string message);
 
-    public string simpleQueingServiceURL= "https://as94pmx8d2.execute-api.us-west-2.amazonaws.com/prod/";
+    public string simpleQueingServiceURL= "https://xbiih0vg3c.execute-api.us-west-2.amazonaws.com/prod/";
     public string apiKey= "9bUJSVyao69ysDMW3Bqu16QliiHV7A9U9Iz9Kexz";
     public bool enableLogging= false;
 
