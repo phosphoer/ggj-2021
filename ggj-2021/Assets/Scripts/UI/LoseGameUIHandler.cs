@@ -7,7 +7,7 @@ public class LoseGameUIHandler : MonoBehaviour
 {
   public void OnPlayAgainClicked()
   {
-    SceneManager.LoadScene("GameScene");
+    SceneManager.LoadScene("MainGame");
   }
 
   public void OnQuitGameClicked()

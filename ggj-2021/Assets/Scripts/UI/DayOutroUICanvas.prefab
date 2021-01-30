@@ -182,6 +182,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: df713d16256905a4ea4bcd923b0b4d70, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _titleTextField: {fileID: 5974597404572469967}
   ShowDuration: 3
   _timer: 0
 --- !u!1 &4713633419316229850
@@ -352,3 +353,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ShowDuration: 3
   _timer: 0
+  _titleTextField: {fileID: 0}

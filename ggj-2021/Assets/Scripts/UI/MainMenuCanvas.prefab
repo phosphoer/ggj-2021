@@ -464,7 +464,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 74227365c6a8cec4bb4803fc47c5624b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  MainMenuObjs: []
 --- !u!114 &7573106760307319731
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -660,7 +659,7 @@ GameObject:
   - component: {fileID: 2185533831333341880}
   - component: {fileID: 5676502244595519216}
   m_Layer: 5
-  m_Name: HelpButton
+  m_Name: SettingsButton
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -767,7 +766,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 4713633419316229855}
-        m_MethodName: OnInstructionsClicked
+        m_MethodName: OnSettingsClicked
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -854,4 +853,4 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Help Game
+  m_Text: Settings

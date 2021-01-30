@@ -7,7 +7,7 @@ public class WinGameUIHandler : MonoBehaviour
 {
   public void OnPlayAgainClicked()
   {
-    SceneManager.LoadScene("GameScene");
+    SceneManager.LoadScene("MainGame");
   }
 
   public void OnQuitGameClicked()

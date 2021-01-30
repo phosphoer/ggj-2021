@@ -6,90 +6,112 @@ using UnityEngine.UI;
 [System.Serializable]
 public struct TutorialLine
 {
-    public SoundBank TutorialAudio;
-    public string TutorialText;
-    public float Duration;
+  public SoundBank TutorialAudio;
+  public string TutorialText;
+  public float Duration;
 }
 
-public class GameUIHandler : MonoBehaviour
+public class DaytimeUIHandler : MonoBehaviour
 {
-    public List<TutorialLine> TutorialLines;
-    private int _tutorialLineIndex = 0;
-    private float _tutorialLineTimer = 0;
-    private bool _isRunningTutorial = false;
+  public List<TutorialLine> TutorialLines;
+  private int _tutorialLineIndex = 0;
+  private float _tutorialLineTimer = 0;
+  private bool _isRunningTutorial = false;
 
-    [SerializeField]
-    private RectTransform _healthBarRectTransform = null;
+  [SerializeField]
+  private RectTransform _sanityBarRectTransform = null;
 
-    [SerializeField]
-    private Text _tutorialTextField = null;
+  [SerializeField]
+  private Image _screamBankImage = null;
 
-    private void Start()
+  [SerializeField]
+  private Text _dayLabel = null;
+
+  [SerializeField]
+  private Text _tutorialTextField = null;
+
+  private void Start()
+  {
+    // Only show the tutorial on the first day
+    if (GameStateManager.Instance.CurrentDay == 0)
     {
-        // Only show the tutorial on the first day
-        if (GameStateManager.Instance.CurrentDay == 0)
-        {
-            _isRunningTutorial = true;
-            FireCurrentTutorialLine();
-        }
+      _isRunningTutorial = true;
+      FireCurrentTutorialLine();
     }
 
-    void Update()
+    if (_tutorialTextField != null)
     {
-        if (_isRunningTutorial)
-        {
-            UpdateTutorialLineTimer();
-        }
+      _tutorialTextField.text = string.Format("Day {0}", GameStateManager.Instance.CurrentDay + 1);
+    }
+  }
 
-        RefreshSanityBar();
+  void Update()
+  {
+    if (_isRunningTutorial)
+    {
+      UpdateTutorialLineTimer();
     }
 
-    void UpdateTutorialLineTimer()
+    RefreshSanityBar();
+    RefreshScreamBankCircle();
+  }
+
+  void UpdateTutorialLineTimer()
+  {
+    if (_tutorialLineIndex < TutorialLines.Count)
     {
-        if (_tutorialLineIndex < TutorialLines.Count)
-        {
-            TutorialLine tutorialLine = TutorialLines[_tutorialLineIndex];
+      TutorialLine tutorialLine = TutorialLines[_tutorialLineIndex];
 
-            if (_tutorialLineTimer >= tutorialLine.Duration)
-            {
-                _tutorialLineTimer = 0;
-                _tutorialLineIndex++;
-                FireCurrentTutorialLine();
-            }
-            else
-            {
-                _tutorialLineTimer += Time.deltaTime;
-            }
-        }
+      if (_tutorialLineTimer >= tutorialLine.Duration)
+      {
+        _tutorialLineTimer = 0;
+        _tutorialLineIndex++;
+        FireCurrentTutorialLine();
+      }
+      else
+      {
+        _tutorialLineTimer += Time.deltaTime;
+      }
     }
+  }
 
-    void FireCurrentTutorialLine()
+  void FireCurrentTutorialLine()
+  {
+    if (_tutorialLineIndex < TutorialLines.Count)
     {
-        if (_tutorialLineIndex < TutorialLines.Count)
-        {
-            TutorialLine tutorialLine = TutorialLines[_tutorialLineIndex];
+      TutorialLine tutorialLine = TutorialLines[_tutorialLineIndex];
 
-            if (tutorialLine.TutorialAudio != null)
-            {
-                AudioManager.Instance.PlaySound(tutorialLine.TutorialAudio);
-            }
+      if (tutorialLine.TutorialAudio != null)
+      {
+        AudioManager.Instance.PlaySound(tutorialLine.TutorialAudio);
+      }
 
-            if (_tutorialTextField != null)
-            {
-                _tutorialTextField.text = tutorialLine.TutorialText;
-            }
-        }
-        else
-        {
-            if (_tutorialTextField != null)
-            {
-                _tutorialTextField.text = "";
-            }
-        }
+      if (_tutorialTextField != null)
+      {
+        _tutorialTextField.text = tutorialLine.TutorialText;
+      }
     }
-
-    void RefreshSanityBar()
+    else
     {
-        _healthBarRectTransform.transform.localScale = new Vector3(GameStateManager.Instance.PlayerSanity.SanityFraction, 1, 1);
+      if (_tutorialTextField != null)
+      {
+        _tutorialTextField.text = "";
+      }
     }
+  }
+
+  void RefreshSanityBar()
+  {
+    _sanityBarRectTransform.transform.localScale = new Vector3(GameStateManager.Instance.PlayerSanity.SanityFraction, 1, 1);
+  }
+
+  void RefreshScreamBankCircle()
+  {
+    ScreamBankComponent bankComponent = GameStateManager.Instance.ScreamBank;
+
+    if (bankComponent.RequireScreamNoteCount > 0)
+    {
+      _screamBankImage.fillAmount = bankComponent.CurrentScreamNoteCount / bankComponent.RequireScreamNoteCount;
+    }
+  }
 }
