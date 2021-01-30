@@ -8,6 +8,12 @@ public class CharacterMovementController : MonoBehaviour
   public LayerMask RaycastMask;
   public LayerMask TerrainMask;
 
+  [SerializeField]
+  private Rigidbody _rb = null;
+
+  [SerializeField]
+  private Transform _visualRoot = null;
+
   private Vector3 _currentMoveDir = Vector3.zero;
 
   private void Update()
@@ -15,18 +21,13 @@ public class CharacterMovementController : MonoBehaviour
     Vector3 clampedMoveDir = Vector3.ClampMagnitude(MoveVector, 1);
     _currentMoveDir = Mathfx.Damp(_currentMoveDir, clampedMoveDir, 0.25f, Time.deltaTime * Acceleration);
 
-    if (MoveVector.sqrMagnitude > 0)
+    if (_currentMoveDir.sqrMagnitude > 0)
     {
       Vector3 newPosition = transform.position + _currentMoveDir * Time.deltaTime * MoveSpeed;
-
-      RaycastHit hitInfo;
-      if (Physics.Raycast(newPosition + Vector3.up * 10, Vector3.down, out hitInfo, 200, RaycastMask, QueryTriggerInteraction.Ignore))
+      Vector3 navPosition;
+      if (PathFindManager.Instance.TryGetTraversablePoint(newPosition, out navPosition))
       {
-        if (TerrainMask.ContainsLayer(hitInfo.collider.gameObject.layer))
-        {
-          newPosition.y = hitInfo.point.y;
-          transform.position = newPosition;
-        }
+        transform.position = navPosition;
       }
     }
   }
