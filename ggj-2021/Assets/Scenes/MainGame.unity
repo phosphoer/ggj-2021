@@ -195,6 +195,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8357379092675532168, guid: 1f2e96c54fd18b1468da05f3259de592,
         type: 3}
+      propertyPath: SanityDecayRate
+      value: 100
+      objectReference: {fileID: 0}
+    - target: {fileID: 8357379092675532168, guid: 1f2e96c54fd18b1468da05f3259de592,
+        type: 3}
       propertyPath: SanityDecayActive
       value: 1
       objectReference: {fileID: 0}
