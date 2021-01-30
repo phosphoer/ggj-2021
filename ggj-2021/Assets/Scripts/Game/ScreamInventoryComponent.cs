@@ -4,48 +4,42 @@ using UnityEngine;
 
 public class ScreamInventoryComponent : MonoBehaviour
 {
-  private Dictionary<string, int> _screamNoteCounts = new Dictionary<string, int>();
+  [SerializeField]
+  public string[] _sourceBottleNotes = new string[3];
+  [SerializeField]
+  public string[] _targetBottleNotes = new string[3];
 
-  public bool IsEmpty
+  private ScreamMappingDefinition _screamMappingDefinition;
+  public ScreamMappingDefinition ScreamMapping
   {
-    get { return _screamNoteCounts.Count > 0; }
+    get { return _screamMappingDefinition; }
+    set { _screamMappingDefinition = value; }
   }
 
-  public int GetScreamNoteCount(string screamNote)
+  public void SetSourceBottleNote(int slotIndex, string note)
   {
-    return _screamNoteCounts.ContainsKey(screamNote) ? _screamNoteCounts[screamNote] : 0;
+    _sourceBottleNotes[slotIndex] = note;
   }
 
-  public void AddScreamNote(string screamNote, int count)
+  public string GetSourceBottleNote(int slotIndex)
   {
-    if (_screamNoteCounts.ContainsKey(screamNote))
-    {
-      _screamNoteCounts[screamNote] = _screamNoteCounts[screamNote] + count;
-    }
-    else
-    {
-      _screamNoteCounts.Add(screamNote, count);
-    }
+    return _sourceBottleNotes[slotIndex];
   }
 
-  public bool SubtractScreamNote(string screamNote, int count)
+  public void SetTargetBottleNote(int slotIndex, string note)
   {
-    if (_screamNoteCounts.ContainsKey(screamNote) && _screamNoteCounts[screamNote] >= count)
-    {
-      _screamNoteCounts[screamNote] -= count;
-      return true;
-    }
-
-    return false;
+    _targetBottleNotes[slotIndex] = note;
   }
 
-  void Start()
+  public string GetTargetBottleNote(int slotIndex)
   {
-
+    return _targetBottleNotes[slotIndex];
   }
 
-  void Update()
+  public void SwapNotes(int sourceSlotIndex, int targetSlotIndex)
   {
-
+    string temp = _targetBottleNotes[targetSlotIndex];
+    _targetBottleNotes[targetSlotIndex] = _sourceBottleNotes[sourceSlotIndex];
+    _sourceBottleNotes[sourceSlotIndex] = temp;
   }
 }
