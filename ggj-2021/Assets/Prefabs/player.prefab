@@ -163,6 +163,8 @@ MonoBehaviour:
   _characterMovement: {fileID: 7166855244578791243}
   _interactionController: {fileID: 3606166799483051268}
   _objectHolder: {fileID: 3750681542517321782}
+  _cameraRigPrefab: {fileID: 6936825247301618738, guid: ec5da68ed489c714891556774383c591,
+    type: 3}
 --- !u!114 &7166855244578791243
 MonoBehaviour:
   m_ObjectHideFlags: 0
