@@ -108,12 +108,22 @@ public class PlayerCharacterController : Singleton<PlayerCharacterController>
     }
     else
     {
-      if (_objectHolder.IsHoldingObject)
-        _playerAnimation.CurrentLocomotionState = PlayerAnimatorController.LocomotionState.IdleCarry;
+      if (_isSneaking)
+      {
+        _playerAnimation.CurrentLocomotionSpeed = 0;
+        if (_objectHolder.IsHoldingObject)
+          _playerAnimation.CurrentLocomotionState = PlayerAnimatorController.LocomotionState.SneakCarry;
+        else
+          _playerAnimation.CurrentLocomotionState = PlayerAnimatorController.LocomotionState.Sneak;
+      }
       else
-        _playerAnimation.CurrentLocomotionState = PlayerAnimatorController.LocomotionState.Idle;
-
-      _playerAnimation.CurrentLocomotionSpeed = 1;
+      {
+        _playerAnimation.CurrentLocomotionSpeed = 1;
+        if (_objectHolder.IsHoldingObject)
+          _playerAnimation.CurrentLocomotionState = PlayerAnimatorController.LocomotionState.IdleCarry;
+        else
+          _playerAnimation.CurrentLocomotionState = PlayerAnimatorController.LocomotionState.Idle;
+      }
     }
 
     // Interact with an interactable 

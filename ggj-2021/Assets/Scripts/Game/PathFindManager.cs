@@ -12,6 +12,12 @@ public class PathFindManager : Singleton<PathFindManager>
   [SerializeField]
   private bool _buildOnStart = true;
 
+  [SerializeField]
+  private Vector3 _minBounds = new Vector3(-100, -100, -100);
+
+  [SerializeField]
+  private Vector3 _maxBounds = new Vector3(100, 100, 100);
+
   private bool _isBuilt;
   private Bounds _worldBounds;
   private NavMeshData _navMesh;
@@ -146,7 +152,7 @@ public class PathFindManager : Singleton<PathFindManager>
   {
     if (_buildOnStart)
     {
-      GenerateGrid(new Vector3(-100, -10, -100), new Vector3(100, 10, 100));
+      GenerateGrid(_minBounds, _maxBounds);
     }
   }
 }
