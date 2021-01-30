@@ -498,6 +498,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   TutorialLines: []
+  ScreamComposerUIPrefab: {fileID: 4713633419316229850, guid: 1418a4e222187904b8afcc4fe55d0c16,
+    type: 3}
   _sanityBarRectTransform: {fileID: 6337746337014825875}
   _screamBankImage: {fileID: 2097572780451056174}
   _dayLabel: {fileID: 2040977403431167772}
