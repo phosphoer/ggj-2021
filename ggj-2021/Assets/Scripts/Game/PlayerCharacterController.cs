@@ -38,5 +38,19 @@ public class PlayerCharacterController : Singleton<PlayerCharacterController>
     Vector3 verticalVector = Camera.main.transform.forward.WithY(0).normalized * verticalAxis;
 
     _characterMovement.MoveVector = horizontalVector + verticalVector;
+
+    if (_interactionController.ClosestInteractable != null)
+    {
+      // Interact with an interactable 
+      if (rewiredPlayer.GetButtonDown(RewiredConsts.Action.Interact))
+      {
+        _interactionController.ClosestInteractable.TriggerInteraction();
+      }
+    }
+
+    // Scream into or uncork a held bottle
+    if (rewiredPlayer.GetButtonDown(RewiredConsts.Action.Scream))
+    {
+    }
   }
 }
