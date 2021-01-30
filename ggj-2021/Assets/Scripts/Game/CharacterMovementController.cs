@@ -8,9 +8,6 @@ public class CharacterMovementController : MonoBehaviour
   public float RunLeanAmount = 3;
   public float TurnAnimationSpeed = 5;
 
-  [SerializeField]
-  private Transform _visualRoot = null;
-
   private Vector3 _currentMoveDir = Vector3.zero;
   private Vector3 _currentVelocity = Vector3.zero;
 
@@ -33,7 +30,7 @@ public class CharacterMovementController : MonoBehaviour
     }
 
     // Rotate and tilt to face direction
-    if (_currentMoveDir.sqrMagnitude > 0)
+    if (_currentMoveDir.sqrMagnitude > 0.01f)
     {
       Vector3 runTiltAxis = Vector3.Cross(_currentMoveDir, Vector3.up);
       Quaternion forwardRot = Quaternion.LookRotation(_currentMoveDir);

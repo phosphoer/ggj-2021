@@ -98,7 +98,6 @@ public class PathFindManager : Singleton<PathFindManager>
 
   public bool IsPointTraversable(Vector3 worldPoint)
   {
-    worldPoint = worldPoint.WithY(0);
     if (_worldBounds.Contains(worldPoint))
     {
       NavMeshHit navMeshHit;

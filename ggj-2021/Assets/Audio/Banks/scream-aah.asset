@@ -14,9 +14,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   AudioClips:
   - {fileID: 8300000, guid: 8a3b7d6ff84246347b24ed1b9d918442, type: 3}
-  IsSpatial: 0
-  MaxDistance: 100
-  MinDistance: 10
+  IsSpatial: 1
+  MaxDistance: 20
+  MinDistance: 1
   VolumeScale: 1
   DopplerLevel: 0
   PitchOffset: 0

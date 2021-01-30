@@ -18,6 +18,8 @@ public class ScreamController : MonoBehaviour
 
   private List<string> _screamParts = new List<string>();
   private Coroutine _screamRoutine;
+  private float _volumeScale;
+  private bool _loopScream;
 
   [SerializeField]
   private string _testScream = "aah eeh ooh";
@@ -25,15 +27,24 @@ public class ScreamController : MonoBehaviour
   [ContextMenu("Test Scream")]
   public void DebugTestScream()
   {
-    StartScream(_testScream);
+    StartScream(_testScream, loopScream: false);
   }
 
-  public void StartScream(string screamString)
+  [ContextMenu("Test Scream Loop")]
+  public void DebugTestScreamLoop()
+  {
+    StartScream(_testScream, loopScream: true);
+  }
+
+  public void StartScream(string screamString, bool loopScream, float volumeScale = 1.0f)
   {
     if (IsScreaming)
     {
       StopScream();
     }
+
+    _volumeScale = volumeScale;
+    _loopScream = loopScream;
 
     _screamParts.Clear();
     _screamParts.AddRange(screamString.Split(' '));
@@ -52,7 +63,7 @@ public class ScreamController : MonoBehaviour
 
   private IEnumerator ScreamLoopAsync()
   {
-    while (enabled)
+    do
     {
       for (int i = 0; i < _screamParts.Count; ++i)
       {
@@ -75,12 +86,14 @@ public class ScreamController : MonoBehaviour
         while (waitTime > 0 && audioInstance.AudioSource.isPlaying)
         {
           waitTime -= Time.unscaledDeltaTime;
-          audioInstance.AudioSource.volume = Mathfx.Damp(audioInstance.AudioSource.volume, 1, 0.25f, Time.unscaledDeltaTime * 3);
+          audioInstance.AudioSource.volume = Mathfx.Damp(audioInstance.AudioSource.volume, _volumeScale, 0.25f, Time.unscaledDeltaTime * 3);
           yield return null;
         }
       }
 
       yield return null;
-    }
+    } while (enabled && _loopScream);
+
+    _screamRoutine = null;
   }
 }
