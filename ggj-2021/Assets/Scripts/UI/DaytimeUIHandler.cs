@@ -22,6 +22,12 @@ public class DaytimeUIHandler : MonoBehaviour
   private RectTransform _sanityBarRectTransform = null;
 
   [SerializeField]
+  private Image _screamBankImage = null;
+
+  [SerializeField]
+  private Text _dayLabel = null;
+
+  [SerializeField]
   private Text _tutorialTextField = null;
 
   private void Start()
@@ -31,6 +37,11 @@ public class DaytimeUIHandler : MonoBehaviour
     {
       _isRunningTutorial = true;
       FireCurrentTutorialLine();
+    }
+
+    if (_tutorialTextField != null)
+    {
+      _tutorialTextField.text = string.Format("Day {0}", GameStateManager.Instance.CurrentDay + 1);
     }
   }
 
@@ -42,6 +53,7 @@ public class DaytimeUIHandler : MonoBehaviour
     }
 
     RefreshSanityBar();
+    RefreshScreamBankCircle();
   }
 
   void UpdateTutorialLineTimer()
@@ -91,5 +103,15 @@ public class DaytimeUIHandler : MonoBehaviour
   void RefreshSanityBar()
   {
     _sanityBarRectTransform.transform.localScale = new Vector3(GameStateManager.Instance.PlayerSanity.SanityFraction, 1, 1);
+  }
+
+  void RefreshScreamBankCircle()
+  {
+    ScreamBankComponent bankComponent = GameStateManager.Instance.ScreamBank;
+
+    if (bankComponent.RequireScreamNoteCount > 0)
+    {
+      _screamBankImage.fillAmount = bankComponent.CurrentScreamNoteCount / bankComponent.RequireScreamNoteCount;
+    }
   }
 }
