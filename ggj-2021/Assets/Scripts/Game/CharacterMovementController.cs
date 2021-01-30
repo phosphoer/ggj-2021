@@ -2,6 +2,8 @@ using UnityEngine;
 
 public class CharacterMovementController : MonoBehaviour
 {
+  public Vector3 CurrentVelocity => _currentVelocity;
+
   public Vector3 MoveVector = Vector3.zero;
   public float Acceleration = 1;
   public float MoveSpeed = 1;

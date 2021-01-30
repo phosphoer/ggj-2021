@@ -10,6 +10,9 @@ public class PlayerCharacterController : Singleton<PlayerCharacterController>
   private CharacterMovementController _characterMovement = null;
 
   [SerializeField]
+  private PlayerAnimatorController _playerAnimation = null;
+
+  [SerializeField]
   private InteractionController _interactionController = null;
 
   [SerializeField]
@@ -46,8 +49,13 @@ public class PlayerCharacterController : Singleton<PlayerCharacterController>
 
   private void OnDestroy()
   {
-    if (CameraControllerStack.Instance != null)
-      CameraControllerStack.Instance.PopController(_cameraRig);
+    if (_cameraRig != null)
+    {
+      if (CameraControllerStack.Instance != null)
+        CameraControllerStack.Instance.PopController(_cameraRig);
+
+      Destroy(_cameraRig.gameObject);
+    }
   }
 
   private void Update()
@@ -62,6 +70,24 @@ public class PlayerCharacterController : Singleton<PlayerCharacterController>
 
     _characterMovement.MoveVector = horizontalVector + verticalVector;
 
+    if (_characterMovement.CurrentVelocity.magnitude > 0.01f)
+    {
+      if (_objectHolder.IsHoldingObject)
+        _playerAnimation.CurrentLocomotionState = PlayerAnimatorController.LocomotionState.JogCarry;
+      else
+        _playerAnimation.CurrentLocomotionState = PlayerAnimatorController.LocomotionState.Jog;
+
+      _playerAnimation.CurrentLocomotionSpeed = _characterMovement.CurrentVelocity.magnitude;
+    }
+    else
+    {
+      if (_objectHolder.IsHoldingObject)
+        _playerAnimation.CurrentLocomotionState = PlayerAnimatorController.LocomotionState.IdleCarry;
+      else
+        _playerAnimation.CurrentLocomotionState = PlayerAnimatorController.LocomotionState.Idle;
+
+      _playerAnimation.CurrentLocomotionSpeed = 1;
+    }
 
     // Interact with an interactable 
     if (rewiredPlayer.GetButtonDown(RewiredConsts.Action.Interact))
@@ -81,6 +107,7 @@ public class PlayerCharacterController : Singleton<PlayerCharacterController>
     {
       if (_objectHolder.HeldObject != null)
       {
+        _playerAnimation.PlayEmote(PlayerAnimatorController.EmoteState.OpenBottle);
         ScreamContainer bottle = _objectHolder.HeldObject.GetComponent<ScreamContainer>();
         if (bottle != null)
         {

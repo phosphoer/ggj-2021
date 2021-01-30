@@ -2,6 +2,7 @@ using UnityEngine;
 
 public class ObjectHolder : MonoBehaviour
 {
+  public bool IsHoldingObject => _holdableObject != null;
   public HoldableObject HeldObject => _holdableObject;
 
   [SerializeField]
