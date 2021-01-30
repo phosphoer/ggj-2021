@@ -5,6 +5,8 @@ public class CharacterMovementController : MonoBehaviour
   public Vector3 CurrentVelocity => _currentVelocity;
 
   public Vector3 MoveVector = Vector3.zero;
+  public float MoveSpeedMultiplier = 1;
+
   public float Acceleration = 1;
   public float MoveSpeed = 1;
   public float RunLeanAmount = 3;
@@ -22,7 +24,7 @@ public class CharacterMovementController : MonoBehaviour
     _currentMoveDir = Mathfx.Damp(_currentMoveDir, clampedMoveDir, 0.25f, Time.deltaTime * Acceleration);
 
     // Move to new position on nav mesh
-    Vector3 newPosition = transform.position + _currentMoveDir * Time.deltaTime * MoveSpeed;
+    Vector3 newPosition = transform.position + _currentMoveDir * Time.deltaTime * MoveSpeed * MoveSpeedMultiplier;
     Vector3 navPosition;
     if (PathFindManager.Instance.TryGetTraversablePoint(newPosition, out navPosition))
     {

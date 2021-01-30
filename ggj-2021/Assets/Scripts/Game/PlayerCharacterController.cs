@@ -23,6 +23,7 @@ public class PlayerCharacterController : Singleton<PlayerCharacterController>
 
   private int _disabledStack = 0;
   private CameraControllerPlayer _cameraRig;
+  private bool _isSneaking;
 
   private const int kRewiredPlayerId = 0;
 
@@ -70,12 +71,25 @@ public class PlayerCharacterController : Singleton<PlayerCharacterController>
 
     _characterMovement.MoveVector = horizontalVector + verticalVector;
 
+    _isSneaking = rewiredPlayer.GetButton(RewiredConsts.Action.Sneak);
+    _characterMovement.MoveSpeedMultiplier = _isSneaking ? 0.5f : 1.0f;
+
     if (_characterMovement.CurrentVelocity.magnitude > 0.01f)
     {
-      if (_objectHolder.IsHoldingObject)
-        _playerAnimation.CurrentLocomotionState = PlayerAnimatorController.LocomotionState.JogCarry;
+      if (_isSneaking)
+      {
+        if (_objectHolder.IsHoldingObject)
+          _playerAnimation.CurrentLocomotionState = PlayerAnimatorController.LocomotionState.SneakCarry;
+        else
+          _playerAnimation.CurrentLocomotionState = PlayerAnimatorController.LocomotionState.Sneak;
+      }
       else
-        _playerAnimation.CurrentLocomotionState = PlayerAnimatorController.LocomotionState.Jog;
+      {
+        if (_objectHolder.IsHoldingObject)
+          _playerAnimation.CurrentLocomotionState = PlayerAnimatorController.LocomotionState.JogCarry;
+        else
+          _playerAnimation.CurrentLocomotionState = PlayerAnimatorController.LocomotionState.Jog;
+      }
 
       _playerAnimation.CurrentLocomotionSpeed = _characterMovement.CurrentVelocity.magnitude;
     }
