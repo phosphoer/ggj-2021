@@ -208,6 +208,7 @@ MonoBehaviour:
   _requiresLineOfSight: 0
   _interactPromptUIPrefab: {fileID: 5606895370126460559, guid: 678ca8adcb7e74a4b89ae9a937c09e1e,
     type: 3}
+  _interactionType: pickup
 --- !u!114 &3751806036467726564
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -16,6 +16,7 @@ public class Interactable : MonoBehaviour
   }
 
   public bool RequiresLineOfSight => _requiresLineOfSight;
+  public string InteractionType => _interactionType;
 
   [SerializeField]
   private float _interactionRadius = 3.0f;
@@ -25,6 +26,9 @@ public class Interactable : MonoBehaviour
 
   [SerializeField]
   private GameObject _interactPromptUIPrefab = null;
+
+  [SerializeField]
+  private string _interactionType = "default";
 
   private RectTransform _uiRoot;
 

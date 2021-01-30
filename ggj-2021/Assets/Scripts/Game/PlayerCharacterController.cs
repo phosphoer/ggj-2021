@@ -40,6 +40,8 @@ public class PlayerCharacterController : Singleton<PlayerCharacterController>
   private void Awake()
   {
     Instance = this;
+    _objectHolder.HoldStart += OnHoldStart;
+    _objectHolder.HoldEnd += OnHoldEnd;
   }
 
   private void Start()
@@ -106,13 +108,13 @@ public class PlayerCharacterController : Singleton<PlayerCharacterController>
     // Interact with an interactable 
     if (rewiredPlayer.GetButtonDown(RewiredConsts.Action.Interact))
     {
-      if (_objectHolder.HeldObject != null)
-      {
-        _objectHolder.DropObject();
-      }
-      else if (_interactionController.ClosestInteractable != null)
+      if (_interactionController.ClosestInteractable != null)
       {
         _interactionController.ClosestInteractable.TriggerInteraction();
+      }
+      else if (_objectHolder.HeldObject != null)
+      {
+        _objectHolder.DropObject();
       }
     }
 
@@ -129,5 +131,15 @@ public class PlayerCharacterController : Singleton<PlayerCharacterController>
         }
       }
     }
+  }
+
+  private void OnHoldStart()
+  {
+    _interactionController.PushDisabledInteraction("pickup");
+  }
+
+  private void OnHoldEnd()
+  {
+    _interactionController.PopDisabledInteraction("pickup");
   }
 }
