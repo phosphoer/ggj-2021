@@ -4,48 +4,75 @@ using UnityEngine;
 
 public class ScreamInventoryComponent : MonoBehaviour
 {
-  private Dictionary<string, int> _screamNoteCounts = new Dictionary<string, int>();
+  [SerializeField]
+  public string[] _sourceBottleNotes = new string[3];
+  [SerializeField]
+  public string[] _targetBottleNotes = new string[3];
 
-  public bool IsEmpty
+  private ScreamContainer _sourceBottle;
+  private ScreamContainer _targetBottle;
+
+  private ScreamMappingDefinition _screamMappingDefinition;
+  public ScreamMappingDefinition ScreamMapping
   {
-    get { return _screamNoteCounts.Count > 0; }
+    get { return _screamMappingDefinition; }
+    set { _screamMappingDefinition = value; }
   }
 
-  public int GetScreamNoteCount(string screamNote)
+  public void StartMixingBottles(ScreamContainer heldBottle, ScreamContainer groundBottle)
   {
-    return _screamNoteCounts.ContainsKey(screamNote) ? _screamNoteCounts[screamNote] : 0;
-  }
+    Debug.Log($"Started mixing bottles {heldBottle.name} and {groundBottle.name}");
+    ScreamInventoryComponent inventoryComponent = GameUI.Instance.ScreamComposerUI.ScreamInventory;
 
-  public void AddScreamNote(string screamNote, int count)
-  {
-    if (_screamNoteCounts.ContainsKey(screamNote))
+    _sourceBottle = heldBottle;
+    _targetBottle = groundBottle;
+
+    string[] sourceScreamNotes = _sourceBottle.GetScreamNotes();
+    string[] targetScreamNotes = _targetBottle.GetScreamNotes();
+
+    if (sourceScreamNotes.Length == 3 && targetScreamNotes.Length == 3)
     {
-      _screamNoteCounts[screamNote] = _screamNoteCounts[screamNote] + count;
-    }
-    else
-    {
-      _screamNoteCounts.Add(screamNote, count);
+      for (int slotIndex = 0; slotIndex < 3; ++slotIndex)
+      {
+        inventoryComponent.SetSourceBottleNote(slotIndex, sourceScreamNotes[slotIndex]);
+        inventoryComponent.SetTargetBottleNote(slotIndex, targetScreamNotes[slotIndex]);
+      }
     }
   }
 
-  public bool SubtractScreamNote(string screamNote, int count)
+  public void FinishMixingBottles()
   {
-    if (_screamNoteCounts.ContainsKey(screamNote) && _screamNoteCounts[screamNote] >= count)
-    {
-      _screamNoteCounts[screamNote] -= count;
-      return true;
-    }
+    string sourceScreamString = string.Join(" ", _sourceBottleNotes);
+    string targetScreamString = string.Join(" ", _targetBottleNotes);
 
-    return false;
+    _sourceBottle.FillScream(sourceScreamString);
+    _targetBottle.FillScream(targetScreamString);
   }
 
-  void Start()
+  public void SetSourceBottleNote(int slotIndex, string note)
   {
-
+    _sourceBottleNotes[slotIndex] = note;
   }
 
-  void Update()
+  public string GetSourceBottleNote(int slotIndex)
   {
+    return _sourceBottleNotes[slotIndex];
+  }
 
+  public void SetTargetBottleNote(int slotIndex, string note)
+  {
+    _targetBottleNotes[slotIndex] = note;
+  }
+
+  public string GetTargetBottleNote(int slotIndex)
+  {
+    return _targetBottleNotes[slotIndex];
+  }
+
+  public void SwapNotes(int sourceSlotIndex, int targetSlotIndex)
+  {
+    string temp = _targetBottleNotes[targetSlotIndex];
+    _targetBottleNotes[targetSlotIndex] = _sourceBottleNotes[sourceSlotIndex];
+    _sourceBottleNotes[sourceSlotIndex] = temp;
   }
 }

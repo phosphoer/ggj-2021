@@ -14,9 +14,15 @@ public class ScreamContainer : MonoBehaviour
   [SerializeField]
   private HoldableObject _holdable = null;
 
+  public string[] GetScreamNotes()
+  {
+    return _screamString.Split(new char[] { ' ' });
+  }
+
   public void FillScream(string inputScream)
   {
     _screamString = inputScream;
+    Start();
   }
 
   public void ReleaseScream()
@@ -46,6 +52,11 @@ public class ScreamContainer : MonoBehaviour
     {
       _screamController.StartScream(_screamString, loopScream: true, volumeScale: 0.25f);
     }
+  }
+
+  private void Stop()
+  {
+    _screamController.StopScream();
   }
 
   private void OnIsHeldChanged()
