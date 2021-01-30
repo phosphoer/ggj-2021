@@ -128,7 +128,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _characterMovement: {fileID: 7166855244578791243}
-  _interactionController: {fileID: 0}
+  _interactionController: {fileID: 3606166799483051268}
 --- !u!114 &7166855244578791243
 MonoBehaviour:
   m_ObjectHideFlags: 0
