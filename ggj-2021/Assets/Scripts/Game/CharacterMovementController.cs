@@ -37,7 +37,7 @@ public class CharacterMovementController : MonoBehaviour
     {
       Vector3 runTiltAxis = Vector3.Cross(_currentMoveDir, Vector3.up);
       Quaternion forwardRot = Quaternion.LookRotation(_currentMoveDir);
-      Quaternion runTiltRot = Quaternion.AngleAxis(_currentVelocity.magnitude * RunLeanAmount, -runTiltAxis);
+      Quaternion runTiltRot = Quaternion.AngleAxis(_currentVelocity.magnitude * RunLeanAmount, runTiltAxis);
       Quaternion finalRot = runTiltRot * forwardRot;
       transform.rotation = Mathfx.Damp(transform.rotation, finalRot, 0.25f, Time.deltaTime * TurnAnimationSpeed);
     }
