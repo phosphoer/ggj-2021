@@ -23,7 +23,6 @@ public class GameStateManager : Singleton<GameStateManager>
   public GameStage CurrentStage => _gameStage;
 
   public GameStage EditorDefaultStage = GameStage.Daytime;
-  public GameObject MainMenuUIPrefab;
   public GameObject SettingsMenuUIPrefab;
   public GameObject DayIntroUIPrefab;
   public GameObject DaytimeUIPrefab;
@@ -40,7 +39,6 @@ public class GameStateManager : Singleton<GameStateManager>
   public CameraControllerBase GameCamera;
 
   private GameStage _gameStage = GameStage.Invalid;
-  private GameObject _mainMenuUI = null;
   private GameObject _settingsMenuUI = null;
   private GameObject _dayIntroUI = null;
   private GameObject _daytimeUI = null;
@@ -172,8 +170,7 @@ public class GameStateManager : Singleton<GameStateManager>
 
           CameraControllerStack.Instance.PopController(MenuCamera);
 
-          Destroy(_mainMenuUI);
-          _mainMenuUI = null;
+          GameUI.Instance.MainMenuUI.Hide();
         }
         break;
       case GameStage.Settings:
@@ -251,8 +248,7 @@ public class GameStateManager : Singleton<GameStateManager>
     {
       case GameStage.MainMenu:
         {
-          _mainMenuUI = (GameObject)Instantiate(MainMenuUIPrefab, Vector3.zero, Quaternion.identity);
-          CameraControllerStack.Instance.PushController(MenuCamera);
+          GameUI.Instance.MainMenuUI.Show();
 
           if (MusicMenuLoop != null)
           {
