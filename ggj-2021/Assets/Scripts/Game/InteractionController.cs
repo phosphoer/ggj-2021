@@ -1,7 +1,10 @@
 using UnityEngine;
+using System.Collections.Generic;
 
 public class InteractionController : MonoBehaviour
 {
+  public event System.Action ClosestInteractableChanged;
+
   public Transform TrackedTransform
   {
     get { return _trackedTransform; }
@@ -15,6 +18,18 @@ public class InteractionController : MonoBehaviour
 
   private int _lazyUpdateIndex;
   private Interactable _closestInteractable;
+  private List<string> _enabledInteractionTypes = new List<string>();
+
+  public void PushEnabledInteraction(string interactionType)
+  {
+    if (!_enabledInteractionTypes.Contains(interactionType))
+      _enabledInteractionTypes.Add(interactionType);
+  }
+
+  public void PopEnabledInteraction(string interactionType)
+  {
+    _enabledInteractionTypes.Remove(interactionType);
+  }
 
   private void OnDisable()
   {
@@ -29,17 +44,18 @@ public class InteractionController : MonoBehaviour
   {
     if (_lazyUpdateIndex < Interactable.InstanceCount)
     {
-      // Check if the current interactable is still in range
+      // Check if the current interactable is still valid
       float distToClosest = Mathf.Infinity;
       if (_closestInteractable != null)
       {
         distToClosest = Vector3.Distance(_trackedTransform.position, _closestInteractable.transform.position);
         bool isInLightOfSight = IsInLineOfSight(_closestInteractable);
-        if (distToClosest >= _closestInteractable.InteractionRadius || !isInLightOfSight || !_closestInteractable.enabled)
+        if (distToClosest >= _closestInteractable.InteractionRadius || !isInLightOfSight || !IsInteractionEnabled(_closestInteractable))
         {
           _closestInteractable.HidePrompt();
           _closestInteractable = null;
           distToClosest = Mathf.Infinity;
+          ClosestInteractableChanged?.Invoke();
         }
       }
 
@@ -52,6 +68,7 @@ public class InteractionController : MonoBehaviour
       bool isInteractableMoreContextual = distToInteractable < distToClosest;
       isInteractableMoreContextual &= distToInteractable < interactable.InteractionRadius;
       isInteractableMoreContextual &= interactable != _closestInteractable;
+      isInteractableMoreContextual &= IsInteractionEnabled(interactable);
 
       // If the new interactable is more contextual than the previous, make it the highlighted one
       if (isInteractableMoreContextual)
@@ -66,23 +83,35 @@ public class InteractionController : MonoBehaviour
 
           _closestInteractable = interactable;
           _closestInteractable.ShowPrompt();
+          ClosestInteractableChanged?.Invoke();
         }
       }
     }
     else
     {
+      bool changed = false;
       if (_closestInteractable != null)
       {
         _closestInteractable.HidePrompt();
+        changed = true;
       }
 
       _closestInteractable = null;
+
+      if (changed)
+        ClosestInteractableChanged?.Invoke();
     }
 
     if (Interactable.InstanceCount > 0)
     {
       _lazyUpdateIndex = (_lazyUpdateIndex + 1) % Interactable.InstanceCount;
     }
+  }
+
+  private bool IsInteractionEnabled(Interactable interactable)
+  {
+    return interactable.enabled &&
+           (string.IsNullOrEmpty(interactable.InteractionType) || _enabledInteractionTypes.Contains(interactable.InteractionType));
   }
 
   private bool IsInLineOfSight(Interactable interactable)

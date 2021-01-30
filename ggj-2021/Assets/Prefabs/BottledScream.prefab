@@ -106,7 +106,6 @@ GameObject:
   - component: {fileID: 3751806036467726561}
   - component: {fileID: 3751806036467726560}
   - component: {fileID: 3751806036467726566}
-  - component: {fileID: 3751806036467726567}
   - component: {fileID: 3751806036467726564}
   m_Layer: 0
   m_Name: BottledScream
@@ -127,6 +126,8 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 3751806035771792638}
+  - {fileID: 6340008090476861459}
+  - {fileID: 6684365278249670512}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -177,6 +178,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _screamController: {fileID: 3751806036467726561}
   _screamString: eeh ooh aah
+  _mixInteractable: {fileID: 8239765380805415612}
+  _holdable: {fileID: 3751806036467726564}
 --- !u!114 &3751806036467726566
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -192,22 +195,6 @@ MonoBehaviour:
   _screamController: {fileID: 3751806036467726561}
   _screamVisualPrefab: {fileID: 1877114886516284848, guid: f970b019ccd90c24a81f7be59480f843,
     type: 3}
---- !u!114 &3751806036467726567
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3751806036467726573}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: dbc6133d379853945b96d06af7d9cdc1, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _interactionRadius: 3
-  _requiresLineOfSight: 0
-  _interactPromptUIPrefab: {fileID: 5606895370126460559, guid: 678ca8adcb7e74a4b89ae9a937c09e1e,
-    type: 3}
 --- !u!114 &3751806036467726564
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -220,5 +207,101 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5287af840fcdea64d8d97b786f06e4a9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _interactable: {fileID: 3751806036467726567}
+  _interactable: {fileID: 4627890405404266577}
   _rb: {fileID: 3751806036467726563}
+--- !u!1 &3911976916698795645
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 6684365278249670512}
+  - component: {fileID: 4627890405404266577}
+  m_Layer: 0
+  m_Name: interact-pickup
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &6684365278249670512
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3911976916698795645}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 3751806036467726562}
+  m_RootOrder: 2
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &4627890405404266577
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3911976916698795645}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dbc6133d379853945b96d06af7d9cdc1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _interactionRadius: 3
+  _requiresLineOfSight: 0
+  _interactPromptUIPrefab: {fileID: 5606895370126460559, guid: 678ca8adcb7e74a4b89ae9a937c09e1e,
+    type: 3}
+  _interactionType: pickup
+--- !u!1 &6681901639992759599
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 6340008090476861459}
+  - component: {fileID: 8239765380805415612}
+  m_Layer: 0
+  m_Name: interact-mix
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &6340008090476861459
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6681901639992759599}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 3751806036467726562}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &8239765380805415612
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6681901639992759599}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dbc6133d379853945b96d06af7d9cdc1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _interactionRadius: 3
+  _requiresLineOfSight: 0
+  _interactPromptUIPrefab: {fileID: 5606895370126460559, guid: 139c1fd5704fd6d41bcb1b11a293451a,
+    type: 3}
+  _interactionType: mix
