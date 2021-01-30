@@ -90,6 +90,7 @@ GameObject:
   - component: {fileID: 7166855244578791242}
   - component: {fileID: 7166855244578791244}
   - component: {fileID: 7166855244578791243}
+  - component: {fileID: 3606166799483051268}
   m_Layer: 0
   m_Name: player
   m_TagString: Untagged
@@ -141,13 +142,21 @@ MonoBehaviour:
   MoveVector: {x: 0, y: 0, z: 0}
   Acceleration: 5
   MoveSpeed: 5
-  RaycastMask:
-    serializedVersion: 2
-    m_Bits: 768
-  TerrainMask:
-    serializedVersion: 2
-    m_Bits: 256
-  _visualRoot: {fileID: 7166855245900641357}
+  RunLeanAmount: 3
+  TurnAnimationSpeed: 5
+--- !u!114 &3606166799483051268
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7166855244578791241}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8b0301ac33e220d42b6c00f61d39fa76, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _trackedTransform: {fileID: 7166855244578791242}
 --- !u!1 &7166855245900641356
 GameObject:
   m_ObjectHideFlags: 0

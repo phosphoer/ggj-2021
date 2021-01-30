@@ -1,11 +1,28 @@
 using UnityEngine;
 
-public class PlayerCharacterController : MonoBehaviour
+public class PlayerCharacterController : Singleton<PlayerCharacterController>
 {
   [SerializeField]
   private CharacterMovementController _characterMovement = null;
 
+  private int _disabledStack = 0;
+
   private const int kRewiredPlayerId = 0;
+
+  public void PushDisableControls()
+  {
+    _disabledStack += 1;
+  }
+
+  public void PopDisableControls()
+  {
+    _disabledStack -= 1;
+  }
+
+  private void Awake()
+  {
+    Instance = this;
+  }
 
   private void Update()
   {
