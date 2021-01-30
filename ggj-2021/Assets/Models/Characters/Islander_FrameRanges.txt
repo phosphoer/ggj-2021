@@ -1,0 +1,9 @@
+Islander Animations:
+1-48 :: Idle
+49-97 :: Jog (2x Speed)
+98-146 :: Carry Jog (2x speed)
+147-195 :: Sneak
+196-244 :: Carry Sneak
+245-275 :: Carry Idle
+276-306 :: Open Bottle
+307-337 :: Scared
