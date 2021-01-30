@@ -10,9 +10,7 @@ Shader "Custom/CellShaded"
   {
     CGINCLUDE 
       #include "UnityCG.cginc"
-      #include "UnityLightingCommon.cginc"
-      #include "Lighting.cginc"
-      #include "AutoLight.cginc"
+      #include "CellShading.cginc"
 
       struct appdata
       {
@@ -29,7 +27,8 @@ Shader "Custom/CellShaded"
         float2 uv : TEXCOORD0;
         SHADOW_COORDS(1)
         fixed3 worldNormal : TEXCOORD2;
-        UNITY_FOG_COORDS(3)
+        fixed3 worldPos : TEXCOORD3;
+        UNITY_FOG_COORDS(4)
       };
 
       sampler2D _MainTex;
@@ -39,6 +38,7 @@ Shader "Custom/CellShaded"
       {
         v2f o;
         o.pos = UnityObjectToClipPos(v.vertex);
+        o.worldPos = mul(unity_ObjectToWorld, v.vertex);
         o.uv = v.uv;
         o.worldNormal = mul(unity_ObjectToWorld, fixed4(v.normal.xyz, 0));
         o.color = v.color;
@@ -54,6 +54,8 @@ Shader "Custom/CellShaded"
         // Get base diffuse color
         fixed3 texColor = tex2D(_MainTex, i.uv).rgb;
         fixed3 diffuse = _Color.rgb * texColor;
+        UNITY_LIGHT_ATTENUATION(lightAtten, i, i.worldPos);
+        diffuse *= CalculateLighting(normalize(i.worldNormal), lightAtten, SHADOW_ATTENUATION(i)).rgb;
 
         UNITY_APPLY_FOG(i.fogCoord, diffuse);
 
@@ -64,12 +66,6 @@ Shader "Custom/CellShaded"
     Pass
     {
       Tags { "RenderType"="Opaque" "LightMode" = "ForwardBase" }
-      Stencil 
-      {
-        Ref 1
-        Comp always
-        Pass replace
-      }
 
       ZWrite On 
 
@@ -77,7 +73,21 @@ Shader "Custom/CellShaded"
       #pragma vertex vert
       #pragma fragment frag
       #pragma multi_compile_fog			
-      #pragma multi_compile_fwdbase nolightmap nodirlightmap nodynlightmap novertexlight
+      #pragma multi_compile_fwdbase
+      ENDCG
+    }
+
+    Pass
+    {
+      Tags { "RenderType"="Opaque" "LightMode" = "ForwardAdd" }
+			Blend One One
+			ZWrite Off
+
+      CGPROGRAM
+      #pragma vertex vert
+      #pragma fragment frag
+      #pragma multi_compile_fog			
+      #pragma multi_compile_fwdadd
       ENDCG
     }
   }
