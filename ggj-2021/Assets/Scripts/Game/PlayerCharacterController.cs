@@ -3,6 +3,8 @@ using UnityEngine;
 public class PlayerCharacterController : Singleton<PlayerCharacterController>
 {
   public ObjectHolder ObjectHolder => _objectHolder;
+  public CharacterMovementController Character => _characterMovement;
+  public CameraControllerPlayer CameraRig => _cameraRig;
 
   [SerializeField]
   private CharacterMovementController _characterMovement = null;
@@ -13,7 +15,11 @@ public class PlayerCharacterController : Singleton<PlayerCharacterController>
   [SerializeField]
   private ObjectHolder _objectHolder = null;
 
+  [SerializeField]
+  private CameraControllerPlayer _cameraRigPrefab = null;
+
   private int _disabledStack = 0;
+  private CameraControllerPlayer _cameraRig;
 
   private const int kRewiredPlayerId = 0;
 
@@ -30,6 +36,18 @@ public class PlayerCharacterController : Singleton<PlayerCharacterController>
   private void Awake()
   {
     Instance = this;
+  }
+
+  private void Start()
+  {
+    _cameraRig = Instantiate(_cameraRigPrefab);
+    CameraControllerStack.Instance.PushController(_cameraRig);
+  }
+
+  private void OnDestroy()
+  {
+    if (CameraControllerStack.Instance != null)
+      CameraControllerStack.Instance.PopController(_cameraRig);
   }
 
   private void Update()
