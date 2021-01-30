@@ -127,6 +127,18 @@ public class WorldAttachedUI : UIPageBase
   protected override void Awake()
   {
     base.Awake();
+    Shown += OnShown;
+    Hidden += OnHidden;
+  }
+
+  private void OnShown()
+  {
+
+  }
+
+  private void OnHidden()
+  {
+
   }
 
   private IEnumerator UpdateAsync()
