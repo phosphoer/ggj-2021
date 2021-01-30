@@ -40,7 +40,7 @@ public class PlayerCharacterController : Singleton<PlayerCharacterController>
   public void StartMixingBottles(ScreamContainer heldBottle, ScreamContainer groundBottle)
   {
     Debug.Log($"Started mixing bottles {heldBottle.name} and {groundBottle.name}");
-    ScreamInventoryComponent inventoryComponent= GameUI.Instance.ScreamComposerUI.ScreamInventory;
+    ScreamInventoryComponent inventoryComponent = GameUI.Instance.ScreamComposerUI.ScreamInventory;
 
     inventoryComponent.StartMixingBottles(heldBottle, groundBottle);
     GameUI.Instance.ScreamComposerUI.Show();

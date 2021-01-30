@@ -83,6 +83,20 @@ public class AudioManager : Singleton<AudioManager>
     Instance.PlaySound(source, soundBank, volumeScale);
   }
 
+  public static void ConfigureSourceForSound(AudioSource audioSource, SoundBank soundBank)
+  {
+    audioSource.playOnAwake = false;
+    audioSource.spatialize = soundBank.IsSpatial;
+    audioSource.spatialBlend = soundBank.IsSpatial ? 1.0f : 0.0f;
+    audioSource.volume = soundBank.VolumeScale;
+    audioSource.loop = soundBank.IsLooping;
+    audioSource.minDistance = soundBank.MinDistance;
+    audioSource.maxDistance = soundBank.MaxDistance;
+    audioSource.rolloffMode = AudioRolloffMode.Linear;
+    audioSource.outputAudioMixerGroup = soundBank.AudioMixerGroup;
+    audioSource.dopplerLevel = soundBank.DopplerLevel;
+  }
+
   // Fade in a sound over a time period, if the source gets destroyed it will be cancelled
   public Coroutine FadeInSound(GameObject source, SoundBank soundBank, float duration, float toVolume = 1.0f)
   {
@@ -240,18 +254,11 @@ public class AudioManager : Singleton<AudioManager>
     if (audioInstance == null)
     {
       audioInstance = new AudioInstance();
-      audioInstance.AudioSource = forSource.AddComponent<AudioSource>();
-      audioInstance.AudioSource.playOnAwake = false;
-      audioInstance.AudioSource.spatialize = soundBank.IsSpatial;
-      audioInstance.AudioSource.spatialBlend = soundBank.IsSpatial ? 1.0f : 0.0f;
-      audioInstance.AudioSource.volume = soundBank.VolumeScale;
-      audioInstance.AudioSource.loop = soundBank.IsLooping;
-      audioInstance.AudioSource.minDistance = soundBank.MinDistance;
-      audioInstance.AudioSource.maxDistance = soundBank.MaxDistance;
-      audioInstance.AudioSource.rolloffMode = AudioRolloffMode.Linear;
-      audioInstance.AudioSource.outputAudioMixerGroup = soundBank.AudioMixerGroup;
-      audioInstance.AudioSource.dopplerLevel = soundBank.DopplerLevel;
       audioInstance.SoundBank = soundBank;
+
+      audioInstance.AudioSource = forSource.AddComponent<AudioSource>();
+      ConfigureSourceForSound(audioInstance.AudioSource, soundBank);
+
       audioGroup.AddAudioInstance(audioInstance);
     }
 
