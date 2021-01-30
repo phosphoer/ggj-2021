@@ -131,7 +131,7 @@ PrefabInstance:
     - target: {fileID: 3022241860098331819, guid: 1f2e96c54fd18b1468da05f3259de592,
         type: 3}
       propertyPath: EditorDefaultStage
-      value: 1
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 3864452600435219996, guid: 1f2e96c54fd18b1468da05f3259de592,
         type: 3}

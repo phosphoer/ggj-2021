@@ -10,6 +10,10 @@ public class ScreamComposerUIHandler : UIPageBase
 
   [SerializeField]
   private ScreamInventoryComponent _screamInventory;
+  public ScreamInventoryComponent ScreamInventory
+  {
+    get { return _screamInventory; }
+  }
 
   [SerializeField]
   private Text[] _sourceScreamSongLabels; // left side
@@ -90,7 +94,7 @@ public class ScreamComposerUIHandler : UIPageBase
         RefreshSongButtonLabels();
 
         // Deselect the target slot
-        _sourceScreamSongLabels[_selectedTargetSlotIndex].color = UnselectedColor;
+        _targetScreamSongLabels[_selectedTargetSlotIndex].color = UnselectedColor;
         _selectedTargetSlotIndex = -1;
       }
       else
@@ -133,7 +137,7 @@ public class ScreamComposerUIHandler : UIPageBase
         RefreshSongButtonLabels();
 
         // Deselect the source slot
-        _targetScreamSongLabels[_selectedSourceSlotIndex].color = UnselectedColor;
+        _sourceScreamSongLabels[_selectedSourceSlotIndex].color = UnselectedColor;
         _selectedSourceSlotIndex = -1;
       }
       else
@@ -143,5 +147,11 @@ public class ScreamComposerUIHandler : UIPageBase
         _selectedTargetSlotIndex = targetSlotIndex;
       }
     }
+  }
+
+  public void OnDoneMixing()
+  {
+    _screamInventory.FinishMixingBottles(); // Apply final screams back to each bottle
+    Hide();
   }
 }
