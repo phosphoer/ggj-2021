@@ -155,6 +155,7 @@ public class UIPageBase : MonoBehaviour
 
   protected virtual void Awake()
   {
+    _isVisible = gameObject.activeSelf;
     if (ShowOnStart)
       Show();
     else
