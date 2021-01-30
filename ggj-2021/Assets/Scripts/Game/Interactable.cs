@@ -28,7 +28,7 @@ public class Interactable : MonoBehaviour
   private GameObject _interactPromptUIPrefab = null;
 
   [SerializeField]
-  private string _interactionType = "default";
+  private string _interactionType = null;
 
   private RectTransform _uiRoot;
 

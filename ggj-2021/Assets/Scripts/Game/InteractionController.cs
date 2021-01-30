@@ -18,16 +18,17 @@ public class InteractionController : MonoBehaviour
 
   private int _lazyUpdateIndex;
   private Interactable _closestInteractable;
-  private List<string> _disabledInteractionTypes = new List<string>();
+  private List<string> _enabledInteractionTypes = new List<string>();
 
-  public void PushDisabledInteraction(string interactionType)
+  public void PushEnabledInteraction(string interactionType)
   {
-    _disabledInteractionTypes.Add(interactionType);
+    if (!_enabledInteractionTypes.Contains(interactionType))
+      _enabledInteractionTypes.Add(interactionType);
   }
 
-  public void PopDisabledInteraction(string interactionType)
+  public void PopEnabledInteraction(string interactionType)
   {
-    _disabledInteractionTypes.Remove(interactionType);
+    _enabledInteractionTypes.Remove(interactionType);
   }
 
   private void OnDisable()
@@ -109,7 +110,8 @@ public class InteractionController : MonoBehaviour
 
   private bool IsInteractionEnabled(Interactable interactable)
   {
-    return interactable.enabled && !_disabledInteractionTypes.Contains(interactable.InteractionType);
+    return interactable.enabled &&
+           (string.IsNullOrEmpty(interactable.InteractionType) || _enabledInteractionTypes.Contains(interactable.InteractionType));
   }
 
   private bool IsInLineOfSight(Interactable interactable)

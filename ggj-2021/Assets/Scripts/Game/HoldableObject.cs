@@ -2,6 +2,10 @@ using UnityEngine;
 
 public class HoldableObject : MonoBehaviour
 {
+  public event System.Action IsHeldChanged;
+
+  public bool IsHeld => _isHeld;
+
   [SerializeField]
   private Interactable _interactable = null;
 
@@ -9,12 +13,15 @@ public class HoldableObject : MonoBehaviour
   private Rigidbody _rb = null;
 
   private Transform _originalParent;
+  private bool _isHeld;
 
   public void StartHold()
   {
     _originalParent = transform.parent;
     _rb.isKinematic = true;
     _interactable.enabled = false;
+    _isHeld = true;
+    IsHeldChanged?.Invoke();
   }
 
   public void StopHold()
@@ -22,6 +29,8 @@ public class HoldableObject : MonoBehaviour
     transform.parent = _originalParent;
     _rb.isKinematic = false;
     _interactable.enabled = true;
+    _isHeld = false;
+    IsHeldChanged?.Invoke();
   }
 
   private void OnEnable()
@@ -36,6 +45,5 @@ public class HoldableObject : MonoBehaviour
 
   private void OnInteractionTriggered()
   {
-    PlayerCharacterController.Instance.ObjectHolder.HoldObject(this);
   }
 }

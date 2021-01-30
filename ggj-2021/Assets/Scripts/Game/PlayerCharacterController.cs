@@ -37,11 +37,18 @@ public class PlayerCharacterController : Singleton<PlayerCharacterController>
     _disabledStack -= 1;
   }
 
+  public void StartMixingBottles(ScreamContainer heldBottle, ScreamContainer groundBottle)
+  {
+    Debug.Log($"Started mixing bottles {heldBottle.name} and {groundBottle.name}");
+  }
+
   private void Awake()
   {
     Instance = this;
     _objectHolder.HoldStart += OnHoldStart;
     _objectHolder.HoldEnd += OnHoldEnd;
+
+    _interactionController.PushEnabledInteraction("pickup");
   }
 
   private void Start()
@@ -110,7 +117,9 @@ public class PlayerCharacterController : Singleton<PlayerCharacterController>
     {
       if (_interactionController.ClosestInteractable != null)
       {
-        _interactionController.ClosestInteractable.TriggerInteraction();
+        Interactable interactable = _interactionController.ClosestInteractable;
+        interactable.TriggerInteraction();
+        InteractWithObject(interactable);
       }
       else if (_objectHolder.HeldObject != null)
       {
@@ -121,7 +130,7 @@ public class PlayerCharacterController : Singleton<PlayerCharacterController>
     // Scream into or uncork a held bottle
     if (rewiredPlayer.GetButtonDown(RewiredConsts.Action.Scream))
     {
-      if (_objectHolder.HeldObject != null)
+      if (_objectHolder.IsHoldingObject)
       {
         _playerAnimation.PlayEmote(PlayerAnimatorController.EmoteState.OpenBottle);
         ScreamContainer bottle = _objectHolder.HeldObject.GetComponent<ScreamContainer>();
@@ -133,13 +142,42 @@ public class PlayerCharacterController : Singleton<PlayerCharacterController>
     }
   }
 
+  private void InteractWithObject(Interactable interactable)
+  {
+    // Pick up holdable objects
+    if (interactable.InteractionType == "pickup")
+    {
+      HoldableObject holdable = interactable.GetComponentInParent<HoldableObject>();
+      if (holdable != null)
+      {
+        _objectHolder.HoldObject(holdable);
+        return;
+      }
+    }
+    else if (interactable.InteractionType == "mix")
+    {
+      // Mix bottles
+      if (_objectHolder.IsHoldingObject)
+      {
+        ScreamContainer heldBottle = _objectHolder.HeldObject.GetComponent<ScreamContainer>();
+        ScreamContainer groundBottle = interactable.GetComponentInParent<ScreamContainer>();
+        if (heldBottle != null && groundBottle != null)
+        {
+          StartMixingBottles(heldBottle, groundBottle);
+        }
+      }
+    }
+  }
+
   private void OnHoldStart()
   {
-    _interactionController.PushDisabledInteraction("pickup");
+    _interactionController.PopEnabledInteraction("pickup");
+    _interactionController.PushEnabledInteraction("mix");
   }
 
   private void OnHoldEnd()
   {
-    _interactionController.PopDisabledInteraction("pickup");
+    _interactionController.PushEnabledInteraction("pickup");
+    _interactionController.PopEnabledInteraction("mix");
   }
 }
