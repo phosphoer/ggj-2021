@@ -5,6 +5,9 @@ public class PlayerCharacterController : Singleton<PlayerCharacterController>
   [SerializeField]
   private CharacterMovementController _characterMovement = null;
 
+  [SerializeField]
+  private InteractionController _interactionController = null;
+
   private int _disabledStack = 0;
 
   private const int kRewiredPlayerId = 0;
