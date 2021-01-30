@@ -3,6 +3,7 @@ using UnityEngine;
 public class PlayerCharacterController : Singleton<PlayerCharacterController>
 {
   public ObjectHolder ObjectHolder => _objectHolder;
+  public CharacterMovementController Character => _characterMovement;
 
   [SerializeField]
   private CharacterMovementController _characterMovement = null;
