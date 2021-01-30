@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class WinGameUIHandler : MonoBehaviour
+public class WinGameUIHandler : UIPageBase
 {
   public void OnPlayAgainClicked()
   {

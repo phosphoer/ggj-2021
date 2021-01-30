@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class ScreamComposerUIHandler : MonoBehaviour
+public class ScreamComposerUIHandler : UIPageBase
 {
   [SerializeField]
   private Button[] _screamTrack;
@@ -11,8 +11,14 @@ public class ScreamComposerUIHandler : MonoBehaviour
   [SerializeField]
   private RMF_RadialMenu _radialMenu = null;
 
+  protected override void Awake()
+  {
+    base.Awake();
+    Shown += OnShown;
+  }
+
   // Start is called before the first frame update
-  void Start()
+  private void OnShown()
   {
 
   }

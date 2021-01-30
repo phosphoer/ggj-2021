@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class LoseGameUIHandler : MonoBehaviour
+public class LoseGameUIHandler : UIPageBase
 {
   public void OnPlayAgainClicked()
   {

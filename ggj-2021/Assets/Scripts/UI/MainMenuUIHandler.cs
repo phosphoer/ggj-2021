@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
-public class MainMenuUIHandler : MonoBehaviour
+public class MainMenuUIHandler : UIPageBase
 {
   EventSystem eventSystem;
 

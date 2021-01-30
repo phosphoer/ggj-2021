@@ -11,7 +11,7 @@ public struct TutorialLine
   public float Duration;
 }
 
-public class DaytimeUIHandler : MonoBehaviour
+public class DaytimeUIHandler : UIPageBase
 {
   public List<TutorialLine> TutorialLines;
   private int _tutorialLineIndex = 0;
@@ -30,7 +30,13 @@ public class DaytimeUIHandler : MonoBehaviour
   [SerializeField]
   private Text _tutorialTextField = null;
 
-  private void Start()
+  protected override void Awake()
+  {
+    base.Awake();
+    Shown += OnShown;
+  }
+
+  private void OnShown()
   {
     // Only show the tutorial on the first day
     if (GameStateManager.Instance.CurrentDay == 0)
