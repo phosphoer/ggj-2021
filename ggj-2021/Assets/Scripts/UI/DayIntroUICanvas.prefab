@@ -88,6 +88,7 @@ GameObject:
   - component: {fileID: 5974597404572469967}
   - component: {fileID: 5574239060371080617}
   - component: {fileID: 6282517805388533743}
+  - component: {fileID: 7541614099189670438}
   m_Layer: 5
   m_Name: Text
   m_TagString: Untagged
@@ -104,7 +105,7 @@ RectTransform:
   m_GameObject: {fileID: 3559243121658111471}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 0, y: 0, z: 0}
   m_Children: []
   m_Father: {fileID: 1608528014859922278}
   m_RootOrder: 0
@@ -182,9 +183,29 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: df713d16256905a4ea4bcd923b0b4d70, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  ShowOnStart: 0
+  IsModal: 0
+  _hydrateOnShow: []
   _titleTextField: {fileID: 5974597404572469967}
   ShowDuration: 3
   _timer: 0
+--- !u!114 &7541614099189670438
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3559243121658111471}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: abe06af70618de340ae966c85bfb2aad, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  HydrateOnEnable: 0
+  StartDehydrated: 0
+  _targetTransform: {fileID: 7496698087379598345}
+  _useNormalizedScale: 1
+  _enableRandomDelay: 1
 --- !u!1 &4713633419316229850
 GameObject:
   m_ObjectHideFlags: 0
@@ -195,10 +216,6 @@ GameObject:
   m_Component:
   - component: {fileID: 4713633419316229854}
   - component: {fileID: 4713633419316229849}
-  - component: {fileID: 4713633419316229848}
-  - component: {fileID: 4713633419316229851}
-  - component: {fileID: 6175672088451230578}
-  - component: {fileID: 617425112842726717}
   - component: {fileID: 4267293473252398969}
   m_Layer: 5
   m_Name: DayIntroUICanvas
@@ -248,97 +265,6 @@ Canvas:
   m_SortingLayerID: 0
   m_SortingOrder: 0
   m_TargetDisplay: 0
---- !u!114 &4713633419316229848
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4713633419316229850}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0cd44c1031e13a943bb63640046fad76, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_UiScaleMode: 1
-  m_ReferencePixelsPerUnit: 100
-  m_ScaleFactor: 1
-  m_ReferenceResolution: {x: 1680, y: 1080}
-  m_ScreenMatchMode: 0
-  m_MatchWidthOrHeight: 0
-  m_PhysicalUnit: 3
-  m_FallbackScreenDPI: 96
-  m_DefaultSpriteDPI: 96
-  m_DynamicPixelsPerUnit: 1
---- !u!114 &4713633419316229851
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4713633419316229850}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: dc42784cf147c0c48a680349fa168899, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_IgnoreReversedGraphics: 1
-  m_BlockingObjects: 0
-  m_BlockingMask:
-    serializedVersion: 2
-    m_Bits: 4294967295
---- !u!114 &6175672088451230578
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4713633419316229850}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 76c392e42b5098c458856cdf6ecaaaa1, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_FirstSelected: {fileID: 0}
-  m_sendNavigationEvents: 1
-  m_DragThreshold: 10
---- !u!114 &617425112842726717
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4713633419316229850}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 10efa70eea88e69459c632aac286892d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  rewiredInputManager: {fileID: 4175110851365222446, guid: 1ae28feeab196dc44956af0b76055a50,
-    type: 3}
-  useAllRewiredGamePlayers: 1
-  useRewiredSystemPlayer: 0
-  rewiredPlayerIds: 00000000
-  usePlayingPlayersOnly: 0
-  playerMice: []
-  moveOneElementPerAxisPress: 0
-  setActionsById: 1
-  horizontalActionId: 2
-  verticalActionId: 3
-  submitActionId: 1
-  cancelActionId: 0
-  m_HorizontalAxis: UIHorizontal
-  m_VerticalAxis: UIVertical
-  m_SubmitButton: UISubmit
-  m_CancelButton: UICancel
-  m_InputActionsPerSecond: 10
-  m_RepeatDelay: 0
-  m_allowMouseInput: 1
-  m_allowMouseInputIfTouchSupported: 1
-  m_allowTouchInput: 1
-  m_deselectIfBackgroundClicked: 1
-  m_deselectBeforeSelecting: 0
-  m_ForceModuleActive: 0
 --- !u!114 &4267293473252398969
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -351,6 +277,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: df713d16256905a4ea4bcd923b0b4d70, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _titleTextField: {fileID: 0}
+  ShowOnStart: 0
+  IsModal: 0
+  _hydrateOnShow:
+  - {fileID: 7541614099189670438}
+  _titleTextField: {fileID: 5974597404572469967}
   ShowDuration: 3
   _timer: 0

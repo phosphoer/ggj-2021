@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class DayOutroUIHandler : MonoBehaviour
+public class DayOutroUIHandler : UIPageBase
 {
   public float ShowDuration = 3;
   public float _timer;
@@ -16,8 +16,9 @@ public class DayOutroUIHandler : MonoBehaviour
     return _timer <= 0;
   }
 
-  private void Awake()
+  protected override void Awake()
   {
+    base.Awake();
     _timer = ShowDuration;
   }
 

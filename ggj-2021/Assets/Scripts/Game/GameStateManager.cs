@@ -23,12 +23,6 @@ public class GameStateManager : Singleton<GameStateManager>
   public GameStage CurrentStage => _gameStage;
 
   public GameStage EditorDefaultStage = GameStage.Daytime;
-  public GameObject SettingsMenuUIPrefab;
-  public GameObject DayIntroUIPrefab;
-  public GameObject DaytimeUIPrefab;
-  public GameObject DayOutroUIPrefab;
-  public GameObject WinGameUIPrefab;
-  public GameObject LoseGameUIPrefab;
 
   public SoundBank MusicMenuLoop;
   public SoundBank MusicDayIntro;
@@ -39,12 +33,6 @@ public class GameStateManager : Singleton<GameStateManager>
   public CameraControllerBase GameCamera;
 
   private GameStage _gameStage = GameStage.Invalid;
-  private GameObject _settingsMenuUI = null;
-  private GameObject _dayIntroUI = null;
-  private GameObject _daytimeUI = null;
-  private GameObject _dayOutroUI = null;
-  private GameObject _winGameUI = null;
-  private GameObject _loseGameUI = null;
 
   private DayIntroUIHandler _dayIntroUIHander = null;
   private DayOutroUIHandler _dayOutroUIHander = null;
@@ -177,8 +165,7 @@ public class GameStateManager : Singleton<GameStateManager>
         {
           CameraControllerStack.Instance.PopController(MenuCamera);
 
-          Destroy(_settingsMenuUI);
-          _settingsMenuUI = null;
+          GameUI.Instance.SettingsUI.Hide();
         }
         break;
       case GameStage.DayIntro:
@@ -190,8 +177,7 @@ public class GameStateManager : Singleton<GameStateManager>
 
           CameraControllerStack.Instance.PopController(MenuCamera);
 
-          Destroy(_dayIntroUI);
-          _dayIntroUI = null;
+          GameUI.Instance.DayIntroUI.Hide();
           _dayIntroUIHander = null;
         }
         break;
@@ -202,8 +188,7 @@ public class GameStateManager : Singleton<GameStateManager>
 
           CameraControllerStack.Instance.PopController(GameCamera);
 
-          Destroy(_daytimeUI);
-          _daytimeUI = null;
+          GameUI.Instance.DaytimeUI.Hide();
         }
         break;
       case GameStage.DayOutro:
@@ -218,8 +203,7 @@ public class GameStateManager : Singleton<GameStateManager>
           // Move on to the next day!
           _currentDay++;
 
-          Destroy(_dayOutroUI);
-          _dayOutroUI = null;
+          GameUI.Instance.DayOutroUI.Hide();
           _dayOutroUIHander = null;
         }
         break;
@@ -227,16 +211,14 @@ public class GameStateManager : Singleton<GameStateManager>
         {
           CameraControllerStack.Instance.PopController(MenuCamera);
 
-          Destroy(_winGameUI);
-          _winGameUI = null;
+          GameUI.Instance.WinGameUI.Hide();
         }
         break;
       case GameStage.LoseGame:
         {
           CameraControllerStack.Instance.PopController(MenuCamera);
 
-          Destroy(_loseGameUI);
-          _loseGameUI = null;
+          GameUI.Instance.LoseGameUI.Hide();
         }
         break;
     }
@@ -258,14 +240,14 @@ public class GameStateManager : Singleton<GameStateManager>
         break;
       case GameStage.Settings:
         {
-          _settingsMenuUI = (GameObject)Instantiate(SettingsMenuUIPrefab, Vector3.zero, Quaternion.identity);
+          GameUI.Instance.SettingsUI.Show();
           CameraControllerStack.Instance.PushController(MenuCamera);
         }
         break;
       case GameStage.DayIntro:
         {
-          _dayIntroUI = (GameObject)Instantiate(DayIntroUIPrefab, Vector3.zero, Quaternion.identity);
-          _dayIntroUIHander = _dayIntroUI.GetComponent<DayIntroUIHandler>();
+          GameUI.Instance.DayIntroUI.Show();
+          _dayIntroUIHander = GameUI.Instance.DayIntroUI.GetComponent<DayIntroUIHandler>();
           CameraControllerStack.Instance.PushController(MenuCamera);
 
           if (MusicDayIntro != null)
@@ -278,7 +260,7 @@ public class GameStateManager : Singleton<GameStateManager>
         break;
       case GameStage.Daytime:
         {
-          _daytimeUI = (GameObject)Instantiate(DaytimeUIPrefab, Vector3.zero, Quaternion.identity);
+          GameUI.Instance.DaytimeUI.Show();
           _playerSanity.OnStartedDay(CurrentDay);
           _screamBank.OnStartedDay(CurrentDay);
           CameraControllerStack.Instance.PushController(GameCamera);
@@ -288,8 +270,8 @@ public class GameStateManager : Singleton<GameStateManager>
         break;
       case GameStage.DayOutro:
         {
-          _dayOutroUI = (GameObject)Instantiate(DayOutroUIPrefab, Vector3.zero, Quaternion.identity);
-          _dayOutroUIHander = _dayOutroUI.GetComponent<DayOutroUIHandler>();
+          GameUI.Instance.DayOutroUI.Show();
+          _dayOutroUIHander = GameUI.Instance.DayOutroUI.GetComponent<DayOutroUIHandler>();
           CameraControllerStack.Instance.PushController(MenuCamera);
 
           if (MusicDayOutro != null)
@@ -302,7 +284,7 @@ public class GameStateManager : Singleton<GameStateManager>
         break;
       case GameStage.WinGame:
         {
-          _winGameUI = (GameObject)Instantiate(WinGameUIPrefab, Vector3.zero, Quaternion.identity);
+          GameUI.Instance.WinGameUI.Show();
           CameraControllerStack.Instance.PushController(MenuCamera);
 
           if (WinAlert != null)
@@ -313,7 +295,7 @@ public class GameStateManager : Singleton<GameStateManager>
         break;
       case GameStage.LoseGame:
         {
-          _loseGameUI = (GameObject)Instantiate(LoseGameUIPrefab, Vector3.zero, Quaternion.identity);
+          GameUI.Instance.LoseGameUI.Hide();
           CameraControllerStack.Instance.PushController(MenuCamera);
 
           if (LoseAlert != null)

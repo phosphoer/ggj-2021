@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class DayIntroUIHandler : MonoBehaviour
+public class DayIntroUIHandler : UIPageBase
 {
   [SerializeField]
   private Text _titleTextField = null;
@@ -16,12 +16,14 @@ public class DayIntroUIHandler : MonoBehaviour
     return _timer <= 0;
   }
 
-  private void Awake()
+  protected override void Awake()
   {
+    base.Awake();
     _timer = ShowDuration;
+    Shown += OnShown;
   }
 
-  void Start()
+  private void OnShown()
   {
     if (_titleTextField != null)
     {

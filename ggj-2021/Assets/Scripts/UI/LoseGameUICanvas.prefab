@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 6830249025146638998}
   - component: {fileID: 1939557227828800819}
   - component: {fileID: 6036210794746827568}
+  - component: {fileID: 1212887269923254477}
   m_Layer: 5
   m_Name: PlayButton
   m_TagString: Untagged
@@ -130,6 +131,23 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+--- !u!114 &1212887269923254477
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 738491297225193507}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: abe06af70618de340ae966c85bfb2aad, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  HydrateOnEnable: 0
+  StartDehydrated: 0
+  _targetTransform: {fileID: 0}
+  _useNormalizedScale: 1
+  _enableRandomDelay: 1
 --- !u!1 &1376213668616773006
 GameObject:
   m_ObjectHideFlags: 0
@@ -142,6 +160,7 @@ GameObject:
   - component: {fileID: 7407160896366536749}
   - component: {fileID: 1135242530937407677}
   - component: {fileID: 2643090869375766647}
+  - component: {fileID: 2718624947486340157}
   m_Layer: 5
   m_Name: Message
   m_TagString: Untagged
@@ -227,6 +246,23 @@ MonoBehaviour:
   m_EffectColor: {r: 0, g: 0, b: 0, a: 0.5}
   m_EffectDistance: {x: 10, y: -10}
   m_UseGraphicAlpha: 1
+--- !u!114 &2718624947486340157
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1376213668616773006}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: abe06af70618de340ae966c85bfb2aad, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  HydrateOnEnable: 0
+  StartDehydrated: 0
+  _targetTransform: {fileID: 0}
+  _useNormalizedScale: 1
+  _enableRandomDelay: 1
 --- !u!1 &2980497081920717439
 GameObject:
   m_ObjectHideFlags: 0
@@ -314,11 +350,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4713633419316229854}
   - component: {fileID: 4713633419316229849}
-  - component: {fileID: 4713633419316229848}
-  - component: {fileID: 4713633419316229851}
   - component: {fileID: 901023686912349121}
-  - component: {fileID: 8857841433744107058}
-  - component: {fileID: 2758344874276343155}
   m_Layer: 5
   m_Name: LoseGameUICanvas
   m_TagString: Untagged
@@ -367,45 +399,6 @@ Canvas:
   m_SortingLayerID: 0
   m_SortingOrder: 0
   m_TargetDisplay: 0
---- !u!114 &4713633419316229848
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4713633419316229850}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0cd44c1031e13a943bb63640046fad76, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_UiScaleMode: 1
-  m_ReferencePixelsPerUnit: 100
-  m_ScaleFactor: 1
-  m_ReferenceResolution: {x: 1680, y: 1080}
-  m_ScreenMatchMode: 0
-  m_MatchWidthOrHeight: 0
-  m_PhysicalUnit: 3
-  m_FallbackScreenDPI: 96
-  m_DefaultSpriteDPI: 96
-  m_DynamicPixelsPerUnit: 1
---- !u!114 &4713633419316229851
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4713633419316229850}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: dc42784cf147c0c48a680349fa168899, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_IgnoreReversedGraphics: 1
-  m_BlockingObjects: 0
-  m_BlockingMask:
-    serializedVersion: 2
-    m_Bits: 4294967295
 --- !u!114 &901023686912349121
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -418,58 +411,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 08e9409cf4f51fb4a9f8b0564af7af93, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &8857841433744107058
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4713633419316229850}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 76c392e42b5098c458856cdf6ecaaaa1, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_FirstSelected: {fileID: 0}
-  m_sendNavigationEvents: 1
-  m_DragThreshold: 10
---- !u!114 &2758344874276343155
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4713633419316229850}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 10efa70eea88e69459c632aac286892d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  rewiredInputManager: {fileID: 4175110851365222446, guid: 1ae28feeab196dc44956af0b76055a50,
-    type: 3}
-  useAllRewiredGamePlayers: 1
-  useRewiredSystemPlayer: 0
-  rewiredPlayerIds: 00000000
-  usePlayingPlayersOnly: 0
-  playerMice: []
-  moveOneElementPerAxisPress: 1
-  setActionsById: 1
-  horizontalActionId: 2
-  verticalActionId: 3
-  submitActionId: 1
-  cancelActionId: 0
-  m_HorizontalAxis: UIHorizontal
-  m_VerticalAxis: UIVertical
-  m_SubmitButton: UISubmit
-  m_CancelButton: UICancel
-  m_InputActionsPerSecond: 10
-  m_RepeatDelay: 0
-  m_allowMouseInput: 1
-  m_allowMouseInputIfTouchSupported: 1
-  m_allowTouchInput: 1
-  m_deselectIfBackgroundClicked: 1
-  m_deselectBeforeSelecting: 0
-  m_ForceModuleActive: 0
+  ShowOnStart: 0
+  IsModal: 0
+  _hydrateOnShow:
+  - {fileID: 1212887269923254477}
+  - {fileID: 7764532222312429280}
+  - {fileID: 2718624947486340157}
 --- !u!1 &4943993324578270895
 GameObject:
   m_ObjectHideFlags: 0
@@ -482,6 +429,7 @@ GameObject:
   - component: {fileID: 5605773048934903139}
   - component: {fileID: 1608357771552381452}
   - component: {fileID: 4459302367037288202}
+  - component: {fileID: 7764532222312429280}
   m_Layer: 5
   m_Name: QuitButton
   m_TagString: Untagged
@@ -600,6 +548,23 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+--- !u!114 &7764532222312429280
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4943993324578270895}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: abe06af70618de340ae966c85bfb2aad, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  HydrateOnEnable: 0
+  StartDehydrated: 0
+  _targetTransform: {fileID: 0}
+  _useNormalizedScale: 1
+  _enableRandomDelay: 1
 --- !u!1 &6575819022314766289
 GameObject:
   m_ObjectHideFlags: 0
