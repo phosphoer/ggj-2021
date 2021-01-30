@@ -30,7 +30,6 @@ public class GameStateManager : Singleton<GameStateManager>
   public SoundBank WinAlert;
   public SoundBank LoseAlert;
   public CameraControllerBase MenuCamera;
-  public CameraControllerBase GameCamera;
 
   private GameStage _gameStage = GameStage.Invalid;
 
@@ -186,8 +185,6 @@ public class GameStateManager : Singleton<GameStateManager>
           _playerSanity.OnCompletedDay();
           _screamBank.OnCompletedDay();
 
-          CameraControllerStack.Instance.PopController(GameCamera);
-
           GameUI.Instance.DaytimeUI.Hide();
         }
         break;
@@ -263,7 +260,6 @@ public class GameStateManager : Singleton<GameStateManager>
           GameUI.Instance.DaytimeUI.Show();
           _playerSanity.OnStartedDay(CurrentDay);
           _screamBank.OnStartedDay(CurrentDay);
-          CameraControllerStack.Instance.PushController(GameCamera);
 
           DaytimeStarted?.Invoke();
         }
