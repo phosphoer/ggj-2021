@@ -7,11 +7,7 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-<<<<<<< HEAD:ggj-2021/Assets/Materials/Terrain.mat
-  m_Name: Terrain
-=======
   m_Name: Ground
->>>>>>> 4642b7c678dbddc88f5500c40261289c8959cfcb:ggj-2021/Assets/Materials/Ground.mat
   m_Shader: {fileID: 46, guid: 0000000000000000f000000000000000, type: 0}
   m_ShaderKeywords: 
   m_LightmapFlags: 4
