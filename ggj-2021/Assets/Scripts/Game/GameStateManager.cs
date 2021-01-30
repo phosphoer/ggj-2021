@@ -111,11 +111,11 @@ public class GameStateManager : Singleton<GameStateManager>
         {
           if (_currentDay + 1 >= TotalDays)
           {
-            nextGameStage = GameStage.DayOutro;
+            nextGameStage = GameStage.WinGame;
           }
           else
           {
-            nextGameStage = GameStage.WinGame;
+            nextGameStage = GameStage.DayOutro;
           }
         }
         break;
@@ -176,6 +176,7 @@ public class GameStateManager : Singleton<GameStateManager>
       case GameStage.Daytime:
         {
           _playerSanity.OnCompletedDay();
+          _screamBank.OnCompletedDay();
 
           CameraControllerStack.Instance.PopController(GameCamera);
 
@@ -233,8 +234,6 @@ public class GameStateManager : Singleton<GameStateManager>
         {
           _dayIntroUI = (GameObject)Instantiate(DaytimeUIPrefab, Vector3.zero, Quaternion.identity);
           _dayIntroUIHander = _dayIntroUI.GetComponent<DayIntroUIHandler>();
-          _playerSanity.OnStartedDay(CurrentDay);
-          _screamBank.OnStartedDay(CurrentDay);
 
           if (MusicDayIntro != null)
           {
@@ -250,6 +249,7 @@ public class GameStateManager : Singleton<GameStateManager>
         {
           _daytimeUI = (GameObject)Instantiate(DaytimeUIPrefab, Vector3.zero, Quaternion.identity);
           _playerSanity.OnStartedDay(CurrentDay);
+          _screamBank.OnStartedDay(CurrentDay);
 
           CameraControllerStack.Instance.PushController(GameCamera);
 
@@ -260,8 +260,6 @@ public class GameStateManager : Singleton<GameStateManager>
         {
           _dayOutroUI = (GameObject)Instantiate(DaytimeUIPrefab, Vector3.zero, Quaternion.identity);
           _dayOutroUIHander = _dayIntroUI.GetComponent<DayOutroUIHandler>();
-          _playerSanity.OnCompletedDay();
-          _screamBank.OnCompletedDay();
 
           if (MusicDayOutro != null)
           {
