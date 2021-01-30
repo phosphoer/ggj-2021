@@ -2,11 +2,16 @@ using UnityEngine;
 
 public class PlayerCharacterController : Singleton<PlayerCharacterController>
 {
+  public ObjectHolder ObjectHolder => _objectHolder;
+
   [SerializeField]
   private CharacterMovementController _characterMovement = null;
 
   [SerializeField]
   private InteractionController _interactionController = null;
+
+  [SerializeField]
+  private ObjectHolder _objectHolder = null;
 
   private int _disabledStack = 0;
 
@@ -39,10 +44,15 @@ public class PlayerCharacterController : Singleton<PlayerCharacterController>
 
     _characterMovement.MoveVector = horizontalVector + verticalVector;
 
-    if (_interactionController.ClosestInteractable != null)
+
+    // Interact with an interactable 
+    if (rewiredPlayer.GetButtonDown(RewiredConsts.Action.Interact))
     {
-      // Interact with an interactable 
-      if (rewiredPlayer.GetButtonDown(RewiredConsts.Action.Interact))
+      if (_objectHolder.HeldObject != null)
+      {
+        _objectHolder.DropObject();
+      }
+      else if (_interactionController.ClosestInteractable != null)
       {
         _interactionController.ClosestInteractable.TriggerInteraction();
       }
@@ -51,6 +61,14 @@ public class PlayerCharacterController : Singleton<PlayerCharacterController>
     // Scream into or uncork a held bottle
     if (rewiredPlayer.GetButtonDown(RewiredConsts.Action.Scream))
     {
+      if (_objectHolder.HeldObject != null)
+      {
+        ScreamContainer bottle = _objectHolder.HeldObject.GetComponent<ScreamContainer>();
+        if (bottle != null)
+        {
+          bottle.ReleaseScream();
+        }
+      }
     }
   }
 }
