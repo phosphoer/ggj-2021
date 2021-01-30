@@ -9,9 +9,6 @@ public class CharacterMovementController : MonoBehaviour
   public LayerMask TerrainMask;
 
   [SerializeField]
-  private Rigidbody _rb = null;
-
-  [SerializeField]
   private Transform _visualRoot = null;
 
   private Vector3 _currentMoveDir = Vector3.zero;
@@ -29,6 +26,9 @@ public class CharacterMovementController : MonoBehaviour
       {
         transform.position = navPosition;
       }
+
+      Quaternion forwardRot = Quaternion.LookRotation(_currentMoveDir);
+      transform.rotation = Mathfx.Damp(transform.rotation, forwardRot, 0.25f, Time.deltaTime * 3);
     }
   }
 }
