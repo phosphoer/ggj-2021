@@ -21,7 +21,7 @@ public class UIPageBase : MonoBehaviour
   }
 
   public bool ShowOnStart = false;
-  public bool ShowCursor = false;
+  public bool IsModal = false;
 
   [SerializeField]
   private UIHydrate[] _hydrateOnShow = null;
@@ -68,7 +68,7 @@ public class UIPageBase : MonoBehaviour
 
       Shown?.Invoke();
 
-      if (ShowCursor)
+      if (IsModal)
       {
         CanvasCursor.PushVisible();
 
@@ -109,7 +109,7 @@ public class UIPageBase : MonoBehaviour
 
       Hidden?.Invoke();
 
-      if (ShowCursor)
+      if (IsModal)
       {
         CanvasCursor.PopVisible();
 
