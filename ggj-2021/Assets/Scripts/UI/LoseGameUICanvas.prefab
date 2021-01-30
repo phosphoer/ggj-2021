@@ -318,6 +318,7 @@ GameObject:
   - component: {fileID: 4713633419316229851}
   - component: {fileID: 901023686912349121}
   - component: {fileID: 8857841433744107058}
+  - component: {fileID: 2758344874276343155}
   m_Layer: 5
   m_Name: LoseGameUICanvas
   m_TagString: Untagged
@@ -432,6 +433,43 @@ MonoBehaviour:
   m_FirstSelected: {fileID: 0}
   m_sendNavigationEvents: 1
   m_DragThreshold: 10
+--- !u!114 &2758344874276343155
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4713633419316229850}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 10efa70eea88e69459c632aac286892d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  rewiredInputManager: {fileID: 4175110851365222446, guid: 1ae28feeab196dc44956af0b76055a50,
+    type: 3}
+  useAllRewiredGamePlayers: 1
+  useRewiredSystemPlayer: 0
+  rewiredPlayerIds: 00000000
+  usePlayingPlayersOnly: 0
+  playerMice: []
+  moveOneElementPerAxisPress: 1
+  setActionsById: 1
+  horizontalActionId: 2
+  verticalActionId: 3
+  submitActionId: 1
+  cancelActionId: 0
+  m_HorizontalAxis: UIHorizontal
+  m_VerticalAxis: UIVertical
+  m_SubmitButton: UISubmit
+  m_CancelButton: UICancel
+  m_InputActionsPerSecond: 10
+  m_RepeatDelay: 0
+  m_allowMouseInput: 1
+  m_allowMouseInputIfTouchSupported: 1
+  m_allowTouchInput: 1
+  m_deselectIfBackgroundClicked: 1
+  m_deselectBeforeSelecting: 0
+  m_ForceModuleActive: 0
 --- !u!1 &4943993324578270895
 GameObject:
   m_ObjectHideFlags: 0
