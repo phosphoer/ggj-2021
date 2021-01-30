@@ -54,7 +54,15 @@ Shader "Custom/CellShaded"
         // Get base diffuse color
         fixed3 texColor = tex2D(_MainTex, i.uv).rgb;
         fixed3 diffuse = _Color.rgb * texColor;
-        UNITY_LIGHT_ATTENUATION(lightAtten, i, i.worldPos);
+
+        fixed lightAtten = 1;
+        #ifdef POINT
+        unityShadowCoord3 lightCoord = mul(unity_WorldToLight, unityShadowCoord4(i.worldPos, 1)).xyz;
+        fixed shadow = UNITY_SHADOW_ATTENUATION(i, i.worldPos);
+        lightAtten = tex2D(_LightTexture0, dot(lightCoord, lightCoord).rr).r * shadow;
+        #endif
+
+        // UNITY_LIGHT_ATTENUATION(lightAtten, i, i.worldPos);
         diffuse *= CalculateLighting(normalize(i.worldNormal), lightAtten, SHADOW_ATTENUATION(i)).rgb;
 
         UNITY_APPLY_FOG(i.fogCoord, diffuse);
