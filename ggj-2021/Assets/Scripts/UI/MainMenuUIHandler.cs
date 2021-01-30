@@ -4,10 +4,9 @@ using UnityEngine;
 using UnityEngine.EventSystems;
 
 public class MainMenuUIHandler : MonoBehaviour
-{ 
-  public List <GameObject> MainMenuObjs;
+{
   EventSystem eventSystem;
-  
+
   void OnEnable()
   {
     eventSystem = EventSystem.current;
@@ -15,14 +14,12 @@ public class MainMenuUIHandler : MonoBehaviour
 
   public void OnNewGameClicked()
   {
-	  foreach (GameObject x in MainMenuObjs)
-	  {
-  		x.SetActive(!x.activeSelf);
-	  }
+    GameStateManager.Instance.NewGame();
   }
-    
+
   public void OnSettingsClicked()
   {
+    GameStateManager.Instance.Settings();
   }
 
   public void OnQuitGameClicked()

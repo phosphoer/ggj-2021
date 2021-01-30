@@ -8,6 +8,7 @@ public class GameStateManager : Singleton<GameStateManager>
   {
     Invalid,
     MainMenu,
+    Settings,
     DayIntro,
     Daytime,
     DayOutro,
@@ -23,6 +24,7 @@ public class GameStateManager : Singleton<GameStateManager>
 
   public GameStage EditorDefaultStage = GameStage.Daytime;
   public GameObject MainMenuUIPrefab;
+  public GameObject SettingsMenuUIPrefab;
   public GameObject DayIntroUIPrefab;
   public GameObject DaytimeUIPrefab;
   public GameObject DayOutroUIPrefab;
@@ -39,6 +41,7 @@ public class GameStateManager : Singleton<GameStateManager>
 
   private GameStage _gameStage = GameStage.Invalid;
   private GameObject _mainMenuUI = null;
+  private GameObject _settingsMenuUI = null;
   private GameObject _dayIntroUI = null;
   private GameObject _daytimeUI = null;
   private GameObject _dayOutroUI = null;
@@ -95,6 +98,7 @@ public class GameStateManager : Singleton<GameStateManager>
     switch (_gameStage)
     {
       case GameStage.MainMenu:
+      case GameStage.Settings:
         break;
       case GameStage.DayIntro:
         if (_dayIntroUIHander.IsComplete())
@@ -134,29 +138,50 @@ public class GameStateManager : Singleton<GameStateManager>
     SetGameStage(nextGameStage);
   }
 
+  public void NewGame()
+  {
+    _currentDay = 0;
+    SetGameStage(GameStage.DayIntro);
+  }
+
+  public void Settings()
+  {
+    SetGameStage(GameStage.Settings);
+  }
+
   public void SetGameStage(GameStage newGameStage)
   {
     if (newGameStage != _gameStage)
     {
-      OnExitStage(_gameStage);
+      OnExitStage(_gameStage, newGameStage);
       OnEnterStage(newGameStage);
       _gameStage = newGameStage;
     }
   }
 
-  public void OnExitStage(GameStage oldGameStage)
+  public void OnExitStage(GameStage oldGameStage, GameStage newGameStage)
   {
     switch (oldGameStage)
     {
       case GameStage.MainMenu:
         {
-          if (MusicMenuLoop != null)
+          if (MusicMenuLoop != null && newGameStage != GameStage.Settings)
           {
             AudioManager.Instance.FadeOutSound(gameObject, MusicMenuLoop, 0.5f);
           }
 
+          CameraControllerStack.Instance.PopController(MenuCamera);
+
           Destroy(_mainMenuUI);
           _mainMenuUI = null;
+        }
+        break;
+      case GameStage.Settings:
+        {
+          CameraControllerStack.Instance.PopController(MenuCamera);
+
+          Destroy(_settingsMenuUI);
+          _settingsMenuUI = null;
         }
         break;
       case GameStage.DayIntro:
@@ -203,12 +228,16 @@ public class GameStateManager : Singleton<GameStateManager>
         break;
       case GameStage.WinGame:
         {
+          CameraControllerStack.Instance.PopController(MenuCamera);
+
           Destroy(_winGameUI);
           _winGameUI = null;
         }
         break;
       case GameStage.LoseGame:
         {
+          CameraControllerStack.Instance.PopController(MenuCamera);
+
           Destroy(_loseGameUI);
           _loseGameUI = null;
         }
@@ -223,6 +252,7 @@ public class GameStateManager : Singleton<GameStateManager>
       case GameStage.MainMenu:
         {
           _mainMenuUI = (GameObject)Instantiate(MainMenuUIPrefab, Vector3.zero, Quaternion.identity);
+          CameraControllerStack.Instance.PushController(MenuCamera);
 
           if (MusicMenuLoop != null)
           {
@@ -230,17 +260,22 @@ public class GameStateManager : Singleton<GameStateManager>
           }
         }
         break;
+      case GameStage.Settings:
+        {
+          _settingsMenuUI = (GameObject)Instantiate(SettingsMenuUIPrefab, Vector3.zero, Quaternion.identity);
+          CameraControllerStack.Instance.PushController(MenuCamera);
+        }
+        break;
       case GameStage.DayIntro:
         {
-          _dayIntroUI = (GameObject)Instantiate(DaytimeUIPrefab, Vector3.zero, Quaternion.identity);
+          _dayIntroUI = (GameObject)Instantiate(DayIntroUIPrefab, Vector3.zero, Quaternion.identity);
           _dayIntroUIHander = _dayIntroUI.GetComponent<DayIntroUIHandler>();
+          CameraControllerStack.Instance.PushController(MenuCamera);
 
           if (MusicDayIntro != null)
           {
             AudioManager.Instance.FadeInSound(gameObject, MusicDayIntro, 3.0f);
           }
-
-          CameraControllerStack.Instance.PushController(MenuCamera);
 
           DayIntroStarted?.Invoke();
         }
@@ -250,7 +285,6 @@ public class GameStateManager : Singleton<GameStateManager>
           _daytimeUI = (GameObject)Instantiate(DaytimeUIPrefab, Vector3.zero, Quaternion.identity);
           _playerSanity.OnStartedDay(CurrentDay);
           _screamBank.OnStartedDay(CurrentDay);
-
           CameraControllerStack.Instance.PushController(GameCamera);
 
           DaytimeStarted?.Invoke();
@@ -258,37 +292,38 @@ public class GameStateManager : Singleton<GameStateManager>
         break;
       case GameStage.DayOutro:
         {
-          _dayOutroUI = (GameObject)Instantiate(DaytimeUIPrefab, Vector3.zero, Quaternion.identity);
-          _dayOutroUIHander = _dayIntroUI.GetComponent<DayOutroUIHandler>();
+          _dayOutroUI = (GameObject)Instantiate(DayOutroUIPrefab, Vector3.zero, Quaternion.identity);
+          _dayOutroUIHander = _dayOutroUI.GetComponent<DayOutroUIHandler>();
+          CameraControllerStack.Instance.PushController(MenuCamera);
 
           if (MusicDayOutro != null)
           {
             AudioManager.Instance.FadeInSound(gameObject, MusicDayOutro, 3.0f);
           }
 
-          CameraControllerStack.Instance.PushController(MenuCamera);
-
           DayOutroStarted?.Invoke();
         }
         break;
       case GameStage.WinGame:
         {
+          _winGameUI = (GameObject)Instantiate(WinGameUIPrefab, Vector3.zero, Quaternion.identity);
+          CameraControllerStack.Instance.PushController(MenuCamera);
+
           if (WinAlert != null)
           {
             AudioManager.Instance.PlaySound(WinAlert);
           }
-
-          _winGameUI = (GameObject)Instantiate(WinGameUIPrefab, Vector3.zero, Quaternion.identity);
         }
         break;
       case GameStage.LoseGame:
         {
+          _loseGameUI = (GameObject)Instantiate(LoseGameUIPrefab, Vector3.zero, Quaternion.identity);
+          CameraControllerStack.Instance.PushController(MenuCamera);
+
           if (LoseAlert != null)
           {
             AudioManager.Instance.PlaySound(LoseAlert);
           }
-
-          _loseGameUI = (GameObject)Instantiate(LoseGameUIPrefab, Vector3.zero, Quaternion.identity);
         }
         break;
     }
