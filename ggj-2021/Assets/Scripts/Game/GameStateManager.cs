@@ -295,7 +295,7 @@ public class GameStateManager : Singleton<GameStateManager>
         break;
       case GameStage.LoseGame:
         {
-          GameUI.Instance.LoseGameUI.Hide();
+          GameUI.Instance.LoseGameUI.Show();
           CameraControllerStack.Instance.PushController(MenuCamera);
 
           if (LoseAlert != null)
