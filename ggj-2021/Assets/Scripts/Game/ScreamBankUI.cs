@@ -31,6 +31,7 @@ public class ScreamBankUI : MonoBehaviour
   private void Start()
   {
     GameStateManager.Instance.ScreamBank.RemainingScreamsChanged += OnRemainingScreamsChanged;
+    OnRemainingScreamsChanged();
   }
 
   private void OnDestroy()
