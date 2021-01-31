@@ -40,7 +40,7 @@ public class PlayerCharacterController : Singleton<PlayerCharacterController>
   public void StartMixingBottles(ScreamContainer heldBottle, ScreamContainer groundBottle)
   {
     Debug.Log($"Started mixing bottles {heldBottle.name} and {groundBottle.name}");
-    ScreamInventoryComponent inventoryComponent= GameUI.Instance.ScreamComposerUI.ScreamInventory;
+    ScreamInventoryComponent inventoryComponent = GameUI.Instance.ScreamComposerUI.ScreamInventory;
 
     inventoryComponent.StartMixingBottles(heldBottle, groundBottle);
     GameUI.Instance.ScreamComposerUI.Show();
@@ -126,18 +126,27 @@ public class PlayerCharacterController : Singleton<PlayerCharacterController>
       }
     }
 
-    // Interact with an interactable 
+    // Contextual interact
     if (rewiredPlayer.GetButtonDown(RewiredConsts.Action.Interact))
     {
+      // Interact with something
       if (_interactionController.ClosestInteractable != null)
       {
         Interactable interactable = _interactionController.ClosestInteractable;
         interactable.TriggerInteraction();
         InteractWithObject(interactable);
       }
+      // Drop or throw a held object
       else if (_objectHolder.HeldObject != null)
       {
+        HoldableObject heldObject = _objectHolder.HeldObject;
         _objectHolder.DropObject();
+        if (_characterMovement.CurrentVelocity.magnitude > 0.5f)
+        {
+          Debug.Log($"Throw!");
+          Vector3 throwForce = (_characterMovement.CurrentVelocity + Vector3.up * 3) * 3;
+          heldObject.Rigidbody.AddForce(throwForce, ForceMode.VelocityChange);
+        }
       }
     }
 

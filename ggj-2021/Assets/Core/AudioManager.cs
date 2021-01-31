@@ -83,6 +83,26 @@ public class AudioManager : Singleton<AudioManager>
     Instance.PlaySound(source, soundBank, volumeScale);
   }
 
+  public static void ConfigureSourceForSound(AudioSource audioSource, SoundBank soundBank)
+  {
+    audioSource.playOnAwake = false;
+    audioSource.spatialize = soundBank.IsSpatial;
+    audioSource.spatialBlend = soundBank.IsSpatial ? 1.0f : 0.0f;
+    audioSource.volume = soundBank.VolumeScale;
+    audioSource.loop = soundBank.IsLooping;
+    audioSource.minDistance = soundBank.MinDistance;
+    audioSource.maxDistance = soundBank.MaxDistance;
+    audioSource.rolloffMode = AudioRolloffMode.Linear;
+    audioSource.outputAudioMixerGroup = soundBank.AudioMixerGroup;
+    audioSource.dopplerLevel = soundBank.DopplerLevel;
+  }
+
+  public static void PrepareSourceToPlay(AudioSource audioSource, SoundBank soundBank, float volumeScale = 1)
+  {
+    audioSource.pitch = 1.0f + soundBank.PitchOffset + soundBank.PitchOffsetRange.RandomValue;
+    audioSource.volume = soundBank.VolumeScale * volumeScale;
+  }
+
   // Fade in a sound over a time period, if the source gets destroyed it will be cancelled
   public Coroutine FadeInSound(GameObject source, SoundBank soundBank, float duration, float toVolume = 1.0f)
   {
@@ -121,27 +141,8 @@ public class AudioManager : Singleton<AudioManager>
     AudioInstance audioInstance = GetOrAddAudioInstance(source, soundBank);
     if (audioInstance != null)
     {
-      audioInstance.AudioSource.pitch = 1.0f + audioInstance.SoundBank.PitchOffset + audioInstance.SoundBank.PitchOffsetRange.RandomValue;
-      audioInstance.AudioSource.volume = audioInstance.SoundBank.VolumeScale * volumeScale;
+      PrepareSourceToPlay(audioInstance.AudioSource, soundBank, volumeScale);
       audioInstance.AudioSource.clip = audioInstance.GetNextRandomClip();
-      audioInstance.AudioSource.Play();
-    }
-    else
-    {
-      Debug.LogWarning(string.Format("Couldn't find audio instance for {0}:{1}", source.name, soundBank.name));
-    }
-
-    return audioInstance;
-  }
-
-  public AudioInstance PlaySoundClip(GameObject source, SoundBank soundBank, int clipIndex, float volumeScale = 1.0f)
-  {
-    AudioInstance audioInstance = GetOrAddAudioInstance(source, soundBank);
-    if (audioInstance != null)
-    {
-      audioInstance.AudioSource.pitch = 1.0f + audioInstance.SoundBank.PitchOffset + audioInstance.SoundBank.PitchOffsetRange.RandomValue;
-      audioInstance.AudioSource.volume = audioInstance.SoundBank.VolumeScale * volumeScale;
-      audioInstance.AudioSource.clip = audioInstance.SoundBank.AudioClips[clipIndex];
       audioInstance.AudioSource.Play();
     }
     else
@@ -240,18 +241,11 @@ public class AudioManager : Singleton<AudioManager>
     if (audioInstance == null)
     {
       audioInstance = new AudioInstance();
-      audioInstance.AudioSource = forSource.AddComponent<AudioSource>();
-      audioInstance.AudioSource.playOnAwake = false;
-      audioInstance.AudioSource.spatialize = soundBank.IsSpatial;
-      audioInstance.AudioSource.spatialBlend = soundBank.IsSpatial ? 1.0f : 0.0f;
-      audioInstance.AudioSource.volume = soundBank.VolumeScale;
-      audioInstance.AudioSource.loop = soundBank.IsLooping;
-      audioInstance.AudioSource.minDistance = soundBank.MinDistance;
-      audioInstance.AudioSource.maxDistance = soundBank.MaxDistance;
-      audioInstance.AudioSource.rolloffMode = AudioRolloffMode.Linear;
-      audioInstance.AudioSource.outputAudioMixerGroup = soundBank.AudioMixerGroup;
-      audioInstance.AudioSource.dopplerLevel = soundBank.DopplerLevel;
       audioInstance.SoundBank = soundBank;
+
+      audioInstance.AudioSource = forSource.AddComponent<AudioSource>();
+      ConfigureSourceForSound(audioInstance.AudioSource, soundBank);
+
       audioGroup.AddAudioInstance(audioInstance);
     }
 

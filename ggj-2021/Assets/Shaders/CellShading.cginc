@@ -4,7 +4,6 @@
 #include "UnityPBSLighting.cginc"
 
 sampler2D _LightRamp; 
-float _ShadowScale;
 
 fixed NDotL(float3 worldNormal, float3 lightDir)
 {
@@ -17,12 +16,12 @@ fixed NDotL(float3 worldNormal, float3 lightDir)
 fixed4 CalculateLighting(float3 worldNormal, float lightAtten, float shadowAtten, float extraLight = 0)
 {
   // Lighting compnent from sky lights
-  fixed nl0 = NDotL(worldNormal, _WorldSpaceLightPos0);
+  fixed nl0 = NDotL(worldNormal, -_WorldSpaceLightPos0);
   fixed3 nlRamp0 = tex2D(_LightRamp, float2(0.5, nl0 + extraLight)).rgb * lightAtten;
 
   // Apply shadows
   fixed3 darkestShadow = tex2D(_LightRamp, float2(0.5, 0.0)).rgb; 
-  fixed shadowFactor = lerp(1.0, shadowAtten, _ShadowScale);
+  fixed shadowFactor = lerp(1.0, shadowAtten, 1);
   nlRamp0 = lerp(darkestShadow, nlRamp0, shadowFactor);
 
   // Sum up lighting with ambient and other factors

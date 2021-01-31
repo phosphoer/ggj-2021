@@ -17,6 +17,7 @@ public class ScreamController : MonoBehaviour
   private RangedFloat _screamInterval = new RangedFloat(0.5f, 1.0f);
 
   private List<string> _screamParts = new List<string>();
+  private List<AudioSource> _audioSources = new List<AudioSource>();
   private Coroutine _screamRoutine;
   private float _volumeScale;
   private bool _loopScream;
@@ -76,17 +77,21 @@ public class ScreamController : MonoBehaviour
           continue;
         }
 
-        var audioInstance = AudioManager.Instance.PlaySound(gameObject, screamSound.Sound);
-        audioInstance.AudioSource.volume = 0;
+        AudioSource audioSource = GetAvailableAudioSource();
+        AudioManager.ConfigureSourceForSound(audioSource, screamSound.Sound);
+        AudioManager.PrepareSourceToPlay(audioSource, screamSound.Sound);
+        audioSource.clip = screamSound.Sound.RandomClip;
+        audioSource.volume = 0;
+        audioSource.Play();
 
         ScreamSoundPlayed?.Invoke(screamSound);
 
         // Wait for scream to be done or random interval
         float waitTime = _screamInterval.RandomValue;
-        while (waitTime > 0 && audioInstance.AudioSource.isPlaying)
+        while (waitTime > 0 && audioSource.isPlaying)
         {
           waitTime -= Time.unscaledDeltaTime;
-          audioInstance.AudioSource.volume = Mathfx.Damp(audioInstance.AudioSource.volume, _volumeScale, 0.25f, Time.unscaledDeltaTime * 3);
+          audioSource.volume = Mathfx.Damp(audioSource.volume, _volumeScale, 0.25f, Time.unscaledDeltaTime * 3);
           yield return null;
         }
       }
@@ -95,5 +100,18 @@ public class ScreamController : MonoBehaviour
     } while (enabled && _loopScream);
 
     _screamRoutine = null;
+  }
+
+  private AudioSource GetAvailableAudioSource()
+  {
+    for (int i = 0; i < _audioSources.Count; ++i)
+    {
+      if (!_audioSources[i].isPlaying)
+        return _audioSources[i];
+    }
+
+    AudioSource audioSource = gameObject.AddComponent<AudioSource>();
+    _audioSources.Add(audioSource);
+    return audioSource;
   }
 }
