@@ -333,7 +333,7 @@ public class AICharacterController : MonoBehaviour
         _throttleUrgency = 0.0f; // Stop and attack in place
         _pathRefreshPeriod = -1.0f; // manual refresh
         _aiAnimation.PlayEmote(AIAnimatorController.EmoteState.Attack);
-        _screamController.StartScream(_cowerScream.Letters, false, 1.0f);
+        _screamController.StartScream(new List<ScreamSoundDefinition>() { _cowerScream }, false, 1.0f);
         PlayerCharacterController.Instance.NotifyMonsterScream();
         break;
       case BehaviorState.Flee:
