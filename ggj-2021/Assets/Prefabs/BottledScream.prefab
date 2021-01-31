@@ -159,11 +159,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 106cc65dc2fc93a43af5ab7dd193fbd9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _screamMapping: {fileID: 11400000, guid: d0008d97b82cddb47b2c198c3d1b7eac, type: 2}
   _screamInterval:
     MinValue: 0.5
     MaxValue: 1
-  _testScream: aah eeh ooh
+  _screamSounds: []
+  _testScream: []
 --- !u!114 &3751806036467726560
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -177,9 +177,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _screamController: {fileID: 3751806036467726561}
-  _screamString: eeh ooh aah
   _mixInteractable: {fileID: 8239765380805415612}
   _holdable: {fileID: 3751806036467726564}
+  _screamSounds:
+  - {fileID: 11400000, guid: b978187fd8bd7e4419615c4d095639ee, type: 2}
+  - {fileID: 11400000, guid: efc8ffc76f0026746bd93abd0b08dc0c, type: 2}
+  - {fileID: 11400000, guid: 5bdf42c97cc2c3742a1d7292c91d1c93, type: 2}
 --- !u!114 &3751806036467726566
 MonoBehaviour:
   m_ObjectHideFlags: 0
