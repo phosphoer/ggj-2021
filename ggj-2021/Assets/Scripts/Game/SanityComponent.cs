@@ -61,6 +61,14 @@ public class SanityComponent : MonoBehaviour
     _currentSanity = Mathf.Clamp(_currentSanity + amount, 0, TotalSanity);
   }
 
+  public void TakeSanityDamage(float amount)
+  {
+    float previousSanity = _currentSanity;
+    _currentSanity = Mathf.Max(_currentSanity - amount, 0.0f);
+
+    PostSanityAlerts(previousSanity, _currentSanity);
+  }
+
   void Update()
   {
     if (!_hasDayStarted)
@@ -68,10 +76,10 @@ public class SanityComponent : MonoBehaviour
 
     if (SanityDecayActive && HasSanityRemaining)
     {
-      float previousShipHealth = _currentSanity;
+      float previousSanity = _currentSanity;
       _currentSanity = Mathf.Max(_currentSanity - SanityDecayRate * Time.deltaTime, 0.0f);
 
-      PostSanityAlerts(previousShipHealth, _currentSanity);
+      PostSanityAlerts(previousSanity, _currentSanity);
     }
 
     if (HasSanityRemaining)
