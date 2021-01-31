@@ -318,6 +318,7 @@ public class AICharacterController : MonoBehaviour
       case BehaviorState.Wander:
         break;
       case BehaviorState.Chase:
+        GameStateManager.Instance.PlayerSanity.OnPursuitStopped();
         break;
       case BehaviorState.Cower:
         break;
@@ -341,6 +342,8 @@ public class AICharacterController : MonoBehaviour
       case BehaviorState.Chase:
         _throttleUrgency = 1.0f; // full speed
         _pathRefreshPeriod = 2.0f; // refresh path every 2 seconds while persuing player
+        // Start dropping player sanity while pursuit active
+        GameStateManager.Instance.PlayerSanity.OnPursuitStarted();
         // Head to the player
         // If this fails we take care of it in attack update
         RecomputePathTo(GetCurrentPlayerLocation());

@@ -57,7 +57,8 @@ MonoBehaviour:
   _screamDamageable: {fileID: 4285552693713919782}
   _deathBottleSpawn: {fileID: 3751806036467726573, guid: a8083e68275e8e440bd3c6ccdea9bedb,
     type: 3}
-  _deathFX: {fileID: 0}
+  _deathFX: {fileID: 5639098239645709990, guid: 2d8aeb3b8091130459eec3082bd71fb5,
+    type: 3}
   WanderRange: 10
   ChaseTimeOut: 4
   MaxChaseDistance: 50
