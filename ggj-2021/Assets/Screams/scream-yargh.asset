@@ -9,8 +9,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e9c54675713817645b4cee3f042e892e, type: 3}
-  m_Name: screams-day-1
+  m_Script: {fileID: 11500000, guid: d1dbefd051061204984b3a4335d2125f, type: 3}
+  m_Name: scream-yargh
   m_EditorClassIdentifier: 
-  _screams:
-  - {fileID: 11400000, guid: 95a4d1cacab310b4eaff4fddd1de6d05, type: 2}
+  Color: {r: 0.6170451, g: 0.85882354, b: 0.32156864, a: 1}
+  Letters: yargh
+  Sound: {fileID: 11400000, guid: b1572faaa46ed014baede1b21b1c1904, type: 2}

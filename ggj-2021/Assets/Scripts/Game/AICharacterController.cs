@@ -54,8 +54,12 @@ public class AICharacterController : MonoBehaviour
   public float AttackTurnSpeed = 5.0f;
   //-- Cower --
   public float CowerDuration = 2.0f;
+
   [SerializeField]
-  private ScreamSoundDefinition _cowerScream;
+  private ScreamSoundDefinition _cowerScream = null;
+
+  [SerializeField]
+  private ScreamSoundDefinition _attackScream = null;
 
   // Path Finding State
   public float WaypointTolerance = 1.0f;
@@ -362,7 +366,7 @@ public class AICharacterController : MonoBehaviour
         _pathRefreshPeriod = -1.0f; // manual refresh
         _aiAnimation.PlayEmote(AIAnimatorController.EmoteState.Attack);
 
-        var screamSounds = new List<ScreamSoundDefinition>() { _cowerScream };
+        var screamSounds = new List<ScreamSoundDefinition>() { _attackScream };
         _screamController.StartScream(screamSounds, false, 1.0f);
         ScreamDamageable.DoScream(screamSounds, _perceptionComponent.transform.position, _perceptionComponent.transform.forward, _screamDamageable);
 
@@ -387,7 +391,7 @@ public class AICharacterController : MonoBehaviour
           ScreamContainer screamContainer = bottle.GetComponent<ScreamContainer>();
           if (screamContainer != null)
           {
-            screamContainer.FillScream(new List<ScreamSoundDefinition>() { _cowerScream });
+            screamContainer.FillScream(new List<ScreamSoundDefinition>() { _attackScream });
           }
         }
         // Clean ourselves up after a moment
