@@ -214,10 +214,10 @@ public class PlayerCharacterController : Singleton<PlayerCharacterController>
 
   private void ReleaseBottleScream()
   {
-    _playerAnimation.PlayEmote(PlayerAnimatorController.EmoteState.OpenBottle);
     ScreamContainer bottle = _objectHolder.HeldObject.GetComponent<ScreamContainer>();
-    if (bottle != null)
+    if (bottle != null && bottle.ScreamSounds.Count > 0)
     {
+      _playerAnimation.PlayEmote(PlayerAnimatorController.EmoteState.OpenBottle);
       ScreamDamageable.DoScream(bottle.ScreamSounds, bottle.transform.position, transform.forward, _screamDamageable);
       bottle.ReleaseScream();
     }
