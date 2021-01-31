@@ -172,6 +172,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _animator: {fileID: 4172519055387730506}
+  _animatorCallbacks: {fileID: 3121198521845014356}
+  _footFallSound: {fileID: 11400000, guid: 912ea85b76cca5c4990e96bbfb282cd2, type: 2}
 --- !u!114 &3750681542517321782
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -185,6 +187,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _objectHoldRoot: {fileID: 6420432782549256866}
+  _pickupSound: {fileID: 11400000, guid: 1d0cd1fa99af4b143af3641dc410124e, type: 2}
+  _dropSound: {fileID: 11400000, guid: db3c3b79bfaf6e14f9d5e7811ad90217, type: 2}
 --- !u!114 &3606166799483051268
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -348,6 +352,18 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!114 &3121198521845014356
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8294521070642881474}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b9a0c9cecfccc2a47974db780492e80e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &9213633826811829907
 PrefabInstance:
   m_ObjectHideFlags: 0

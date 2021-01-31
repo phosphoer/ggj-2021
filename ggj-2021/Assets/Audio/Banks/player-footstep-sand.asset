@@ -1,0 +1,30 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4962cb04c01784b4db40edb5fec0fafc, type: 3}
+  m_Name: player-footstep-sand
+  m_EditorClassIdentifier: 
+  AudioClips:
+  - {fileID: 8300000, guid: 6fb0a944a9a5724428d7b906da852a27, type: 3}
+  - {fileID: 8300000, guid: 55a7474c3124e0444b3d392d82cf099c, type: 3}
+  - {fileID: 8300000, guid: f6d4b32a73f712642a83031d79981e18, type: 3}
+  - {fileID: 8300000, guid: 9e3656566aecbea4fb4998c5f562638f, type: 3}
+  IsSpatial: 1
+  MaxDistance: 20
+  MinDistance: 1
+  VolumeScale: 0.5
+  DopplerLevel: 0
+  PitchOffset: 0
+  PitchOffsetRange:
+    MinValue: -0.1
+    MaxValue: 0.1
+  IsLooping: 0
+  AudioMixerGroup: {fileID: 0}

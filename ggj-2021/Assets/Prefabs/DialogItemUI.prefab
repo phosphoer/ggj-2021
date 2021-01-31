@@ -160,7 +160,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   m_FontData:
-    m_Font: {fileID: 12800000, guid: e3265ab4bf004d28a9537516768c1c75, type: 3}
+    m_Font: {fileID: 12800000, guid: 04a1b0c2685d5d04ea2e8454914d099a, type: 3}
     m_FontSize: 22
     m_FontStyle: 0
     m_BestFit: 0
@@ -280,6 +280,7 @@ GameObject:
   - component: {fileID: 3508920080838861169}
   - component: {fileID: 3573592844982323807}
   - component: {fileID: 4006455856742257775}
+  - component: {fileID: -1316741880363251808}
   m_Layer: 0
   m_Name: DialogItemUI
   m_TagString: Untagged
@@ -361,3 +362,17 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_HorizontalFit: 0
   m_VerticalFit: 2
+--- !u!114 &-1316741880363251808
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8725612246355558892}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a88c64dfe5326a14fb24c73d4948e532, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  SoundBank: {fileID: 11400000, guid: 0d58429e82dd14b4a9295991c65917fb, type: 2}
+  FadeInTime: 0

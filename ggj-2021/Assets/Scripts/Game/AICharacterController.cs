@@ -41,6 +41,9 @@ public class AICharacterController : MonoBehaviour
   [SerializeField]
   private GameObject _deathFX = null;
 
+  [SerializeField]
+  private SoundBank _deathSound = null;
+
   // Behavior State
   private BehaviorState _behaviorState = BehaviorState.Idle;
   private float _timeInBehavior = 0.0f;
@@ -110,7 +113,16 @@ public class AICharacterController : MonoBehaviour
 
   private void Awake()
   {
+  }
+
+  private void OnEnable()
+  {
     _screamDamageable.ScreamedAt += OnScreamedAt;
+  }
+
+  private void OnDisable()
+  {
+    _screamDamageable.ScreamedAt -= OnScreamedAt;
   }
 
   private void Start()
@@ -127,18 +139,23 @@ public class AICharacterController : MonoBehaviour
   {
     bool bIsScreamMatch = false;
 
+    Debug.Log($"{name} was screamed at");
+
     foreach (ScreamSoundDefinition scream in screamSounds)
     {
       if (scream == _cowerScream)
       {
         bIsScreamMatch = true;
+        Debug.Log($"{name} was screamed at with their least favorite scream: {scream.name}");
       }
     }
 
     if (bIsScreamMatch)
     {
-      if (_behaviorState == BehaviorState.Wander)
+      Debug.Log($"{name}'s state was {_behaviorState}");
+      if (_behaviorState == BehaviorState.Wander || _behaviorState == BehaviorState.Idle)
       {
+        Debug.Log($"{name} was set to cower");
         SetBehaviorState(BehaviorState.Cower);
       }
     }
@@ -493,6 +510,9 @@ public class AICharacterController : MonoBehaviour
         {
           Instantiate(_deathFX, transform.position, Quaternion.identity);
         }
+
+        AudioManager.Instance.PlaySound(gameObject, _deathSound);
+
         // Spawn a death bottles in out place
         if (_deathBottleSpawn != null)
         {

@@ -1,4 +1,5 @@
 using UnityEngine;
+using System.Collections;
 using System.Collections.Generic;
 
 public class PlayerCharacterController : Singleton<PlayerCharacterController>
@@ -249,10 +250,23 @@ public class PlayerCharacterController : Singleton<PlayerCharacterController>
     ScreamContainer bottle = _objectHolder.HeldObject.GetComponent<ScreamContainer>();
     if (bottle != null && bottle.ScreamSounds.Count > 0)
     {
-      _playerAnimation.PlayEmote(PlayerAnimatorController.EmoteState.OpenBottle);
+      StartCoroutine(ReleaseBottleScreamAsync());
+    }
+  }
+
+  private IEnumerator ReleaseBottleScreamAsync()
+  {
+    _playerAnimation.PlayEmote(PlayerAnimatorController.EmoteState.OpenBottle);
+    yield return _playerAnimation.AnimatorCallbacks.WaitForEvent("OnBottleUncorked");
+
+    ScreamContainer bottle = _objectHolder.HeldObject.GetComponent<ScreamContainer>();
+    if (bottle != null && bottle.ScreamSounds.Count > 0)
+    {
       ScreamDamageable.DoScream(bottle.ScreamSounds, bottle.transform.position, transform.forward, _screamDamageable);
       bottle.ReleaseScream();
     }
+
+    yield return null;
   }
 
   private void OnScreamedAt(IReadOnlyList<ScreamSoundDefinition> screamSounds)
@@ -271,14 +285,12 @@ public class PlayerCharacterController : Singleton<PlayerCharacterController>
   private void OnHoldStart()
   {
     _interactionController.PopEnabledInteraction("pickup");
-    _interactionController.PushEnabledInteraction("mix");
     _interactionController.PushEnabledInteraction("deposit");
   }
 
   private void OnHoldEnd()
   {
     _interactionController.PushEnabledInteraction("pickup");
-    _interactionController.PopEnabledInteraction("mix");
     _interactionController.PopEnabledInteraction("deposit");
   }
 }
