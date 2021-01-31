@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 4689007691543727184}
   - component: {fileID: 8556109438237721589}
   - component: {fileID: 5861891737535264575}
-  - component: {fileID: 5206203765637624839}
+  - component: {fileID: 1814103512438929755}
   m_Layer: 9
   m_Name: SkullGround
   m_TagString: Untagged
@@ -26,7 +26,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5357422128234338026}
-  m_LocalRotation: {x: 0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 8.63, y: 0.0025969502, z: -13.2}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
@@ -80,8 +80,8 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
---- !u!65 &5206203765637624839
-BoxCollider:
+--- !u!64 &1814103512438929755
+MeshCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -90,6 +90,7 @@ BoxCollider:
   m_Material: {fileID: 0}
   m_IsTrigger: 0
   m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 2.6177979, y: 2.3375843, z: 5.7263284}
-  m_Center: {x: 0.000000059604645, y: 1.084226, z: -0.031253815}
+  serializedVersion: 4
+  m_Convex: 0
+  m_CookingOptions: 30
+  m_Mesh: {fileID: -7759331768739107841, guid: f536cdc02b941de419474d4d90423fa3, type: 3}
