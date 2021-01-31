@@ -1,8 +1,11 @@
 using UnityEngine;
+using System.Collections.Generic;
 
 [CreateAssetMenu(fileName = "new-scream-mapping", menuName = "Scream Mapping")]
 public class ScreamMappingDefinition : ScriptableObject
 {
+  public IReadOnlyList<ScreamSoundDefinition> Screams => _screams;
+
   [SerializeField]
   private ScreamSoundDefinition[] _screams = null;
 

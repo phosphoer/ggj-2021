@@ -115,9 +115,9 @@ public class DaytimeUIHandler : UIPageBase
   {
     ScreamBankComponent bankComponent = GameStateManager.Instance.ScreamBank;
 
-    if (bankComponent.RequireScreamNoteCount > 0)
+    if (bankComponent.TotalScreamNoteCount > 0)
     {
-      _screamBankImage.fillAmount = bankComponent.CurrentScreamNoteCount / bankComponent.RequireScreamNoteCount;
+      _screamBankImage.fillAmount = 1.0f - (bankComponent.RemainingScreamNoteCount / (float)bankComponent.TotalScreamNoteCount);
     }
   }
 }

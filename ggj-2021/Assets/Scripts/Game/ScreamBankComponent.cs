@@ -2,53 +2,52 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+[System.Serializable]
+public class ScreamCalendarDay
+{
+  public ScreamMappingDefinition PossibleScreamRequests = null;
+  public int MainScreamCount = 1;
+  public int CommonScreamCount = 3;
+}
+
 public class ScreamBankComponent : MonoBehaviour
 {
-    public int[] ScreamCountCalender = { 1, 2, 3, 4, 5 };
-    public string[] ScreamNoteCalender = { "AAH", "EEH", "OOH" };
+  public event System.Action RemainingScreamsChanged;
 
-    private string _requireScreamNoteString;
-    public string RequireScreamNoteString
+  public int TotalScreamNoteCount => _currentDayRequests.Count;
+  public int RemainingScreamNoteCount => _remainingRequests.Count;
+  public bool HasReachedScreamNoteGoal => _remainingRequests.Count == 0;
+  public IReadOnlyList<ScreamSoundDefinition> RemainingRequests => _remainingRequests;
+
+  [SerializeField]
+  private ScreamCalendarDay[] _calendarDays = null;
+
+  private List<ScreamSoundDefinition> _currentDayRequests = new List<ScreamSoundDefinition>();
+  private List<ScreamSoundDefinition> _remainingRequests = new List<ScreamSoundDefinition>();
+
+  public void OnStartedDay(int dayIndex)
+  {
+    ScreamCalendarDay calendarDay = _calendarDays[dayIndex];
+
+    _currentDayRequests.Clear();
+    _remainingRequests.Clear();
+
+    for (int i = 0; i < calendarDay.MainScreamCount; ++i)
+      _currentDayRequests.Add(calendarDay.PossibleScreamRequests.Screams[0]);
+
+    for (int i = 0; i < calendarDay.CommonScreamCount; ++i)
     {
-        get { return _requireScreamNoteString; }
+      int randomIndex = Random.Range(0, calendarDay.PossibleScreamRequests.Screams.Count);
+      _currentDayRequests.Add(calendarDay.PossibleScreamRequests.Screams[randomIndex]);
     }
 
-    private int _requireScreamNoteCount;
-    public int RequireScreamNoteCount
-    {
-        get { return _requireScreamNoteCount; }
-    }
+    _remainingRequests.AddRange(_currentDayRequests);
 
-    private int _currentScreamNoteCount;
-    public int CurrentScreamNoteCount
-    {
-        get { return _currentScreamNoteCount; }
-    }
+    RemainingScreamsChanged?.Invoke();
+  }
 
-    public bool HasReachedScreamNoteGoal
-    {
-        get { return _currentScreamNoteCount >= _requireScreamNoteCount; }
-    }
+  public void OnCompletedDay()
+  {
 
-    public void OnStartedDay(int dayIndex)
-    {
-        _currentScreamNoteCount = 0;
-        _requireScreamNoteCount = ScreamCountCalender[dayIndex];
-        _requireScreamNoteString = ScreamNoteCalender[dayIndex];
-    }
-
-    public void OnCompletedDay()
-    {
-    }
-
-    public bool DepositScreamNote(string note)
-    {
-        if (note == RequireScreamNoteString)
-        {
-            _currentScreamNoteCount++;
-            return true;
-        }
-
-        return false;
-    }
+  }
 }

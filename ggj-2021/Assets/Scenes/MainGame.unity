@@ -197,50 +197,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 3022241860098331819, guid: 1f2e96c54fd18b1468da05f3259de592,
-        type: 3}
-      propertyPath: EditorDefaultStage
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 3864452600435219996, guid: 1f2e96c54fd18b1468da05f3259de592,
         type: 3}
       propertyPath: m_Name
       value: gamestate
-      objectReference: {fileID: 0}
-    - target: {fileID: 5901295231605056077, guid: 1f2e96c54fd18b1468da05f3259de592,
-        type: 3}
-      propertyPath: m_LocalPosition.x
-      value: 2.7695258
-      objectReference: {fileID: 0}
-    - target: {fileID: 5901295231605056077, guid: 1f2e96c54fd18b1468da05f3259de592,
-        type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 5.940967
-      objectReference: {fileID: 0}
-    - target: {fileID: 5901295231605056077, guid: 1f2e96c54fd18b1468da05f3259de592,
-        type: 3}
-      propertyPath: m_LocalPosition.z
-      value: -11.028729
-      objectReference: {fileID: 0}
-    - target: {fileID: 5901295231605056077, guid: 1f2e96c54fd18b1468da05f3259de592,
-        type: 3}
-      propertyPath: m_LocalRotation.w
-      value: -0.94876224
-      objectReference: {fileID: 0}
-    - target: {fileID: 5901295231605056077, guid: 1f2e96c54fd18b1468da05f3259de592,
-        type: 3}
-      propertyPath: m_LocalRotation.x
-      value: -0.054354608
-      objectReference: {fileID: 0}
-    - target: {fileID: 5901295231605056077, guid: 1f2e96c54fd18b1468da05f3259de592,
-        type: 3}
-      propertyPath: m_LocalRotation.y
-      value: -0.3107567
-      objectReference: {fileID: 0}
-    - target: {fileID: 5901295231605056077, guid: 1f2e96c54fd18b1468da05f3259de592,
-        type: 3}
-      propertyPath: m_LocalRotation.z
-      value: 0.01805991
       objectReference: {fileID: 0}
     - target: {fileID: 8033473203257070760, guid: 1f2e96c54fd18b1468da05f3259de592,
         type: 3}
@@ -296,16 +256,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8357379092675532168, guid: 1f2e96c54fd18b1468da05f3259de592,
-        type: 3}
-      propertyPath: SanityDecayRate
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8357379092675532168, guid: 1f2e96c54fd18b1468da05f3259de592,
-        type: 3}
-      propertyPath: SanityDecayActive
-      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 1f2e96c54fd18b1468da05f3259de592, type: 3}
