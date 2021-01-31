@@ -6,7 +6,13 @@ public class SanityComponent : MonoBehaviour
 {
   public bool SanityDecayActive = false;
   public float TotalSanity = 100;
-  public float SanityDecayRate = 1;
+
+  public float PursuitSanityDecayRate = 1;
+  private int _enemyPursuitCount = 0;
+  public int EnemyPursuitCount
+  {
+    get { return _enemyPursuitCount; }
+  }
 
   public float SanityHalf = 50.0f;
   public float SanityWarning = 25.0f;
@@ -56,6 +62,16 @@ public class SanityComponent : MonoBehaviour
     _hasDayStarted = false;
   }
 
+  public void OnPursuitStarted()
+  {
+    ++_enemyPursuitCount;
+  }
+
+  public void OnPursuitStopped()
+  {
+    _enemyPursuitCount = Mathf.Max(_enemyPursuitCount - 1, 0);
+  }
+
   public void RestoreSanity(float amount)
   {
     _currentSanity = Mathf.Clamp(_currentSanity + amount, 0, TotalSanity);
@@ -77,7 +93,9 @@ public class SanityComponent : MonoBehaviour
     if (SanityDecayActive && HasSanityRemaining)
     {
       float previousSanity = _currentSanity;
-      _currentSanity = Mathf.Max(_currentSanity - SanityDecayRate * Time.deltaTime, 0.0f);
+      float pursuitDecay = (float)_enemyPursuitCount * PursuitSanityDecayRate * Time.deltaTime;
+
+      _currentSanity = Mathf.Max(_currentSanity - pursuitDecay, 0.0f);
 
       PostSanityAlerts(previousSanity, _currentSanity);
     }
