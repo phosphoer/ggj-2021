@@ -9,7 +9,7 @@ public class Buoyancy : MonoBehaviour
   {
     float waterDepth = -Mathf.Min(0, transform.position.y);
 
-    _rb.AddForce(Vector3.up * waterDepth * 2, ForceMode.VelocityChange);
+    _rb.AddForce((Vector3.up + Random.insideUnitSphere * 0.1f) * waterDepth * 2, ForceMode.VelocityChange);
     _rb.AddForce(_rb.velocity * -0.1f * waterDepth, ForceMode.VelocityChange);
   }
 }

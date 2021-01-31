@@ -15,8 +15,25 @@ public class ScreamBottleSpawner : MonoBehaviour
   [SerializeField]
   private ScreamMappingDefinition _bottlePossibleScreams = null;
 
+  private bool _isFirstSpawn = true;
   private float _spawnTimer;
   private List<ScreamContainer> _spawnedContainers = new List<ScreamContainer>();
+
+  private void SpawnAtPoint(Transform spawnPoint)
+  {
+    ScreamContainer screamContainer = Instantiate(_screamBottlePrefab, spawnPoint);
+    screamContainer.transform.position = spawnPoint.position;
+    screamContainer.transform.rotation = Random.rotationUniform;
+    screamContainer.transform.position += (Random.insideUnitSphere * 10).WithY(0);
+
+    for (int i = 0; i < 3; ++i)
+    {
+      ScreamSoundDefinition chosenSound = _bottlePossibleScreams.Screams[Random.Range(0, _bottlePossibleScreams.Screams.Count)];
+      screamContainer.AddScream(chosenSound);
+    }
+
+    _spawnedContainers.Add(screamContainer);
+  }
 
   private void Update()
   {
@@ -25,17 +42,17 @@ public class ScreamBottleSpawner : MonoBehaviour
     {
       _spawnTimer = _spawnInterval.RandomValue;
 
-      Transform spawnPoint = _spawnPoints[Random.Range(0, _spawnPoints.Length)];
-      ScreamContainer screamContainer = Instantiate(_screamBottlePrefab, spawnPoint.position, Quaternion.identity);
-      screamContainer.transform.position += (Random.insideUnitSphere * 10).WithY(0);
-
-      for (int i = 0; i < 3; ++i)
+      if (_isFirstSpawn)
       {
-        ScreamSoundDefinition chosenSound = _bottlePossibleScreams.Screams[Random.Range(0, _bottlePossibleScreams.Screams.Count)];
-        screamContainer.AddScream(chosenSound);
+        _isFirstSpawn = false;
+        for (int i = 0; i < _spawnPoints.Length; ++i)
+          SpawnAtPoint(_spawnPoints[i]);
       }
-
-      _spawnedContainers.Add(screamContainer);
+      else
+      {
+        Transform spawnPoint = _spawnPoints[Random.Range(0, _spawnPoints.Length)];
+        SpawnAtPoint(spawnPoint);
+      }
     }
   }
 
@@ -44,9 +61,7 @@ public class ScreamBottleSpawner : MonoBehaviour
     for (int i = 0; i < _spawnedContainers.Count; ++i)
     {
       ScreamContainer bottle = _spawnedContainers[i];
-      Vector3 playerPos = PlayerCharacterController.Instance.transform.position;
-      Vector3 toPlayer = playerPos - bottle.transform.position;
-      bottle.Holdable.Rigidbody.AddForce(toPlayer.normalized * 0.01f, ForceMode.VelocityChange);
+      bottle.Holdable.Rigidbody.AddForce(bottle.transform.parent.forward * 0.01f, ForceMode.VelocityChange);
 
       if (bottle.transform.position.y > 1)
       {
