@@ -51,7 +51,7 @@ BlendTree:
     m_CycleOffset: 0
     m_DirectBlendParameter: LocomotionState
     m_Mirror: 0
-  m_BlendParameter: LocomotionState
+  m_BlendParameter: EmoteState
   m_BlendParameterY: LocomotionState
   m_MinThreshold: 0
   m_MaxThreshold: 1
