@@ -19,14 +19,14 @@ MonoBehaviour:
   - {fileID: 8300000, guid: b61173c1964893a429f0033d9bd3f936, type: 3}
   - {fileID: 8300000, guid: c051081db297fa84e84ba7b9ee97f07e, type: 3}
   - {fileID: 8300000, guid: 3f5bf3a2e7275b94d92efd2c30418a49, type: 3}
-  IsSpatial: 1
+  IsSpatial: 0
   MaxDistance: 20
   MinDistance: 1
   VolumeScale: 1
   DopplerLevel: 0
   PitchOffset: 0
   PitchOffsetRange:
-    MinValue: -0.2
-    MaxValue: 0.2
+    MinValue: 0
+    MaxValue: 0
   IsLooping: 0
   AudioMixerGroup: {fileID: 0}

@@ -14,14 +14,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   AudioClips:
   - {fileID: 8300000, guid: 0c0ae8fb3b6761242b45a31a9b669f17, type: 3}
-  IsSpatial: 1
+  IsSpatial: 0
   MaxDistance: 20
   MinDistance: 1
-  VolumeScale: 1
+  VolumeScale: 0.3
   DopplerLevel: 0
   PitchOffset: 0
   PitchOffsetRange:
-    MinValue: -0.2
-    MaxValue: 0.2
+    MinValue: 0
+    MaxValue: 0
   IsLooping: 0
   AudioMixerGroup: {fileID: 0}

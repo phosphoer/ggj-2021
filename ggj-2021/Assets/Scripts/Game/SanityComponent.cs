@@ -19,13 +19,7 @@ public class SanityComponent : MonoBehaviour
   public float SanityCritical = 10.0f;
 
   [SerializeField]
-  private SoundBank _sanityHalfAlert = null;
-
-  [SerializeField]
-  private SoundBank _sanityWarningAlert = null;
-
-  [SerializeField]
-  private SoundBank _sanityCriticalAlert = null;
+  private SoundBank _sanityDamageSound = null;
 
   private float _currentSanity;
   public float CurrentSanity
@@ -82,7 +76,7 @@ public class SanityComponent : MonoBehaviour
     float previousSanity = _currentSanity;
     _currentSanity = Mathf.Max(_currentSanity - amount, 0.0f);
 
-    PostSanityAlerts(previousSanity, _currentSanity);
+    AudioManager.Instance.PlaySound(_sanityDamageSound);
   }
 
   void Update()
@@ -96,38 +90,11 @@ public class SanityComponent : MonoBehaviour
       float pursuitDecay = (float)_enemyPursuitCount * PursuitSanityDecayRate * Time.deltaTime;
 
       _currentSanity = Mathf.Max(_currentSanity - pursuitDecay, 0.0f);
-
-      PostSanityAlerts(previousSanity, _currentSanity);
     }
 
     if (HasSanityRemaining)
     {
       _aliveTimer += Time.deltaTime;
-    }
-  }
-
-  void PostSanityAlerts(float PreviousHealth, float NewHealth)
-  {
-    if (PreviousHealth > SanityCritical && NewHealth <= SanityCritical)
-    {
-      if (_sanityCriticalAlert != null)
-      {
-        AudioManager.Instance.PlaySound(_sanityCriticalAlert);
-      }
-    }
-    else if (PreviousHealth > SanityWarning && NewHealth <= SanityWarning)
-    {
-      if (_sanityWarningAlert != null)
-      {
-        AudioManager.Instance.PlaySound(_sanityWarningAlert);
-      }
-    }
-    else if (PreviousHealth > SanityHalf && NewHealth <= SanityHalf)
-    {
-      if (_sanityHalfAlert != null)
-      {
-        AudioManager.Instance.PlaySound(_sanityHalfAlert);
-      }
     }
   }
 }
