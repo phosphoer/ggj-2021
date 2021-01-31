@@ -31,6 +31,9 @@ public class AICharacterController : MonoBehaviour
   [SerializeField]
   private ScreamController _screamController = null;
 
+  [SerializeField]
+  private ScreamDamageable _screamDamageable = null;
+
   // Behavior State
   private BehaviorState _behaviorState = BehaviorState.Wander;
   private float _timeInBehavior = 0.0f;
@@ -68,6 +71,7 @@ public class AICharacterController : MonoBehaviour
 
   private void Awake()
   {
+    _screamDamageable.ScreamedAt += OnScreamedAt;
   }
 
   private void Start()
@@ -80,11 +84,11 @@ public class AICharacterController : MonoBehaviour
 
   }
 
-  public void NotifyPlayerScream(IReadOnlyList<ScreamSoundDefinition> screams)
+  private void OnScreamedAt(IReadOnlyList<ScreamSoundDefinition> screamSounds)
   {
     bool bIsScreamMatch = false;
 
-    foreach (ScreamSoundDefinition scream in screams)
+    foreach (ScreamSoundDefinition scream in screamSounds)
     {
       if (scream == _cowerScream)
       {
@@ -342,8 +346,11 @@ public class AICharacterController : MonoBehaviour
         _throttleUrgency = 0.0f; // Stop and attack in place
         _pathRefreshPeriod = -1.0f; // manual refresh
         _aiAnimation.PlayEmote(AIAnimatorController.EmoteState.Attack);
-        _screamController.StartScream(new List<ScreamSoundDefinition>() { _cowerScream }, false, 1.0f);
-        PlayerCharacterController.Instance.NotifyMonsterScream();
+
+        var screamSounds = new List<ScreamSoundDefinition>() { _cowerScream };
+        _screamController.StartScream(screamSounds, false, 1.0f);
+        ScreamDamageable.DoScream(screamSounds, _perceptionComponent.transform.position, _perceptionComponent.transform.forward, _screamDamageable);
+
         break;
       case BehaviorState.Flee:
         _throttleUrgency = 1.0f; // full speed

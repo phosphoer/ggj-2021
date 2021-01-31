@@ -26,6 +26,9 @@ public class PlayerCharacterController : Singleton<PlayerCharacterController>
   [SerializeField]
   private CameraControllerPlayer _cameraRigPrefab = null;
 
+  [SerializeField]
+  private ScreamDamageable _screamDamageable = null;
+
   private int _disabledStack = 0;
   private CameraControllerPlayer _cameraRig;
   private bool _isSneaking;
@@ -55,24 +58,12 @@ public class PlayerCharacterController : Singleton<PlayerCharacterController>
     GameUI.Instance.ScreamComposerUI.Show();
   }
 
-  public void NotifyMonsterScream()
-  {
-    _playerAnimation.PlayEmote(PlayerAnimatorController.EmoteState.Scared);
-    _scaredTimer = ScareDuration;
-    GameStateManager.Instance.PlayerSanity.TakeSanityDamage(ScareSanityDamage);
-
-    if (_objectHolder.HeldObject != null)
-    {
-      HoldableObject heldObject = _objectHolder.HeldObject;
-      _objectHolder.DropObject();
-    }
-  }
-
   private void Awake()
   {
     Instance = this;
     _objectHolder.HoldStart += OnHoldStart;
     _objectHolder.HoldEnd += OnHoldEnd;
+    _screamDamageable.ScreamedAt += OnScreamedAt;
 
     _interactionController.PushEnabledInteraction("pickup");
   }
@@ -226,7 +217,21 @@ public class PlayerCharacterController : Singleton<PlayerCharacterController>
     ScreamContainer bottle = _objectHolder.HeldObject.GetComponent<ScreamContainer>();
     if (bottle != null)
     {
+      ScreamDamageable.DoScream(bottle.ScreamSounds, bottle.transform.position, transform.forward, _screamDamageable);
       bottle.ReleaseScream();
+    }
+  }
+
+  private void OnScreamedAt(IReadOnlyList<ScreamSoundDefinition> screamSounds)
+  {
+    _playerAnimation.PlayEmote(PlayerAnimatorController.EmoteState.Scared);
+    _scaredTimer = ScareDuration;
+    GameStateManager.Instance.PlayerSanity.TakeSanityDamage(ScareSanityDamage);
+
+    if (_objectHolder.HeldObject != null)
+    {
+      HoldableObject heldObject = _objectHolder.HeldObject;
+      _objectHolder.DropObject();
     }
   }
 
