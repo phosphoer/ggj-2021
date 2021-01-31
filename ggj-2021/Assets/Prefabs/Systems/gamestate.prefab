@@ -49,9 +49,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   EditorDefaultStage: 1
-  MusicMenuLoop: {fileID: 0}
-  MusicDayIntro: {fileID: 0}
-  MusicDayOutro: {fileID: 0}
+  MusicMenuLoop: {fileID: 11400000, guid: a2e4f581115ecd043b4e15a84f8ab545, type: 2}
+  MusicHigh: {fileID: 11400000, guid: 863b8ef9d675c1541be72f66c134215f, type: 2}
+  MusicMid: {fileID: 11400000, guid: dd84f1c284a03f7478a2888ff0103d2f, type: 2}
+  MusicLow: {fileID: 11400000, guid: 4470760ad5134a946a258db85a5032dd, type: 2}
   WinAlert: {fileID: 0}
   LoseAlert: {fileID: 0}
   MenuCamera: {fileID: 5580711374243285675}
@@ -73,7 +74,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   SanityDecayActive: 1
   TotalSanity: 100
-  SanityDecayRate: 0
+  PursuitSanityDecayRate: 1
   SanityHalf: 50
   SanityWarning: 25
   SanityCritical: 10

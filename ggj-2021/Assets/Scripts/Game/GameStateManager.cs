@@ -25,8 +25,9 @@ public class GameStateManager : Singleton<GameStateManager>
   public GameStage EditorDefaultStage = GameStage.Daytime;
 
   public SoundBank MusicMenuLoop;
-  public SoundBank MusicDayIntro;
-  public SoundBank MusicDayOutro;
+  public SoundBank MusicHigh;
+  public SoundBank MusicMid;
+  public SoundBank MusicLow;
   public SoundBank WinAlert;
   public SoundBank LoseAlert;
   public CameraControllerBase MenuCamera;
@@ -58,6 +59,10 @@ public class GameStateManager : Singleton<GameStateManager>
   {
     get { return _currentDay; }
   }
+
+  private AudioManager.AudioInstance _musicLowInstance;
+  private AudioManager.AudioInstance _musicMidInstance;
+  private AudioManager.AudioInstance _musicHighInstance;
 
   private void Awake()
   {
@@ -93,6 +98,25 @@ public class GameStateManager : Singleton<GameStateManager>
         }
         break;
       case GameStage.Daytime:
+        if (_playerSanity.EnemyPursuitCount > 0)
+        {
+          _musicHighInstance.AudioSource.volume = Mathfx.Damp(_musicHighInstance.AudioSource.volume, MusicHigh.VolumeScale, 0.25f, Time.deltaTime);
+          _musicMidInstance.AudioSource.volume = Mathfx.Damp(_musicMidInstance.AudioSource.volume, 0f, 0.25f, Time.deltaTime);
+          _musicLowInstance.AudioSource.volume = Mathfx.Damp(_musicLowInstance.AudioSource.volume, 0f, 0.25f, Time.deltaTime);
+        }
+        else if (PlayerCharacterController.Instance.IsSneaking)
+        {
+          _musicHighInstance.AudioSource.volume = Mathfx.Damp(_musicHighInstance.AudioSource.volume, 0f, 0.25f, Time.deltaTime);
+          _musicMidInstance.AudioSource.volume = Mathfx.Damp(_musicMidInstance.AudioSource.volume, 0f, 0.25f, Time.deltaTime);
+          _musicLowInstance.AudioSource.volume = Mathfx.Damp(_musicLowInstance.AudioSource.volume, MusicLow.VolumeScale, 0.25f, Time.deltaTime);
+        }
+        else
+        {
+          _musicHighInstance.AudioSource.volume = Mathfx.Damp(_musicHighInstance.AudioSource.volume, 0f, 0.25f, Time.deltaTime);
+          _musicMidInstance.AudioSource.volume = Mathfx.Damp(_musicMidInstance.AudioSource.volume, MusicMid.VolumeScale, 0.25f, Time.deltaTime);
+          _musicLowInstance.AudioSource.volume = Mathfx.Damp(_musicLowInstance.AudioSource.volume, 0f, 0.25f, Time.deltaTime);
+        }
+
         if (!_playerSanity.HasSanityRemaining)
         {
           nextGameStage = GameStage.LoseGame;
@@ -170,11 +194,6 @@ public class GameStateManager : Singleton<GameStateManager>
         break;
       case GameStage.DayIntro:
         {
-          if (MusicDayIntro != null)
-          {
-            AudioManager.Instance.FadeOutSound(gameObject, MusicDayIntro, 1.0f);
-          }
-
           CameraControllerStack.Instance.PopController(MenuCamera);
 
           GameUI.Instance.DayIntroUI.Hide();
@@ -191,11 +210,6 @@ public class GameStateManager : Singleton<GameStateManager>
         break;
       case GameStage.DayOutro:
         {
-          if (MusicDayOutro != null)
-          {
-            AudioManager.Instance.FadeOutSound(gameObject, MusicDayIntro, 1.0f);
-          }
-
           CameraControllerStack.Instance.PopController(MenuCamera);
 
           // Move on to the next day!
@@ -248,10 +262,9 @@ public class GameStateManager : Singleton<GameStateManager>
           _dayIntroUIHander = GameUI.Instance.DayIntroUI.GetComponent<DayIntroUIHandler>();
           CameraControllerStack.Instance.PushController(MenuCamera);
 
-          if (MusicDayIntro != null)
-          {
-            AudioManager.Instance.FadeInSound(gameObject, MusicDayIntro, 3.0f);
-          }
+          _musicLowInstance = AudioManager.Instance.PlaySound(gameObject, MusicLow, 0);
+          _musicMidInstance = AudioManager.Instance.PlaySound(gameObject, MusicMid, 0);
+          _musicHighInstance = AudioManager.Instance.PlaySound(gameObject, MusicHigh, 0);
 
           DayIntroStarted?.Invoke();
         }
@@ -284,10 +297,9 @@ public class GameStateManager : Singleton<GameStateManager>
           _dayOutroUIHander = GameUI.Instance.DayOutroUI.GetComponent<DayOutroUIHandler>();
           CameraControllerStack.Instance.PushController(MenuCamera);
 
-          if (MusicDayOutro != null)
-          {
-            AudioManager.Instance.FadeInSound(gameObject, MusicDayOutro, 3.0f);
-          }
+          AudioManager.Instance.FadeOutSound(gameObject, MusicLow, 3);
+          AudioManager.Instance.FadeOutSound(gameObject, MusicMid, 3);
+          AudioManager.Instance.FadeOutSound(gameObject, MusicHigh, 3);
 
           DayOutroStarted?.Invoke();
         }
