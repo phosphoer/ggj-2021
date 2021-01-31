@@ -2134,6 +2134,75 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: cd38da588152c1e4183c71a35016007d, type: 3}
+--- !u!1001 &7730618382662358297
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 8307437979167265270, guid: 823e8c1773d8f1a429e3d536726cde0b,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 33
+      objectReference: {fileID: 0}
+    - target: {fileID: 8307437979167265270, guid: 823e8c1773d8f1a429e3d536726cde0b,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -7.6097817
+      objectReference: {fileID: 0}
+    - target: {fileID: 8307437979167265270, guid: 823e8c1773d8f1a429e3d536726cde0b,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0.04590747
+      objectReference: {fileID: 0}
+    - target: {fileID: 8307437979167265270, guid: 823e8c1773d8f1a429e3d536726cde0b,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 3.06
+      objectReference: {fileID: 0}
+    - target: {fileID: 8307437979167265270, guid: 823e8c1773d8f1a429e3d536726cde0b,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8307437979167265270, guid: 823e8c1773d8f1a429e3d536726cde0b,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8307437979167265270, guid: 823e8c1773d8f1a429e3d536726cde0b,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8307437979167265270, guid: 823e8c1773d8f1a429e3d536726cde0b,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8307437979167265270, guid: 823e8c1773d8f1a429e3d536726cde0b,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8307437979167265270, guid: 823e8c1773d8f1a429e3d536726cde0b,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 180
+      objectReference: {fileID: 0}
+    - target: {fileID: 8307437979167265270, guid: 823e8c1773d8f1a429e3d536726cde0b,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8647512164827581260, guid: 823e8c1773d8f1a429e3d536726cde0b,
+        type: 3}
+      propertyPath: m_Name
+      value: TikiStone
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 823e8c1773d8f1a429e3d536726cde0b, type: 3}
 --- !u!1001 &7981326085885820561
 PrefabInstance:
   m_ObjectHideFlags: 0

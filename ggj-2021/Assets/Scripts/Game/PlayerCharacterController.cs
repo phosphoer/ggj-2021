@@ -7,6 +7,7 @@ public class PlayerCharacterController : Singleton<PlayerCharacterController>
   public CharacterMovementController Character => _characterMovement;
   public CameraControllerPlayer CameraRig => _cameraRig;
   public Transform AIVisibilityTarget => _aiVisibilityTarget;
+  public bool IsSneaking => _isSneaking;
 
   [SerializeField]
   private Transform _aiVisibilityTarget = null;

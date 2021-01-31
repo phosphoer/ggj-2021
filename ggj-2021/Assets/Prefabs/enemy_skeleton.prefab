@@ -59,12 +59,16 @@ MonoBehaviour:
     type: 3}
   _deathFX: {fileID: 5639098239645709990, guid: 2d8aeb3b8091130459eec3082bd71fb5,
     type: 3}
+  IdleMinDuration: 0.5
+  IdleMaxDuration: 3
   WanderRange: 10
-  ChaseTimeOut: 4
-  MaxChaseDistance: 50
+  ChaseTimeOut: 60
+  MaxChaseDistance: 100
   AttackRange: 2
   AttackDuration: 2
   AttackTurnSpeed: 5
+  AttackCooldown: 5
+  _timeSinceAttack: -1
   CowerDuration: 2
   _cowerScream: {fileID: 11400000, guid: 18ba791cd960cf5418c740efc9b4f29b, type: 2}
   _attackScream: {fileID: 11400000, guid: 9f387d9551b951b449ddfcdeee3d3404, type: 2}
@@ -189,7 +193,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   VisionAngleDegrees: 50
+  CanSeeAngleMultiplier: 1.2
   VisionDistance: 8
+  CanSeeDistanceMultiplier: 2
+  NearbyDistance: 3
   RefreshInterval: 0.1
   DrawDebug: 0
   _visionCone: {fileID: 1165450378906764570}
