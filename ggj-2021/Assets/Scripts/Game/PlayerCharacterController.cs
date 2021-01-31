@@ -30,6 +30,9 @@ public class PlayerCharacterController : Singleton<PlayerCharacterController>
   [SerializeField]
   private ScreamDamageable _screamDamageable = null;
 
+  private Vector3 _spawnLocation;
+  private Quaternion _spawnOrientation;
+
   private int _disabledStack = 0;
   private CameraControllerPlayer _cameraRig;
   private bool _isSneaking;
@@ -73,6 +76,26 @@ public class PlayerCharacterController : Singleton<PlayerCharacterController>
   {
     _cameraRig = Instantiate(_cameraRigPrefab);
     CameraControllerStack.Instance.PushController(_cameraRig);
+
+    _spawnLocation = this.transform.position;
+    _spawnOrientation = this.transform.rotation;
+  }
+
+  public void Respawn()
+  {
+    // Drop any held object
+    if (_objectHolder.HeldObject != null)
+    {
+      HoldableObject heldObject = _objectHolder.HeldObject;
+      _objectHolder.DropObject();
+    }
+
+    // Reset scare stun
+    _scaredTimer = 0.0f;
+
+    // Teleport back to the spawn location
+    this.transform.position = _spawnLocation;
+    this.transform.rotation = _spawnOrientation;
   }
 
   private void Update()

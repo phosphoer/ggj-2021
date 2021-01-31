@@ -268,6 +268,8 @@ public class GameStateManager : Singleton<GameStateManager>
         break;
       case GameStage.DayIntro:
         {
+          PlayerCharacterController.Instance.Respawn();
+
           GameUI.Instance.DayIntroUI.Show();
           _dayIntroUIHander = GameUI.Instance.DayIntroUI.GetComponent<DayIntroUIHandler>();
           CameraControllerStack.Instance.PushController(MenuCamera);
