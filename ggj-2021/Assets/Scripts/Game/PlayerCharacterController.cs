@@ -5,6 +5,10 @@ public class PlayerCharacterController : Singleton<PlayerCharacterController>
   public ObjectHolder ObjectHolder => _objectHolder;
   public CharacterMovementController Character => _characterMovement;
   public CameraControllerPlayer CameraRig => _cameraRig;
+  public Transform AIVisibilityTarget => _aiVisibilityTarget;
+
+  [SerializeField]
+  private Transform _aiVisibilityTarget = null;
 
   [SerializeField]
   private CharacterMovementController _characterMovement = null;

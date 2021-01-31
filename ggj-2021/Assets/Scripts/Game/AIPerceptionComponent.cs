@@ -51,7 +51,7 @@ public class AIPerceptionComponent : MonoBehaviour
 
   void RefreshPlayerVisionInformation()
   {
-    Transform playerTransform = PlayerCharacterController.Instance.transform;
+    Transform playerTransform = PlayerCharacterController.Instance.AIVisibilityTarget;
     Vector3 playerLocation = playerTransform.position;
 
     float actorDistance = Vector3.Distance(transform.position, playerLocation);
@@ -62,16 +62,14 @@ public class AIPerceptionComponent : MonoBehaviour
 
       if (angle < VisionAngleDegrees / 2.0f)
       {
+        LayerMask mask = LayerMask.GetMask("Terrain");
         RaycastHit hit;
-        if (Physics.Raycast(transform.position, (playerLocation - transform.position), out hit, VisionDistance))
+        if (!Physics.Raycast(transform.position, (playerLocation - transform.position), out hit, VisionDistance, mask))
         {
-          if (hit.transform == playerTransform)
-          {
-            _timeSinceLastSeenPlayer= 0.0f;
-            _canSeePlayer= true;
-            _lastSeenPlayerLocation= hit.transform.position;
-            return;
-          }
+          _timeSinceLastSeenPlayer= 0.0f;
+          _canSeePlayer= true;
+          _lastSeenPlayerLocation= playerLocation;
+          return;
         }
       }
     }
@@ -97,11 +95,11 @@ public class AIPerceptionComponent : MonoBehaviour
       Debug.DrawLine(
         origin, 
         origin + forward*VisionDistance + right*Mathf.Cos(radians)*circleRadius + up*Mathf.Sin(radians)*circleRadius, 
-        Color.yellow,
+        _canSeePlayer ? Color.white : Color.yellow,
         _refreshTimer);
     }
 
-    Transform playerTransform = PlayerCharacterController.Instance.transform;
+    Transform playerTransform = PlayerCharacterController.Instance.AIVisibilityTarget;
     Vector3 playerLocation = playerTransform.position;
     if (_canSeePlayer)
     {
