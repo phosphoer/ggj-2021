@@ -32,6 +32,7 @@ Transform:
   m_Children:
   - {fileID: 5901295231605056077}
   - {fileID: 444768689}
+  - {fileID: 4806892047021884871}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -104,7 +105,54 @@ MonoBehaviour:
       type: 2}
     MainScreamCount: 3
     CommonScreamCount: 3
-  _bankUI: {fileID: 444768686}
+--- !u!1 &4590749947236651749
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 4806892047021884871}
+  - component: {fileID: 6571624439914565669}
+  m_Layer: 0
+  m_Name: scream-bank-deposit-interact
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4806892047021884871
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4590749947236651749}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 54.9, y: 10.647705, z: 26.97}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 8033473203257070760}
+  m_RootOrder: 2
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &6571624439914565669
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4590749947236651749}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dbc6133d379853945b96d06af7d9cdc1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _interactionRadius: 3
+  _requiresLineOfSight: 0
+  _interactPromptUIPrefab: {fileID: 5606895370126460559, guid: 210a649d1d27ce74f95f131109b65631,
+    type: 3}
+  _interactionType: deposit
 --- !u!1 &4782059217787653957
 GameObject:
   m_ObjectHideFlags: 0
@@ -275,15 +323,3 @@ RectTransform:
     type: 3}
   m_PrefabInstance: {fileID: 2579051760967682921}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &444768686 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 2579051761395411655, guid: 7804b2ef3963a004eba042e3c03fc402,
-    type: 3}
-  m_PrefabInstance: {fileID: 2579051760967682921}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f795fe531a559e94bbc6bcc338e60016, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 

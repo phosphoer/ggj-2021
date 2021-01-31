@@ -59,7 +59,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 10303, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: bd017928e56c23d4eabd4ef53310d6e6, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -107,6 +107,7 @@ GameObject:
   - component: {fileID: 3751806036467726560}
   - component: {fileID: 3751806036467726566}
   - component: {fileID: 3751806036467726564}
+  - component: {fileID: 8085397104997197101}
   m_Layer: 0
   m_Name: BottledScream
   m_TagString: Untagged
@@ -159,11 +160,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 106cc65dc2fc93a43af5ab7dd193fbd9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _screamMapping: {fileID: 11400000, guid: d0008d97b82cddb47b2c198c3d1b7eac, type: 2}
   _screamInterval:
     MinValue: 0.5
     MaxValue: 1
-  _testScream: aah eeh ooh
+  _testScream: []
 --- !u!114 &3751806036467726560
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -177,9 +177,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _screamController: {fileID: 3751806036467726561}
-  _screamString: eeh ooh aah
   _mixInteractable: {fileID: 8239765380805415612}
   _holdable: {fileID: 3751806036467726564}
+  _screamSounds: []
 --- !u!114 &3751806036467726566
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -208,6 +208,19 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _interactable: {fileID: 4627890405404266577}
+  _rb: {fileID: 3751806036467726563}
+--- !u!114 &8085397104997197101
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3751806036467726573}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 27ed867a8661a8d4dbf15a2240ad35fd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
   _rb: {fileID: 3751806036467726563}
 --- !u!1 &3911976916698795645
 GameObject:

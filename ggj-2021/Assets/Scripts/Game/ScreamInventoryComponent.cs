@@ -4,11 +4,8 @@ using UnityEngine;
 
 public class ScreamInventoryComponent : MonoBehaviour
 {
-  [SerializeField]
-  public string[] _sourceBottleNotes = new string[3];
-  [SerializeField]
-  public string[] _targetBottleNotes = new string[3];
-
+  private ScreamSoundDefinition[] _sourceBottleNotes = new ScreamSoundDefinition[3];
+  private ScreamSoundDefinition[] _targetBottleNotes = new ScreamSoundDefinition[3];
   private ScreamContainer _sourceBottle;
   private ScreamContainer _targetBottle;
 
@@ -27,51 +24,45 @@ public class ScreamInventoryComponent : MonoBehaviour
     _sourceBottle = heldBottle;
     _targetBottle = groundBottle;
 
-    string[] sourceScreamNotes = _sourceBottle.GetScreamNotes();
-    string[] targetScreamNotes = _targetBottle.GetScreamNotes();
+    var sourceScreamNotes = _sourceBottle.ScreamSounds;
+    var targetScreamNotes = _targetBottle.ScreamSounds;
 
-    if (sourceScreamNotes.Length == 3 && targetScreamNotes.Length == 3)
+    for (int slotIndex = 0; slotIndex < 3; ++slotIndex)
     {
-      for (int slotIndex = 0; slotIndex < 3; ++slotIndex)
-      {
-        inventoryComponent.SetSourceBottleNote(slotIndex, sourceScreamNotes[slotIndex]);
-        inventoryComponent.SetTargetBottleNote(slotIndex, targetScreamNotes[slotIndex]);
-      }
+      inventoryComponent.SetSourceBottleNote(slotIndex, slotIndex < sourceScreamNotes.Count ? sourceScreamNotes[slotIndex] : null);
+      inventoryComponent.SetTargetBottleNote(slotIndex, slotIndex < targetScreamNotes.Count ? targetScreamNotes[slotIndex] : null);
     }
   }
 
   public void FinishMixingBottles()
   {
-    string sourceScreamString = string.Join(" ", _sourceBottleNotes);
-    string targetScreamString = string.Join(" ", _targetBottleNotes);
-
-    _sourceBottle.FillScream(sourceScreamString);
-    _targetBottle.FillScream(targetScreamString);
+    _sourceBottle.FillScream(_sourceBottleNotes);
+    _targetBottle.FillScream(_targetBottleNotes);
   }
 
-  public void SetSourceBottleNote(int slotIndex, string note)
+  public void SetSourceBottleNote(int slotIndex, ScreamSoundDefinition note)
   {
     _sourceBottleNotes[slotIndex] = note;
   }
 
-  public string GetSourceBottleNote(int slotIndex)
+  public ScreamSoundDefinition GetSourceBottleNote(int slotIndex)
   {
     return _sourceBottleNotes[slotIndex];
   }
 
-  public void SetTargetBottleNote(int slotIndex, string note)
+  public void SetTargetBottleNote(int slotIndex, ScreamSoundDefinition note)
   {
     _targetBottleNotes[slotIndex] = note;
   }
 
-  public string GetTargetBottleNote(int slotIndex)
+  public ScreamSoundDefinition GetTargetBottleNote(int slotIndex)
   {
     return _targetBottleNotes[slotIndex];
   }
 
   public void SwapNotes(int sourceSlotIndex, int targetSlotIndex)
   {
-    string temp = _targetBottleNotes[targetSlotIndex];
+    ScreamSoundDefinition temp = _targetBottleNotes[targetSlotIndex];
     _targetBottleNotes[targetSlotIndex] = _sourceBottleNotes[sourceSlotIndex];
     _sourceBottleNotes[sourceSlotIndex] = temp;
   }

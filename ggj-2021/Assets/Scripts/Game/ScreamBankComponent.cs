@@ -25,6 +25,16 @@ public class ScreamBankComponent : MonoBehaviour
   private List<ScreamSoundDefinition> _currentDayRequests = new List<ScreamSoundDefinition>();
   private List<ScreamSoundDefinition> _remainingRequests = new List<ScreamSoundDefinition>();
 
+  public void DepositScream(IReadOnlyList<ScreamSoundDefinition> screams)
+  {
+    for (int i = 0; i < screams.Count; ++i)
+    {
+      _remainingRequests.Remove(screams[i]);
+    }
+
+    RemainingScreamsChanged?.Invoke();
+  }
+
   public void OnStartedDay(int dayIndex)
   {
     ScreamCalendarDay calendarDay = _calendarDays[dayIndex];

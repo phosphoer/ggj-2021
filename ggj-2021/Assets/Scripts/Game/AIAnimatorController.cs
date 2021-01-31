@@ -5,13 +5,13 @@ public class AIAnimatorController : MonoBehaviour
   public enum LocomotionState
   {
     Idle = 0,
-    Move,
+    Move = 1,
   }
 
   public enum EmoteState
   {
-    ScarePlayer = 0,
-    GetScared
+    Attack = 0,
+    Cower = 1
   }
 
   public LocomotionState CurrentLocomotionState
@@ -39,10 +39,18 @@ public class AIAnimatorController : MonoBehaviour
   private EmoteState _currentEmoteState;
   private float _currentLocomotionSpeed;
 
+  private bool _isDead;
+  public bool IsDead
+  {
+    get { return _isDead; }
+    set { _isDead = value; }
+  }
+
   private static readonly int kAnimLocomotionState = Animator.StringToHash("LocomotionState");
   private static readonly int kAnimEmoteState = Animator.StringToHash("EmoteState");
   private static readonly int kAnimLocomotionSpeed = Animator.StringToHash("LocomotionSpeed");
   private static readonly int kAnimEmote = Animator.StringToHash("Emote");
+  private static readonly int kAnimIsDead = Animator.StringToHash("IsDead");
 
   public void PlayEmote(EmoteState emote)
   {
@@ -52,6 +60,7 @@ public class AIAnimatorController : MonoBehaviour
 
   private void Update()
   {
+    _animator.SetBool(kAnimIsDead, _isDead);
     _animator.SetFloat(kAnimLocomotionSpeed, Mathfx.Damp(_animator.GetFloat(kAnimLocomotionSpeed), (float)_currentLocomotionSpeed, 0.25f, Time.deltaTime * 5));
     _animator.SetFloat(kAnimLocomotionState, Mathfx.Damp(_animator.GetFloat(kAnimLocomotionState), (float)_currentLocomotionState, 0.25f, Time.deltaTime * 5));
   }
