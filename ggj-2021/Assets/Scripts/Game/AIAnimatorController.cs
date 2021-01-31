@@ -1,21 +1,17 @@
 using UnityEngine;
 
-public class PlayerAnimatorController : MonoBehaviour
+public class AIAnimatorController : MonoBehaviour
 {
   public enum LocomotionState
   {
     Idle = 0,
-    Jog,
-    Sneak,
-    IdleCarry,
-    JogCarry,
-    SneakCarry
+    Move,
   }
 
   public enum EmoteState
   {
-    OpenBottle = 0,
-    Scared
+    ScarePlayer = 0,
+    GetScared
   }
 
   public LocomotionState CurrentLocomotionState

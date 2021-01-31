@@ -5,6 +5,7 @@ public class HoldableObject : MonoBehaviour
   public event System.Action IsHeldChanged;
 
   public bool IsHeld => _isHeld;
+  public Rigidbody Rigidbody => _rb;
 
   [SerializeField]
   private Interactable _interactable = null;

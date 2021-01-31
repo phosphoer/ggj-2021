@@ -79,6 +79,7 @@ public class ScreamController : MonoBehaviour
 
         AudioSource audioSource = GetAvailableAudioSource();
         AudioManager.ConfigureSourceForSound(audioSource, screamSound.Sound);
+        AudioManager.PrepareSourceToPlay(audioSource, screamSound.Sound);
         audioSource.clip = screamSound.Sound.RandomClip;
         audioSource.volume = 0;
         audioSource.Play();

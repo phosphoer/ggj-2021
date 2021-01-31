@@ -97,6 +97,12 @@ public class AudioManager : Singleton<AudioManager>
     audioSource.dopplerLevel = soundBank.DopplerLevel;
   }
 
+  public static void PrepareSourceToPlay(AudioSource audioSource, SoundBank soundBank, float volumeScale = 1)
+  {
+    audioSource.pitch = 1.0f + soundBank.PitchOffset + soundBank.PitchOffsetRange.RandomValue;
+    audioSource.volume = soundBank.VolumeScale * volumeScale;
+  }
+
   // Fade in a sound over a time period, if the source gets destroyed it will be cancelled
   public Coroutine FadeInSound(GameObject source, SoundBank soundBank, float duration, float toVolume = 1.0f)
   {
@@ -135,27 +141,8 @@ public class AudioManager : Singleton<AudioManager>
     AudioInstance audioInstance = GetOrAddAudioInstance(source, soundBank);
     if (audioInstance != null)
     {
-      audioInstance.AudioSource.pitch = 1.0f + audioInstance.SoundBank.PitchOffset + audioInstance.SoundBank.PitchOffsetRange.RandomValue;
-      audioInstance.AudioSource.volume = audioInstance.SoundBank.VolumeScale * volumeScale;
+      PrepareSourceToPlay(audioInstance.AudioSource, soundBank, volumeScale);
       audioInstance.AudioSource.clip = audioInstance.GetNextRandomClip();
-      audioInstance.AudioSource.Play();
-    }
-    else
-    {
-      Debug.LogWarning(string.Format("Couldn't find audio instance for {0}:{1}", source.name, soundBank.name));
-    }
-
-    return audioInstance;
-  }
-
-  public AudioInstance PlaySoundClip(GameObject source, SoundBank soundBank, int clipIndex, float volumeScale = 1.0f)
-  {
-    AudioInstance audioInstance = GetOrAddAudioInstance(source, soundBank);
-    if (audioInstance != null)
-    {
-      audioInstance.AudioSource.pitch = 1.0f + audioInstance.SoundBank.PitchOffset + audioInstance.SoundBank.PitchOffsetRange.RandomValue;
-      audioInstance.AudioSource.volume = audioInstance.SoundBank.VolumeScale * volumeScale;
-      audioInstance.AudioSource.clip = audioInstance.SoundBank.AudioClips[clipIndex];
       audioInstance.AudioSource.Play();
     }
     else
