@@ -183,6 +183,12 @@ public class PlayerCharacterController : Singleton<PlayerCharacterController>
       HoldableObject holdable = interactable.GetComponentInParent<HoldableObject>();
       if (holdable != null)
       {
+        if (GameStateManager.Instance.BottlesPickedUpCount == 0)
+        {
+          GameUI.Instance.DialogUI.ShowDialog("Hmm... I wonder if I could use this on a monster?", 5, this.transform, Vector3.up * 3);
+        }
+        GameStateManager.Instance.BottlesPickedUpCount++;
+
         _objectHolder.HoldObject(holdable);
         return;
       }

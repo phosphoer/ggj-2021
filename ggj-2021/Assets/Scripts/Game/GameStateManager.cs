@@ -37,6 +37,14 @@ public class GameStateManager : Singleton<GameStateManager>
   private DayIntroUIHandler _dayIntroUIHander = null;
   private DayOutroUIHandler _dayOutroUIHander = null;
 
+  // Cross Day Stats
+  private int _bottlesPickedUpCount = 0;
+  public int BottlesPickedUpCount
+  {
+    get { return _bottlesPickedUpCount; }
+    set { _bottlesPickedUpCount = value; }
+  }
+
   [SerializeField]
   private SanityComponent _playerSanity = null;
   public SanityComponent PlayerSanity
@@ -248,6 +256,8 @@ public class GameStateManager : Singleton<GameStateManager>
           {
             AudioManager.Instance.FadeInSound(gameObject, MusicMenuLoop, 3.0f);
           }
+
+          ResetGameStats();
         }
         break;
       case GameStage.Settings:
@@ -327,5 +337,10 @@ public class GameStateManager : Singleton<GameStateManager>
         }
         break;
     }
+  }
+
+  void ResetGameStats()
+  {
+    _bottlesPickedUpCount = 0;
   }
 }
