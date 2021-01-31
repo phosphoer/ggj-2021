@@ -7,7 +7,7 @@ public class LoseGameUIHandler : UIPageBase
 {
   public void OnPlayAgainClicked()
   {
-    SceneManager.LoadScene("MainGame");
+    GameStateManager.Instance.SetGameStage(GameStateManager.GameStage.DayIntro);
   }
 
   public void OnQuitGameClicked()

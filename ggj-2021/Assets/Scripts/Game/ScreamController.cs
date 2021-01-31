@@ -6,9 +6,10 @@ public class ScreamController : MonoBehaviour
 {
   public event System.Action ScreamStarted;
   public event System.Action ScreamEnded;
-  public event System.Action<ScreamSoundDefinition> ScreamSoundPlayed;
+  public event System.Action<ScreamSoundDefinition, float> ScreamSoundPlayed;
 
   public bool IsScreaming => _screamRoutine != null;
+  public bool IsLooping => _loopScream;
 
   [SerializeField]
   private RangedFloat _screamInterval = new RangedFloat(0.5f, 1.0f);
@@ -17,7 +18,6 @@ public class ScreamController : MonoBehaviour
 
   private List<AudioSource> _audioSources = new List<AudioSource>();
   private Coroutine _screamRoutine;
-  private float _volumeScale;
   private bool _loopScream;
 
   [SerializeField]
@@ -42,14 +42,13 @@ public class ScreamController : MonoBehaviour
       StopScream();
     }
 
-    _volumeScale = volumeScale;
     _loopScream = loopScream;
     _screamSounds.Clear();
     _screamSounds.AddRange(screamSounds);
 
-    _screamRoutine = StartCoroutine(ScreamLoopAsync());
-
     ScreamStarted?.Invoke();
+
+    _screamRoutine = StartCoroutine(ScreamLoopAsync(volumeScale, loopScream));
   }
 
   public void StopScream()
@@ -60,7 +59,7 @@ public class ScreamController : MonoBehaviour
     ScreamEnded?.Invoke();
   }
 
-  private IEnumerator ScreamLoopAsync()
+  private IEnumerator ScreamLoopAsync(float volumeScale, bool loop)
   {
     do
     {
@@ -74,20 +73,22 @@ public class ScreamController : MonoBehaviour
         audioSource.volume = 0;
         audioSource.Play();
 
-        ScreamSoundPlayed?.Invoke(screamSound);
+        ScreamSoundPlayed?.Invoke(screamSound, volumeScale);
 
         // Wait for scream to be done or random interval
         float waitTime = _screamInterval.RandomValue;
+        if (!loop)
+          waitTime *= 0.5f;
         while (waitTime > 0 && audioSource.isPlaying)
         {
           waitTime -= Time.unscaledDeltaTime;
-          audioSource.volume = Mathfx.Damp(audioSource.volume, _volumeScale, 0.25f, Time.unscaledDeltaTime * 3);
+          audioSource.volume = Mathfx.Damp(audioSource.volume, volumeScale, 0.25f, Time.unscaledDeltaTime * 3);
           yield return null;
         }
       }
 
       yield return null;
-    } while (enabled && _loopScream);
+    } while (enabled && loop);
 
     _screamRoutine = null;
   }
