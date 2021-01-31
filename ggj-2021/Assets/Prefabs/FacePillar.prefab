@@ -4846,7 +4846,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2436816650399726903}
   - component: {fileID: 1060021934311749724}
-  - component: {fileID: 7764901157611953340}
+  - component: {fileID: 8880828853685506271}
   m_Layer: 9
   m_Name: Point Light
   m_TagString: Untagged
@@ -4879,9 +4879,9 @@ Light:
   serializedVersion: 10
   m_Type: 2
   m_Shape: 0
-  m_Color: {r: 0.8962264, g: 0.7228361, b: 0.5030705, a: 1}
+  m_Color: {r: 0.83107054, g: 0.5019608, b: 0.8980392, a: 1}
   m_Intensity: 1.5
-  m_Range: 3.1882706
+  m_Range: 8.93
   m_SpotAngle: 30
   m_InnerSpotAngle: 21.80208
   m_CookieSize: 10
@@ -4929,25 +4929,22 @@ Light:
   m_UseBoundingSphereOverride: 0
   m_ShadowRadius: 0
   m_ShadowAngle: 0
---- !u!95 &7764901157611953340
-Animator:
-  serializedVersion: 3
+--- !u!114 &8880828853685506271
+MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7708253086883285039}
   m_Enabled: 1
-  m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: f12529cbffb342044a722f86322d57b9, type: 2}
-  m_CullingMode: 0
-  m_UpdateMode: 0
-  m_ApplyRootMotion: 0
-  m_LinearVelocityBlending: 0
-  m_WarningMessage: 
-  m_HasTransformHierarchy: 1
-  m_AllowConstantClipSamplingOptimization: 1
-  m_KeepAnimatorControllerStateOnDisable: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f084d54c78bd25f40832fd02ed1b2e4d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  IntensityFlickerAmount: {x: 0, y: 1}
+  FlickerTime: {x: 0, y: 0.001}
+  flickerRange: 1
+  RangeFlickerAmount: {x: 3, y: 20}
 --- !u!1001 &5618310189769330276
 PrefabInstance:
   m_ObjectHideFlags: 0
