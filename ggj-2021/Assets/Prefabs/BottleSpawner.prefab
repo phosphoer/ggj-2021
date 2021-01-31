@@ -93,7 +93,7 @@ MonoBehaviour:
     MaxValue: 45
   _screamBottlePrefab: {fileID: 3751806036467726560, guid: a8083e68275e8e440bd3c6ccdea9bedb,
     type: 3}
-  _bottlePossibleScreams: {fileID: 11400000, guid: d3b185cb46e9e0f439346076acb7d6ef,
+  _bottlePossibleScreams: {fileID: 11400000, guid: 89894e8a7488b164c9272c1368d20a08,
     type: 2}
 --- !u!1 &2187044214768461219
 GameObject:

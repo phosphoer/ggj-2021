@@ -66,7 +66,8 @@ MonoBehaviour:
   AttackDuration: 2
   AttackTurnSpeed: 5
   CowerDuration: 2
-  _cowerScream: {fileID: 11400000, guid: b978187fd8bd7e4419615c4d095639ee, type: 2}
+  _cowerScream: {fileID: 11400000, guid: 18ba791cd960cf5418c740efc9b4f29b, type: 2}
+  _attackScream: {fileID: 11400000, guid: 9f387d9551b951b449ddfcdeee3d3404, type: 2}
   WaypointTolerance: 1
   DebugDrawPath: 0
 --- !u!114 &7166855244578791243
