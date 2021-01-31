@@ -44,8 +44,8 @@ public class ScreamComposerUIHandler : UIPageBase
   {
     for (int slotIdx = 0; slotIdx < 3; ++slotIdx)
     {
-      _sourceScreamSongLabels[slotIdx].text = _screamInventory.GetSourceBottleNote(slotIdx);
-      _targetScreamSongLabels[slotIdx].text = _screamInventory.GetTargetBottleNote(slotIdx);
+      _sourceScreamSongLabels[slotIdx].text = _screamInventory.GetSourceBottleNote(slotIdx).Letters;
+      _targetScreamSongLabels[slotIdx].text = _screamInventory.GetTargetBottleNote(slotIdx).Letters;
     }
   }
 
