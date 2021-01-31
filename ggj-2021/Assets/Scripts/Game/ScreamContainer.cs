@@ -21,7 +21,13 @@ public class ScreamContainer : MonoBehaviour
   public void FillScream(IReadOnlyList<ScreamSoundDefinition> screamSounds)
   {
     _screamSounds.Clear();
-    _screamSounds.AddRange(screamSounds);
+    foreach (ScreamSoundDefinition screamSound in screamSounds)
+    {
+      if (screamSound != null)
+      {
+        _screamSounds.Add(screamSound);
+      }
+    }
     _screamController.StartScream(_screamSounds, loopScream: true, volumeScale: 0.25f);
   }
 

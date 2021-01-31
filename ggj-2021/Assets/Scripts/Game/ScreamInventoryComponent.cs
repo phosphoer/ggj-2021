@@ -27,13 +27,10 @@ public class ScreamInventoryComponent : MonoBehaviour
     var sourceScreamNotes = _sourceBottle.ScreamSounds;
     var targetScreamNotes = _targetBottle.ScreamSounds;
 
-    if (sourceScreamNotes.Count == 3 && targetScreamNotes.Count == 3)
+    for (int slotIndex = 0; slotIndex < 3; ++slotIndex)
     {
-      for (int slotIndex = 0; slotIndex < 3; ++slotIndex)
-      {
-        inventoryComponent.SetSourceBottleNote(slotIndex, sourceScreamNotes[slotIndex]);
-        inventoryComponent.SetTargetBottleNote(slotIndex, targetScreamNotes[slotIndex]);
-      }
+      inventoryComponent.SetSourceBottleNote(slotIndex, slotIndex < sourceScreamNotes.Count ? sourceScreamNotes[slotIndex] : null);
+      inventoryComponent.SetTargetBottleNote(slotIndex, slotIndex < targetScreamNotes.Count ? targetScreamNotes[slotIndex] : null);
     }
   }
 
