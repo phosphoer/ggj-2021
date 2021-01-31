@@ -244,6 +244,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _interactionRadius: 5
   _requiresLineOfSight: 0
-  _interactPromptUIPrefab: {fileID: 5606895370126460559, guid: e555ac0688da1db4b8cc996d9ebc722b,
+  _interactPromptUIPrefab: {fileID: 5606895370126460559, guid: 8d6174b955ff96b4aaa8d89e7f4a6484,
     type: 3}
   _interactionType: 
