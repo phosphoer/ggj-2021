@@ -5,13 +5,12 @@ public class AIAnimatorController : MonoBehaviour
   public enum LocomotionState
   {
     Idle = 0,
-    Wander,
-    Chase,
+    Move,
   }
 
   public enum EmoteState
   {
-    ScarePlayer,
+    ScarePlayer = 0,
     GetScared
   }
 
