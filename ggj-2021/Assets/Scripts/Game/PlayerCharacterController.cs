@@ -285,14 +285,12 @@ public class PlayerCharacterController : Singleton<PlayerCharacterController>
   private void OnHoldStart()
   {
     _interactionController.PopEnabledInteraction("pickup");
-    _interactionController.PushEnabledInteraction("mix");
     _interactionController.PushEnabledInteraction("deposit");
   }
 
   private void OnHoldEnd()
   {
     _interactionController.PushEnabledInteraction("pickup");
-    _interactionController.PopEnabledInteraction("mix");
     _interactionController.PopEnabledInteraction("deposit");
   }
 }
