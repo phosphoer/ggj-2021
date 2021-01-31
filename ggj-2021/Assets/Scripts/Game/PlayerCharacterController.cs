@@ -1,4 +1,5 @@
 using UnityEngine;
+using System.Collections;
 using System.Collections.Generic;
 
 public class PlayerCharacterController : Singleton<PlayerCharacterController>
@@ -29,6 +30,8 @@ public class PlayerCharacterController : Singleton<PlayerCharacterController>
 
   [SerializeField]
   private ScreamDamageable _screamDamageable = null;
+
+  [SerializeField]
 
   private int _disabledStack = 0;
   private CameraControllerPlayer _cameraRig;
@@ -220,10 +223,23 @@ public class PlayerCharacterController : Singleton<PlayerCharacterController>
     ScreamContainer bottle = _objectHolder.HeldObject.GetComponent<ScreamContainer>();
     if (bottle != null && bottle.ScreamSounds.Count > 0)
     {
-      _playerAnimation.PlayEmote(PlayerAnimatorController.EmoteState.OpenBottle);
+      StartCoroutine(ReleaseBottleScreamAsync());
+    }
+  }
+
+  private IEnumerator ReleaseBottleScreamAsync()
+  {
+    _playerAnimation.PlayEmote(PlayerAnimatorController.EmoteState.OpenBottle);
+    yield return _playerAnimation.AnimatorCallbacks.WaitForEvent("OnBottleUncorked");
+
+    ScreamContainer bottle = _objectHolder.HeldObject.GetComponent<ScreamContainer>();
+    if (bottle != null && bottle.ScreamSounds.Count > 0)
+    {
       ScreamDamageable.DoScream(bottle.ScreamSounds, bottle.transform.position, transform.forward, _screamDamageable);
       bottle.ReleaseScream();
     }
+
+    yield return null;
   }
 
   private void OnScreamedAt(IReadOnlyList<ScreamSoundDefinition> screamSounds)

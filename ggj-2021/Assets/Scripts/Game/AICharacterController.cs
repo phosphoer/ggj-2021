@@ -127,18 +127,23 @@ public class AICharacterController : MonoBehaviour
   {
     bool bIsScreamMatch = false;
 
+    Debug.Log($"{name} was screamed at");
+
     foreach (ScreamSoundDefinition scream in screamSounds)
     {
       if (scream == _cowerScream)
       {
         bIsScreamMatch = true;
+        Debug.Log($"{name} was screamed at with their least favorite scream: {scream.name}");
       }
     }
 
     if (bIsScreamMatch)
     {
-      if (_behaviorState == BehaviorState.Wander)
+      Debug.Log($"{name}'s state was {_behaviorState}");
+      if (_behaviorState == BehaviorState.Wander || _behaviorState == BehaviorState.Idle)
       {
+        Debug.Log($"{name} was set to cower");
         SetBehaviorState(BehaviorState.Cower);
       }
     }

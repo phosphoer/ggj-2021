@@ -36,8 +36,13 @@ public class PlayerAnimatorController : MonoBehaviour
     }
   }
 
+  public AnimatorCallbacks AnimatorCallbacks => _animatorCallbacks;
+
   [SerializeField]
   private Animator _animator = null;
+
+  [SerializeField]
+  private AnimatorCallbacks _animatorCallbacks = null;
 
   private LocomotionState _currentLocomotionState;
   private EmoteState _currentEmoteState;

@@ -129,6 +129,7 @@ Transform:
   - {fileID: 3751806035771792638}
   - {fileID: 6340008090476861459}
   - {fileID: 6684365278249670512}
+  - {fileID: 6247657234987144643}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -195,6 +196,7 @@ MonoBehaviour:
   _screamController: {fileID: 3751806036467726561}
   _screamVisualPrefab: {fileID: 1877114886516284848, guid: f970b019ccd90c24a81f7be59480f843,
     type: 3}
+  _spawnAnchorOverride: {fileID: 6247657234987144643}
 --- !u!114 &3751806036467726564
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -318,3 +320,33 @@ MonoBehaviour:
   _interactPromptUIPrefab: {fileID: 5606895370126460559, guid: 139c1fd5704fd6d41bcb1b11a293451a,
     type: 3}
   _interactionType: mix
+--- !u!1 &9105769122747401035
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 6247657234987144643}
+  m_Layer: 0
+  m_Name: scream-spawn
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &6247657234987144643
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9105769122747401035}
+  m_LocalRotation: {x: -0.7071068, y: 0, z: 0, w: 0.7071068}
+  m_LocalPosition: {x: 0, y: 0.892, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 3751806036467726562}
+  m_RootOrder: 3
+  m_LocalEulerAnglesHint: {x: -90, y: 0, z: 0}
