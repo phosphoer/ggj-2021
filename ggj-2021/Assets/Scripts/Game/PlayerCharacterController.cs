@@ -143,9 +143,9 @@ public class PlayerCharacterController : Singleton<PlayerCharacterController>
         _objectHolder.DropObject();
         if (_characterMovement.CurrentVelocity.magnitude > 0.5f)
         {
-          Debug.Log($"Throw!");
           Vector3 throwForce = (_characterMovement.CurrentVelocity + Vector3.up * 3) * 3;
           heldObject.Rigidbody.AddForce(throwForce, ForceMode.VelocityChange);
+          heldObject.gameObject.AddComponent<SanityRestoreInWater>();
         }
       }
     }
