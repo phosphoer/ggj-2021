@@ -1,0 +1,32 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4962cb04c01784b4db40edb5fec0fafc, type: 3}
+  m_Name: sanity-loss
+  m_EditorClassIdentifier: 
+  AudioClips:
+  - {fileID: 8300000, guid: 18eb4fa6f7d4e274a9117716cb94bfee, type: 3}
+  - {fileID: 8300000, guid: dc59d700757f7b546a4455cadab01650, type: 3}
+  - {fileID: 8300000, guid: 36e6c6375dbac8746b9369f3f2b45e24, type: 3}
+  - {fileID: 8300000, guid: b61173c1964893a429f0033d9bd3f936, type: 3}
+  - {fileID: 8300000, guid: c051081db297fa84e84ba7b9ee97f07e, type: 3}
+  - {fileID: 8300000, guid: 3f5bf3a2e7275b94d92efd2c30418a49, type: 3}
+  IsSpatial: 1
+  MaxDistance: 20
+  MinDistance: 1
+  VolumeScale: 1
+  DopplerLevel: 0
+  PitchOffset: 0
+  PitchOffsetRange:
+    MinValue: -0.2
+    MaxValue: 0.2
+  IsLooping: 0
+  AudioMixerGroup: {fileID: 0}
