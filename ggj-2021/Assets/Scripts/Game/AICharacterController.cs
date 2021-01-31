@@ -17,6 +17,7 @@ public class AICharacterController : MonoBehaviour
   public CharacterMovementController Character => _characterMovement;
   public AIPerceptionComponent Perception => _perceptionComponent;
   public ScreamController ScreamController => _screamController;
+  public AIAnimatorController AIAnimator => _aiAnimation;
 
   [SerializeField]
   private AIPerceptionComponent _perceptionComponent = null;
