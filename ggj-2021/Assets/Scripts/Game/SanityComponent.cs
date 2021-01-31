@@ -56,6 +56,11 @@ public class SanityComponent : MonoBehaviour
     _hasDayStarted = false;
   }
 
+  public void RestoreSanity(float amount)
+  {
+    _currentSanity = Mathf.Clamp(_currentSanity + amount, 0, TotalSanity);
+  }
+
   void Update()
   {
     if (!_hasDayStarted)
