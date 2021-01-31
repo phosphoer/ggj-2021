@@ -139,7 +139,7 @@ MonoBehaviour:
   _cameraRigPrefab: {fileID: 6936825247301618738, guid: ec5da68ed489c714891556774383c591,
     type: 3}
   _screamDamageable: {fileID: 7982071445712608650}
-  ScareSanityDamage: 10
+  ScareSanityDamage: 50
   ScareDuration: 2
 --- !u!114 &7166855244578791243
 MonoBehaviour:
