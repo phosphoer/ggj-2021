@@ -33,10 +33,6 @@ public class PlayerCharacterController : Singleton<PlayerCharacterController>
   private int _disabledStack = 0;
   private CameraControllerPlayer _cameraRig;
   private bool _isSneaking;
-  public bool IsSneaking
-  {
-    get { return _isSneaking; }
-  }
 
   private const int kRewiredPlayerId = 0;
 
