@@ -60,8 +60,8 @@ MonoBehaviour:
   _deathFX: {fileID: 5639098239645709990, guid: 2d8aeb3b8091130459eec3082bd71fb5,
     type: 3}
   WanderRange: 10
-  ChaseTimeOut: 4
-  MaxChaseDistance: 50
+  ChaseTimeOut: 10
+  MaxChaseDistance: 100
   AttackRange: 2
   AttackDuration: 2
   AttackTurnSpeed: 5
