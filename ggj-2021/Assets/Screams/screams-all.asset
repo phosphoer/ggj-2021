@@ -1,0 +1,18 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e9c54675713817645b4cee3f042e892e, type: 3}
+  m_Name: screams-all
+  m_EditorClassIdentifier: 
+  _screams:
+  - {fileID: 11400000, guid: b978187fd8bd7e4419615c4d095639ee, type: 2}
+  - {fileID: 11400000, guid: efc8ffc76f0026746bd93abd0b08dc0c, type: 2}
+  - {fileID: 11400000, guid: 5bdf42c97cc2c3742a1d7292c91d1c93, type: 2}

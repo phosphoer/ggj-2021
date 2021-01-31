@@ -107,6 +107,7 @@ GameObject:
   - component: {fileID: 3751806036467726560}
   - component: {fileID: 3751806036467726566}
   - component: {fileID: 3751806036467726564}
+  - component: {fileID: 8085397104997197101}
   m_Layer: 0
   m_Name: BottledScream
   m_TagString: Untagged
@@ -179,10 +180,7 @@ MonoBehaviour:
   _screamController: {fileID: 3751806036467726561}
   _mixInteractable: {fileID: 8239765380805415612}
   _holdable: {fileID: 3751806036467726564}
-  _screamSounds:
-  - {fileID: 11400000, guid: b978187fd8bd7e4419615c4d095639ee, type: 2}
-  - {fileID: 11400000, guid: efc8ffc76f0026746bd93abd0b08dc0c, type: 2}
-  - {fileID: 11400000, guid: 5bdf42c97cc2c3742a1d7292c91d1c93, type: 2}
+  _screamSounds: []
 --- !u!114 &3751806036467726566
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -211,6 +209,19 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _interactable: {fileID: 4627890405404266577}
+  _rb: {fileID: 3751806036467726563}
+--- !u!114 &8085397104997197101
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3751806036467726573}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 27ed867a8661a8d4dbf15a2240ad35fd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
   _rb: {fileID: 3751806036467726563}
 --- !u!1 &3911976916698795645
 GameObject:

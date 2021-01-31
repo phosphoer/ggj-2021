@@ -3,6 +3,7 @@ using System.Collections.Generic;
 
 public class ScreamContainer : MonoBehaviour
 {
+  public HoldableObject Holdable => _holdable;
   public IReadOnlyList<ScreamSoundDefinition> ScreamSounds => _screamSounds;
 
   [SerializeField]
@@ -21,7 +22,14 @@ public class ScreamContainer : MonoBehaviour
   {
     _screamSounds.Clear();
     _screamSounds.AddRange(screamSounds);
-    Start();
+    _screamController.StartScream(_screamSounds, loopScream: true, volumeScale: 0.25f);
+  }
+
+  public void AddScream(ScreamSoundDefinition screamSound)
+  {
+    _screamSounds.Add(screamSound);
+    if (!_screamController.IsScreaming)
+      _screamController.StartScream(_screamSounds, loopScream: true, volumeScale: 0.25f);
   }
 
   public void ReleaseScream()
