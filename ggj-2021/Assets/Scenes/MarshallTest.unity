@@ -10264,6 +10264,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1878242291}
   - component: {fileID: 1878242292}
+  - component: {fileID: 1878242293}
   m_Layer: 0
   m_Name: Point Light
   m_TagString: Untagged
@@ -10339,13 +10340,29 @@ Light:
   m_Lightmapping: 4
   m_LightShadowCasterMode: 0
   m_AreaSize: {x: 1, y: 1}
-  m_BounceIntensity: 1
+  m_BounceIntensity: 0
   m_ColorTemperature: 6570
   m_UseColorTemperature: 0
   m_BoundingSphereOverride: {x: 0, y: 0, z: 0, w: 0}
   m_UseBoundingSphereOverride: 0
   m_ShadowRadius: 0
   m_ShadowAngle: 0
+--- !u!114 &1878242293
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1878242290}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f084d54c78bd25f40832fd02ed1b2e4d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  IntensityFlickerAmount: {x: 0.25, y: 2}
+  FlickerTime: {x: 0.1, y: 0.2}
+  flickerRange: 1
+  RangeFlickerAmount: {x: 3, y: 10}
 --- !u!1 &2063327040
 GameObject:
   m_ObjectHideFlags: 0
@@ -10356,6 +10373,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2063327041}
   - component: {fileID: 2063327042}
+  - component: {fileID: 2063327043}
   m_Layer: 0
   m_Name: Point Light (1)
   m_TagString: Untagged
@@ -10431,13 +10449,29 @@ Light:
   m_Lightmapping: 4
   m_LightShadowCasterMode: 0
   m_AreaSize: {x: 1, y: 1}
-  m_BounceIntensity: 1
+  m_BounceIntensity: 0
   m_ColorTemperature: 6570
   m_UseColorTemperature: 0
   m_BoundingSphereOverride: {x: 0, y: 0, z: 0, w: 0}
   m_UseBoundingSphereOverride: 0
   m_ShadowRadius: 0
   m_ShadowAngle: 0
+--- !u!114 &2063327043
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2063327040}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f084d54c78bd25f40832fd02ed1b2e4d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  IntensityFlickerAmount: {x: 0.25, y: 2}
+  FlickerTime: {x: 0.1, y: 0.2}
+  flickerRange: 1
+  RangeFlickerAmount: {x: 3, y: 10}
 --- !u!1001 &7484551687235076796
 PrefabInstance:
   m_ObjectHideFlags: 0

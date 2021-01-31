@@ -22,14 +22,27 @@ public class ScreamBankComponent : MonoBehaviour
   [SerializeField]
   private ScreamCalendarDay[] _calendarDays = null;
 
+  [SerializeField]
+  private Transform _speakerTransform = null;
+
   private List<ScreamSoundDefinition> _currentDayRequests = new List<ScreamSoundDefinition>();
   private List<ScreamSoundDefinition> _remainingRequests = new List<ScreamSoundDefinition>();
 
   public void DepositScream(IReadOnlyList<ScreamSoundDefinition> screams)
   {
+    bool success = false;
     for (int i = 0; i < screams.Count; ++i)
     {
-      _remainingRequests.Remove(screams[i]);
+      success |= _remainingRequests.Remove(screams[i]);
+    }
+
+    if (!success)
+    {
+      GameUI.Instance.DialogUI.ShowDialog("No compatible screams detected", 5, _speakerTransform, Vector3.zero);
+    }
+    else
+    {
+      GameUI.Instance.DialogUI.ShowDialog("Screams successfully ingested", 5, _speakerTransform, Vector3.zero);
     }
 
     RemainingScreamsChanged?.Invoke();

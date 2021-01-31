@@ -121,6 +121,12 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
+--- !u!4 &79616689 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 2187044214377985694, guid: e2db424fa46022b41a7323c7d1941165,
+    type: 3}
+  m_PrefabInstance: {fileID: 2187044215261727502}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &445421990
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -733,6 +739,98 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 45e97b7180b14304a9a903180e654eb5, type: 3}
+--- !u!1001 &1569131921
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 79616689}
+    m_Modifications:
+    - target: {fileID: 3751806036467726560, guid: a8083e68275e8e440bd3c6ccdea9bedb,
+        type: 3}
+      propertyPath: _screamSounds.Array.size
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 3751806036467726560, guid: a8083e68275e8e440bd3c6ccdea9bedb,
+        type: 3}
+      propertyPath: _screamSounds.Array.data[0]
+      value: 
+      objectReference: {fileID: 11400000, guid: b978187fd8bd7e4419615c4d095639ee,
+        type: 2}
+    - target: {fileID: 3751806036467726560, guid: a8083e68275e8e440bd3c6ccdea9bedb,
+        type: 3}
+      propertyPath: _screamSounds.Array.data[1]
+      value: 
+      objectReference: {fileID: 11400000, guid: b978187fd8bd7e4419615c4d095639ee,
+        type: 2}
+    - target: {fileID: 3751806036467726560, guid: a8083e68275e8e440bd3c6ccdea9bedb,
+        type: 3}
+      propertyPath: _screamSounds.Array.data[2]
+      value: 
+      objectReference: {fileID: 11400000, guid: b978187fd8bd7e4419615c4d095639ee,
+        type: 2}
+    - target: {fileID: 3751806036467726562, guid: a8083e68275e8e440bd3c6ccdea9bedb,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 3751806036467726562, guid: a8083e68275e8e440bd3c6ccdea9bedb,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 44.74
+      objectReference: {fileID: 0}
+    - target: {fileID: 3751806036467726562, guid: a8083e68275e8e440bd3c6ccdea9bedb,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 1.3293204
+      objectReference: {fileID: 0}
+    - target: {fileID: 3751806036467726562, guid: a8083e68275e8e440bd3c6ccdea9bedb,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -44.11
+      objectReference: {fileID: 0}
+    - target: {fileID: 3751806036467726562, guid: a8083e68275e8e440bd3c6ccdea9bedb,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.9275545
+      objectReference: {fileID: 0}
+    - target: {fileID: 3751806036467726562, guid: a8083e68275e8e440bd3c6ccdea9bedb,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0.37368798
+      objectReference: {fileID: 0}
+    - target: {fileID: 3751806036467726562, guid: a8083e68275e8e440bd3c6ccdea9bedb,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3751806036467726562, guid: a8083e68275e8e440bd3c6ccdea9bedb,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3751806036467726562, guid: a8083e68275e8e440bd3c6ccdea9bedb,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 43.886
+      objectReference: {fileID: 0}
+    - target: {fileID: 3751806036467726562, guid: a8083e68275e8e440bd3c6ccdea9bedb,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3751806036467726562, guid: a8083e68275e8e440bd3c6ccdea9bedb,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3751806036467726573, guid: a8083e68275e8e440bd3c6ccdea9bedb,
+        type: 3}
+      propertyPath: m_Name
+      value: BottledScream
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: a8083e68275e8e440bd3c6ccdea9bedb, type: 3}
 --- !u!43 &1692056470
 Mesh:
   m_ObjectHideFlags: 0
