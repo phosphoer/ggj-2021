@@ -187,6 +187,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _objectHoldRoot: {fileID: 6420432782549256866}
+  _pickupSound: {fileID: 11400000, guid: 1d0cd1fa99af4b143af3641dc410124e, type: 2}
+  _dropSound: {fileID: 11400000, guid: db3c3b79bfaf6e14f9d5e7811ad90217, type: 2}
 --- !u!114 &3606166799483051268
 MonoBehaviour:
   m_ObjectHideFlags: 0

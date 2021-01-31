@@ -84,8 +84,8 @@ MonoBehaviour:
   MusicHigh: {fileID: 11400000, guid: 863b8ef9d675c1541be72f66c134215f, type: 2}
   MusicMid: {fileID: 11400000, guid: dd84f1c284a03f7478a2888ff0103d2f, type: 2}
   MusicLow: {fileID: 11400000, guid: 4470760ad5134a946a258db85a5032dd, type: 2}
-  WinAlert: {fileID: 0}
-  LoseAlert: {fileID: 0}
+  WinAlert: {fileID: 11400000, guid: e0bb7587fa257af43966b09954921bcd, type: 2}
+  LoseAlert: {fileID: 11400000, guid: ea8bc800d7a6d9d4da98be08051c2f16, type: 2}
   MenuCamera: {fileID: 5580711374243285675}
   _playerSanity: {fileID: 8357379092675532168}
   _screamBank: {fileID: 4481235566114515539}
@@ -109,9 +109,7 @@ MonoBehaviour:
   SanityHalf: 50
   SanityWarning: 25
   SanityCritical: 10
-  _sanityHalfAlert: {fileID: 0}
-  _sanityWarningAlert: {fileID: 0}
-  _sanityCriticalAlert: {fileID: 0}
+  _sanityDamageSound: {fileID: 11400000, guid: 1a06e236bb0537e4e9735e643d127e42, type: 2}
 --- !u!114 &4481235566114515539
 MonoBehaviour:
   m_ObjectHideFlags: 0

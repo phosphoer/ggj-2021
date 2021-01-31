@@ -11,6 +11,12 @@ public class ObjectHolder : MonoBehaviour
   [SerializeField]
   private Transform _objectHoldRoot = null;
 
+  [SerializeField]
+  private SoundBank _pickupSound = null;
+
+  [SerializeField]
+  private SoundBank _dropSound = null;
+
   private HoldableObject _holdableObject;
 
   public void HoldObject(HoldableObject holdableObject)
@@ -22,6 +28,8 @@ public class ObjectHolder : MonoBehaviour
     _holdableObject.transform.localPosition = Vector3.zero;
     _holdableObject.transform.localRotation = Quaternion.identity;
 
+    AudioManager.Instance.PlaySound(gameObject, _pickupSound);
+
     HoldStart?.Invoke();
   }
 
@@ -29,6 +37,8 @@ public class ObjectHolder : MonoBehaviour
   {
     _holdableObject.StopHold();
     _holdableObject = null;
+
+    AudioManager.Instance.PlaySound(gameObject, _dropSound);
 
     HoldEnd?.Invoke();
   }

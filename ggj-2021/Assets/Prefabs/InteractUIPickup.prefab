@@ -9,6 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2260598057990035149}
+  - component: {fileID: -770168173209815653}
   m_Layer: 0
   m_Name: InteractUIPickup
   m_TagString: Untagged
@@ -37,6 +38,20 @@ RectTransform:
   m_AnchoredPosition: {x: 59, y: 52.5}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &-770168173209815653
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5606895370126460559}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a88c64dfe5326a14fb24c73d4948e532, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  SoundBank: {fileID: 11400000, guid: 0d58429e82dd14b4a9295991c65917fb, type: 2}
+  FadeInTime: 0
 --- !u!1 &5917151122244700842
 GameObject:
   m_ObjectHideFlags: 0
@@ -102,7 +117,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   m_FontData:
-    m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
+    m_Font: {fileID: 12800000, guid: 04a1b0c2685d5d04ea2e8454914d099a, type: 3}
     m_FontSize: 32
     m_FontStyle: 1
     m_BestFit: 1
