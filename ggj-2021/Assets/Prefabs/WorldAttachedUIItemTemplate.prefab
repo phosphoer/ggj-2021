@@ -48,7 +48,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: abe06af70618de340ae966c85bfb2aad, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  HydrateOnEnable: 0
+  HydrateOnEnable: 1
   StartDehydrated: 0
   _targetTransform: {fileID: 5739041930000690111}
   _useNormalizedScale: 1
