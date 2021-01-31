@@ -1,5 +1,197 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!1 &341949038
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 341949039}
+  - component: {fileID: 341949040}
+  m_Layer: 0
+  m_Name: MonsterSpawn - Skeleton (3)
+  m_TagString: Untagged
+  m_Icon: {fileID: 7250588514170254948, guid: 0000000000000000d000000000000000, type: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &341949039
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 341949038}
+  m_LocalRotation: {x: -0, y: 0.0806459, z: -0, w: 0.99674284}
+  m_LocalPosition: {x: 27.6, y: 16.553452, z: -72.87}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 2304972538571134210}
+  m_RootOrder: 6
+  m_LocalEulerAnglesHint: {x: 0, y: 9.251, z: 0}
+--- !u!114 &341949040
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 341949038}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 21c4800163fa2874ca460394514e4c32, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _monsterPrefab: {fileID: 1912939473316815783, guid: 0239b62824715894eb8c6b145f074587,
+    type: 3}
+  _respawnInterval:
+    MinValue: 15
+    MaxValue: 30
+--- !u!1 &1118510464
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1118510465}
+  - component: {fileID: 1118510466}
+  m_Layer: 0
+  m_Name: MonsterSpawn - Skeleton (1)
+  m_TagString: Untagged
+  m_Icon: {fileID: 7250588514170254948, guid: 0000000000000000d000000000000000, type: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1118510465
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1118510464}
+  m_LocalRotation: {x: -0, y: -0.9680279, z: -0, w: 0.25084275}
+  m_LocalPosition: {x: 34.11, y: 16.553452, z: 57.31}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 2304972538571134210}
+  m_RootOrder: 4
+  m_LocalEulerAnglesHint: {x: 0, y: -150.945, z: 0}
+--- !u!114 &1118510466
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1118510464}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 21c4800163fa2874ca460394514e4c32, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _monsterPrefab: {fileID: 1912939473316815783, guid: 0239b62824715894eb8c6b145f074587,
+    type: 3}
+  _respawnInterval:
+    MinValue: 15
+    MaxValue: 30
+--- !u!1 &1218320897
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1218320898}
+  - component: {fileID: 1218320899}
+  m_Layer: 0
+  m_Name: MonsterSpawn - Skeleton (2)
+  m_TagString: Untagged
+  m_Icon: {fileID: 7250588514170254948, guid: 0000000000000000d000000000000000, type: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1218320898
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1218320897}
+  m_LocalRotation: {x: -0, y: 0.0806459, z: -0, w: 0.99674284}
+  m_LocalPosition: {x: 9.99, y: 16.553452, z: -50.32}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 2304972538571134210}
+  m_RootOrder: 5
+  m_LocalEulerAnglesHint: {x: 0, y: 9.251, z: 0}
+--- !u!114 &1218320899
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1218320897}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 21c4800163fa2874ca460394514e4c32, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _monsterPrefab: {fileID: 1912939473316815783, guid: 0239b62824715894eb8c6b145f074587,
+    type: 3}
+  _respawnInterval:
+    MinValue: 15
+    MaxValue: 30
+--- !u!1 &1474099413
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1474099414}
+  - component: {fileID: 1474099415}
+  m_Layer: 0
+  m_Name: MonsterSpawn - Skeleton
+  m_TagString: Untagged
+  m_Icon: {fileID: 7250588514170254948, guid: 0000000000000000d000000000000000, type: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1474099414
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1474099413}
+  m_LocalRotation: {x: -0, y: -0.9680279, z: -0, w: 0.25084275}
+  m_LocalPosition: {x: 6.2, y: 16.553452, z: 85.23}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 2304972538571134210}
+  m_RootOrder: 3
+  m_LocalEulerAnglesHint: {x: 0, y: -150.945, z: 0}
+--- !u!114 &1474099415
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1474099413}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 21c4800163fa2874ca460394514e4c32, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _monsterPrefab: {fileID: 1912939473316815783, guid: 0239b62824715894eb8c6b145f074587,
+    type: 3}
+  _respawnInterval:
+    MinValue: 15
+    MaxValue: 30
 --- !u!1 &2304972538571134211
 GameObject:
   m_ObjectHideFlags: 0
@@ -30,6 +222,10 @@ Transform:
   - {fileID: 2304972539366246969}
   - {fileID: 2304972539350755692}
   - {fileID: 2304972539303381179}
+  - {fileID: 1474099414}
+  - {fileID: 1118510465}
+  - {fileID: 1218320898}
+  - {fileID: 341949039}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
