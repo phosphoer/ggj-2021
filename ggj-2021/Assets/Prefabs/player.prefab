@@ -139,7 +139,6 @@ MonoBehaviour:
   _cameraRigPrefab: {fileID: 6936825247301618738, guid: ec5da68ed489c714891556774383c591,
     type: 3}
   _screamDamageable: {fileID: 7982071445712608650}
-  _disabledStack: 0
   ScareSanityDamage: 50
   ScareDuration: 2
 --- !u!114 &7166855244578791243
@@ -174,6 +173,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _animator: {fileID: 4172519055387730506}
   _animatorCallbacks: {fileID: 3121198521845014356}
+  _footFallSound: {fileID: 11400000, guid: 912ea85b76cca5c4990e96bbfb282cd2, type: 2}
 --- !u!114 &3750681542517321782
 MonoBehaviour:
   m_ObjectHideFlags: 0
