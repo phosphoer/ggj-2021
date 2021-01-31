@@ -5,6 +5,10 @@ public class PlayerCharacterController : Singleton<PlayerCharacterController>
   public ObjectHolder ObjectHolder => _objectHolder;
   public CharacterMovementController Character => _characterMovement;
   public CameraControllerPlayer CameraRig => _cameraRig;
+  public Transform AIVisibilityTarget => _aiVisibilityTarget;
+
+  [SerializeField]
+  private Transform _aiVisibilityTarget = null;
 
   [SerializeField]
   private CharacterMovementController _characterMovement = null;
@@ -143,9 +147,9 @@ public class PlayerCharacterController : Singleton<PlayerCharacterController>
         _objectHolder.DropObject();
         if (_characterMovement.CurrentVelocity.magnitude > 0.5f)
         {
-          Debug.Log($"Throw!");
           Vector3 throwForce = (_characterMovement.CurrentVelocity + Vector3.up * 3) * 3;
           heldObject.Rigidbody.AddForce(throwForce, ForceMode.VelocityChange);
+          heldObject.gameObject.AddComponent<SanityRestoreInWater>();
         }
       }
     }

@@ -110,7 +110,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7166855244578791241}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 4.35, y: 0.78, z: -4.26}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 7166855245900641357}
@@ -130,6 +130,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b1169f45c918a5843b54f54735d32e88, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _aiVisibilityTarget: {fileID: 7319567703856147611}
   _characterMovement: {fileID: 7166855244578791243}
   _playerAnimation: {fileID: 1518947989671015787}
   _interactionController: {fileID: 3606166799483051268}
@@ -205,6 +206,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d8557e75d5b2d1547bb06d93de3b3954, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _sourceBottleNotes:
+  - 
+  - 
+  - 
+  _targetBottleNotes:
+  - 
+  - 
+  - 
 --- !u!114 &5578863183539403751
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -515,6 +524,12 @@ Transform:
 --- !u!4 &6420432782549256866 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -6429853018845653967, guid: 4931b15799a29894cbc60f3ebdd0ba52,
+    type: 3}
+  m_PrefabInstance: {fileID: 9213633826811829907}
+  m_PrefabAsset: {fileID: 0}
+--- !u!4 &7319567703856147611 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 1894101388940554760, guid: 4931b15799a29894cbc60f3ebdd0ba52,
     type: 3}
   m_PrefabInstance: {fileID: 9213633826811829907}
   m_PrefabAsset: {fileID: 0}

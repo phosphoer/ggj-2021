@@ -14,7 +14,7 @@ public class PlayerAnimatorController : MonoBehaviour
 
   public enum EmoteState
   {
-    OpenBottle,
+    OpenBottle = 0,
     Scared
   }
 
