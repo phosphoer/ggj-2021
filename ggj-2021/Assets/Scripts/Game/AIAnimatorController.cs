@@ -5,13 +5,13 @@ public class AIAnimatorController : MonoBehaviour
   public enum LocomotionState
   {
     Idle = 0,
-    Move,
+    Move = 1,
   }
 
   public enum EmoteState
   {
-    Cower = 0,
-    Attack
+    Attack = 0,
+    Cower = 1
   }
 
   public LocomotionState CurrentLocomotionState

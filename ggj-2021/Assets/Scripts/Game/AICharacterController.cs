@@ -191,13 +191,13 @@ public class AICharacterController : MonoBehaviour
     BehaviorState nextBehavior = BehaviorState.Chase;
 
     // Too far from spawn point?
-    if (IsWithingDistanceToTarget2D(_spawnLocation, MaxChaseDistance))
+    if (!IsWithingDistanceToTarget2D(_spawnLocation, MaxChaseDistance))
     {
       nextBehavior = BehaviorState.Flee;
     }
 
     // Within attack range?
-    if (nextBehavior == BehaviorState.Chase && _perceptionComponent.CanSeePlayer)
+    if (nextBehavior == BehaviorState.Chase)
     {
       Vector3 attackTarget = PlayerCharacterController.Instance.transform.position;
 
@@ -295,7 +295,7 @@ public class AICharacterController : MonoBehaviour
 
   void OnBehaviorStateExited(BehaviorState oldBehavior)
   {
-    switch (_behaviorState)
+    switch (oldBehavior)
     {
       case BehaviorState.Wander:
         break;
@@ -314,7 +314,7 @@ public class AICharacterController : MonoBehaviour
 
   void OnBehaviorStateEntered(BehaviorState newBehavior)
   {
-    switch (_behaviorState)
+    switch (newBehavior)
     {
       case BehaviorState.Wander:
         _throttleUrgency = 0.5f; // half speed
@@ -323,6 +323,9 @@ public class AICharacterController : MonoBehaviour
       case BehaviorState.Chase:
         _throttleUrgency = 1.0f; // full speed
         _pathRefreshPeriod = 2.0f; // refresh path every 2 seconds while persuing player
+        // Head to the player
+        // If this fails we take care of it in attack update
+        RecomputePathTo(PlayerCharacterController.Instance.transform.position);
         break;
       case BehaviorState.Cower:
         _throttleUrgency = 0.0f; // Stop and sh*t yourself

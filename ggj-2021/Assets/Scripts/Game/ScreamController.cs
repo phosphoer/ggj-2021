@@ -13,7 +13,6 @@ public class ScreamController : MonoBehaviour
   [SerializeField]
   private RangedFloat _screamInterval = new RangedFloat(0.5f, 1.0f);
 
-  [SerializeField]
   private List<ScreamSoundDefinition> _screamSounds = new List<ScreamSoundDefinition>();
 
   private List<AudioSource> _audioSources = new List<AudioSource>();
