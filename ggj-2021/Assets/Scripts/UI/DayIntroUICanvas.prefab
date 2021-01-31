@@ -256,7 +256,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ShowOnStart: 0
-  IsModal: 0
+  IsModal: 1
   _hydrateOnShow:
   - {fileID: 7541614099189670438}
   _titleTextField: {fileID: 5974597404572469967}

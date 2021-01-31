@@ -73,6 +73,7 @@ public class GameStateManager : Singleton<GameStateManager>
 #if UNITY_EDITOR
     InitialStage = EditorDefaultStage;
 #endif
+
     SetGameStage(InitialStage);
   }
 
