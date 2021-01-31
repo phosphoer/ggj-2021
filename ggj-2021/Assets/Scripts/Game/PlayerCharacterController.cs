@@ -101,6 +101,9 @@ public class PlayerCharacterController : Singleton<PlayerCharacterController>
       _isSneaking = rewiredPlayer.GetButton(RewiredConsts.Action.Sneak);
       _characterMovement.MoveSpeedMultiplier = _isSneaking ? 0.5f : 1.0f;
 
+      if (_objectHolder.IsHoldingObject)
+        _characterMovement.MoveSpeedMultiplier *= 0.8f;
+
       if (_characterMovement.CurrentVelocity.magnitude > 0.01f)
       {
         if (_isSneaking)
@@ -214,10 +217,10 @@ public class PlayerCharacterController : Singleton<PlayerCharacterController>
 
   private void ReleaseBottleScream()
   {
-    _playerAnimation.PlayEmote(PlayerAnimatorController.EmoteState.OpenBottle);
     ScreamContainer bottle = _objectHolder.HeldObject.GetComponent<ScreamContainer>();
-    if (bottle != null)
+    if (bottle != null && bottle.ScreamSounds.Count > 0)
     {
+      _playerAnimation.PlayEmote(PlayerAnimatorController.EmoteState.OpenBottle);
       ScreamDamageable.DoScream(bottle.ScreamSounds, bottle.transform.position, transform.forward, _screamDamageable);
       bottle.ReleaseScream();
     }
