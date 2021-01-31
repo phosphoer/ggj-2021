@@ -87,6 +87,9 @@ public class AIPerceptionComponent : MonoBehaviour
     get { return _timeSinceLastSeenPlayer; }
   }
 
+  private bool _isPlayerInSight = false;
+  private float _spotPlayerTimer = 0;
+
   void Start()
   {
     _refreshTimer = Random.Range(0, RefreshInterval); // Randomly offset that that minimize AI spawned the same frame updating at the same time
@@ -104,6 +107,20 @@ public class AIPerceptionComponent : MonoBehaviour
     {
       _refreshTimer = RefreshInterval;
       RefreshPlayerSensoryInformation();
+    }
+
+    if (_isPlayerInSight)
+    {
+      _spotPlayerTimer += Time.deltaTime;
+      if (_spotPlayerTimer >= 0.5f)
+      {
+        SetCanSeePlayer(true);
+      }
+    }
+    else
+    {
+      _spotPlayerTimer = 0;
+      SetCanSeePlayer(false);
     }
 
     if (_canSeePlayer)
@@ -280,7 +297,7 @@ public class AIPerceptionComponent : MonoBehaviour
       }
     }
 
-    SetCanSeePlayer(newCanSeePlayer);
+    _isPlayerInSight = newCanSeePlayer;
     SetIsPlayerNearbyBehind(isPlayerNearby && !isPlayerInFront);
   }
 

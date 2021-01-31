@@ -194,7 +194,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: df029c492d71ece459b9712818fba306, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  VisionAngleDegrees: 50
+  VisionAngleDegrees: 75
   CanSeeAngleMultiplier: 1.2
   VisionDistance: 6
   CanSeeDistanceMultiplier: 2
