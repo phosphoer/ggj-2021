@@ -48,6 +48,7 @@ public class AICharacterController : MonoBehaviour
 
   // Path Finding State
   public float WaypointTolerance = 1.0f;
+  public bool DebugDrawPath = false;
 
   List<Vector3> _lastPath = new List<Vector3>();
   float _pathRefreshPeriod = -1.0f;
@@ -116,6 +117,11 @@ public class AICharacterController : MonoBehaviour
     UpdatePathRefreshTimer();
     UpdatePathFollowing();
     UpdateMoveVector();
+
+    if (DebugDrawPath)
+    {
+      DrawPath();
+    }
   }
 
   void UpdateBehavior()
@@ -199,7 +205,7 @@ public class AICharacterController : MonoBehaviour
     // Within attack range?
     if (nextBehavior == BehaviorState.Chase)
     {
-      Vector3 attackTarget = PlayerCharacterController.Instance.transform.position;
+      Vector3 attackTarget = GetCurrentPlayerLocation();
 
       if (IsWithingDistanceToTarget2D(attackTarget, AttackRange))
       {
@@ -222,7 +228,8 @@ public class AICharacterController : MonoBehaviour
       // Only keep persuit if we haven't lost sight of the player for too long
       if (_perceptionComponent.IsLastPlayerLocationNewerThan(1.0f))
       {
-        Vector3 pathTarget = _perceptionComponent.LastSeenPlayerLocation;
+        // Use the current player location rather than stale perception location to prevent oscillation
+        Vector3 pathTarget = GetCurrentPlayerLocation();
 
         if (IsPathStale)
         {
@@ -266,9 +273,7 @@ public class AICharacterController : MonoBehaviour
     }
     else
     {
-      Vector3 attackTarget = PlayerCharacterController.Instance.transform.position;
-
-      FaceTowardTarget(attackTarget, AttackTurnSpeed);
+      FaceTowardTarget(GetCurrentPlayerLocation(), AttackTurnSpeed);
     }
 
     return nextBehavior;
@@ -325,7 +330,7 @@ public class AICharacterController : MonoBehaviour
         _pathRefreshPeriod = 2.0f; // refresh path every 2 seconds while persuing player
         // Head to the player
         // If this fails we take care of it in attack update
-        RecomputePathTo(PlayerCharacterController.Instance.transform.position);
+        RecomputePathTo(GetCurrentPlayerLocation());
         break;
       case BehaviorState.Cower:
         _throttleUrgency = 0.0f; // Stop and sh*t yourself
@@ -396,6 +401,20 @@ public class AICharacterController : MonoBehaviour
     }
   }
 
+  void DrawPath()
+  {
+    if (_lastPath.Count <= 0)
+      return;
+
+    Vector3 PrevPathPoint = _lastPath[0];
+    for (int pathIndex = 1; pathIndex < _lastPath.Count; ++pathIndex)
+    {
+      Vector3 NextPathPoint = _lastPath[pathIndex];
+      Debug.DrawLine(PrevPathPoint, NextPathPoint, Color.red);
+      PrevPathPoint = NextPathPoint;
+    }
+  }
+
   bool IsWithingDistanceToTarget2D(Vector3 target, float distance)
   {
     Vector3 target2d = Vector3.ProjectOnPlane(target, Vector3.up);
@@ -445,5 +464,10 @@ public class AICharacterController : MonoBehaviour
 
     Quaternion desiredForwardRot = Quaternion.LookRotation(target2d);
     transform.rotation = Mathfx.Damp(transform.rotation, desiredForwardRot, 0.25f, Time.deltaTime * faceAnimationSpeed);
+  }
+
+  Vector3 GetCurrentPlayerLocation()
+  {
+    return PlayerCharacterController.Instance.transform.position;
   }
 }
