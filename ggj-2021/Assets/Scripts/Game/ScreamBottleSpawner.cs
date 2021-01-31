@@ -37,21 +37,24 @@ public class ScreamBottleSpawner : MonoBehaviour
 
   private void Update()
   {
-    _spawnTimer -= Time.deltaTime;
-    if (_spawnTimer <= 0)
+    if (GameStateManager.Instance.CurrentStage == GameStateManager.GameStage.Daytime)
     {
-      _spawnTimer = _spawnInterval.RandomValue;
+      _spawnTimer -= Time.deltaTime;
+      if (_spawnTimer <= 0)
+      {
+        _spawnTimer = _spawnInterval.RandomValue;
 
-      if (_isFirstSpawn)
-      {
-        _isFirstSpawn = false;
-        for (int i = 0; i < _spawnPoints.Length; ++i)
-          SpawnAtPoint(_spawnPoints[i]);
-      }
-      else
-      {
-        Transform spawnPoint = _spawnPoints[Random.Range(0, _spawnPoints.Length)];
-        SpawnAtPoint(spawnPoint);
+        if (_isFirstSpawn)
+        {
+          _isFirstSpawn = false;
+          for (int i = 0; i < _spawnPoints.Length; ++i)
+            SpawnAtPoint(_spawnPoints[i]);
+        }
+        else
+        {
+          Transform spawnPoint = _spawnPoints[Random.Range(0, _spawnPoints.Length)];
+          SpawnAtPoint(spawnPoint);
+        }
       }
     }
   }
