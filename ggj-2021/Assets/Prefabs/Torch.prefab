@@ -4954,7 +4954,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f084d54c78bd25f40832fd02ed1b2e4d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  IntensityFlickerAmount: {x: 0, y: 1}
+  IntensityFlickerAmount: {x: 0.85, y: 1.5}
   FlickerTime: {x: 0.1, y: 0.25}
   flickerRange: 1
-  RangeFlickerAmount: {x: 3, y: 10}
+  RangeFlickerAmount: {x: 5, y: 15}
