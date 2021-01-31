@@ -50,6 +50,11 @@ public class PlayerCharacterController : Singleton<PlayerCharacterController>
     GameUI.Instance.ScreamComposerUI.Show();
   }
 
+  public void NotifyMonsterScream()
+  {
+
+  }
+
   private void Awake()
   {
     Instance = this;
