@@ -27,7 +27,7 @@ RectTransform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 728177691030528059}
   m_LocalRotation: {x: 0, y: 0.7071068, z: 0, w: 0.7071068}
-  m_LocalPosition: {x: 0, y: 0, z: 4.22}
+  m_LocalPosition: {x: 0, y: 0, z: 4.27}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 2255698036369513218}
@@ -35,8 +35,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 90, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -0.47, y: 0}
-  m_SizeDelta: {x: 11.73, y: 5}
+  m_AnchoredPosition: {x: -0.483, y: 0}
+  m_SizeDelta: {x: 10.03, y: 5}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!23 &6889505357252968366
 MeshRenderer:
@@ -104,7 +104,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: RIP
+  m_text: REST IN PIECES
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -131,13 +131,13 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 5
-  m_fontSizeBase: 5
+  m_fontSize: 3
+  m_fontSizeBase: 3
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
   m_fontSizeMax: 72
-  m_fontStyle: 0
+  m_fontStyle: 1
   m_HorizontalAlignment: 2
   m_VerticalAlignment: 512
   m_textAlignment: 65535
@@ -167,7 +167,7 @@ MonoBehaviour:
   m_VertexBufferAutoSizeReduction: 1
   m_useMaxVisibleDescender: 1
   m_pageToDisplay: 1
-  m_margin: {x: 8.351079, y: 1.1669083, z: -0.18121527, w: 0.39881897}
+  m_margin: {x: 8.37415, y: -0.45755005, z: -0.18121527, w: 3.321125}
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
   m_hasFontAssetChanged: 0
@@ -186,7 +186,7 @@ GameObject:
   - component: {fileID: 2255698036369513218}
   - component: {fileID: 2945920391708071079}
   - component: {fileID: 1082822918674980973}
-  - component: {fileID: 4671832490167619314}
+  - component: {fileID: 3257217879513577460}
   m_Layer: 9
   m_Name: Grave
   m_TagString: Untagged
@@ -216,7 +216,7 @@ MeshFilter:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1442851473018421688}
-  m_Mesh: {fileID: -5060448434748886096, guid: 70a64fcd7b0dbc54e9778fdb89d568ae, type: 3}
+  m_Mesh: {fileID: -8252084882743204326, guid: 70a64fcd7b0dbc54e9778fdb89d568ae, type: 3}
 --- !u!23 &1082822918674980973
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -256,7 +256,7 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
---- !u!65 &4671832490167619314
+--- !u!65 &3257217879513577460
 BoxCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -267,5 +267,5 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 1.0694528, y: 4.248867, z: 2.3714516}
-  m_Center: {x: 0.00000002980233, y: 0.00000011920929, z: -0.0000038146973}
+  m_Size: {x: 1.0694525, y: 4.248867, z: 2.3714511}
+  m_Center: {x: 0.000000029802322, y: 2.124433, z: 0}
