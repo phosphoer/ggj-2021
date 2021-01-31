@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 3794517916111205033}
   - component: {fileID: 218158936147557644}
   - component: {fileID: 2658242174326802886}
-  - component: {fileID: 250095938135487273}
+  - component: {fileID: 1740157126759264929}
   m_Layer: 9
   m_Name: SpineHalfTilt2
   m_TagString: Untagged
@@ -26,7 +26,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4603529138292762643}
-  m_LocalRotation: {x: 0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -3.53, y: -0.0030146288, z: -5.01}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
@@ -80,8 +80,8 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
---- !u!65 &250095938135487273
-BoxCollider:
+--- !u!64 &1740157126759264929
+MeshCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -90,6 +90,7 @@ BoxCollider:
   m_Material: {fileID: 0}
   m_IsTrigger: 0
   m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 1.2352839, y: 2.7087367, z: 5.2916055}
-  m_Center: {x: 0, y: 0.5820583, z: 0}
+  serializedVersion: 4
+  m_Convex: 0
+  m_CookingOptions: 30
+  m_Mesh: {fileID: -6239469015914299103, guid: 6d519b3ff5a6a634e8dc58bb1453b501, type: 3}
