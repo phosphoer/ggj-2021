@@ -122,6 +122,7 @@ public class AICharacterController : MonoBehaviour
     UpdatePathRefreshTimer();
     UpdatePathFollowing();
     UpdateMoveVector();
+    UpdateAnimationParameters();
 
     if (DebugDrawPath)
     {
@@ -454,14 +455,19 @@ public class AICharacterController : MonoBehaviour
     }
 
     _characterMovement.MoveVector = throttleDirection * _throttleUrgency;
+  }
 
+  void UpdateAnimationParameters()
+  {
     if (_characterMovement.CurrentVelocity.magnitude > 0.01f)
     {
       _aiAnimation.CurrentLocomotionSpeed = _characterMovement.CurrentVelocity.magnitude;
+      _aiAnimation.CurrentLocomotionState = AIAnimatorController.LocomotionState.Move;
     }
     else
     {
-      _aiAnimation.CurrentLocomotionSpeed = 1;
+      _aiAnimation.CurrentLocomotionSpeed = 0;
+      _aiAnimation.CurrentLocomotionState = AIAnimatorController.LocomotionState.Idle;
     }
   }
 
