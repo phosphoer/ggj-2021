@@ -105,6 +105,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8222867175738048974}
   - component: {fileID: 290010143737317093}
+  - component: {fileID: 7223480689929614839}
   m_Layer: 9
   m_Name: Point Light
   m_TagString: Untagged
@@ -120,7 +121,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3747192974733947332}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: 0.455, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 763207644239081607}
@@ -187,6 +188,22 @@ Light:
   m_UseBoundingSphereOverride: 0
   m_ShadowRadius: 0
   m_ShadowAngle: 0
+--- !u!114 &7223480689929614839
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3747192974733947332}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f084d54c78bd25f40832fd02ed1b2e4d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  IntensityFlickerAmount: {x: 0.1, y: 0.1}
+  FlickerTime: {x: 0.5, y: 1}
+  flickerRange: 1
+  RangeFlickerAmount: {x: 1, y: 2}
 --- !u!1 &4932753358237471054
 GameObject:
   m_ObjectHideFlags: 0
