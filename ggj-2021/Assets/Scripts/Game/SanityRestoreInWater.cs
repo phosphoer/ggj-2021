@@ -8,7 +8,7 @@ public class SanityRestoreInWater : MonoBehaviour
   {
     if (transform.position.y < -1)
     {
-      GameStateManager.Instance.PlayerSanity.RestoreSanity(RestoreAmount);
+      GameStateManager.Instance?.PlayerSanity?.RestoreSanity(RestoreAmount);
       Destroy(gameObject);
     }
   }
