@@ -7,6 +7,11 @@ ModelImporter:
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
+      name: ObservatoryMat
+    second: {fileID: 2100000, guid: c4895116563346e4f8c179c82c05ca39, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
       name: lambert1
     second: {fileID: 2100000, guid: 06fcba651498cf74daac996cdc5c7fba, type: 2}
   materials:
