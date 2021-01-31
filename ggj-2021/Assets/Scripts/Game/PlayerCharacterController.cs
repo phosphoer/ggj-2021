@@ -65,17 +65,6 @@ public class PlayerCharacterController : Singleton<PlayerCharacterController>
     CameraControllerStack.Instance.PushController(_cameraRig);
   }
 
-  private void OnDestroy()
-  {
-    if (_cameraRig != null)
-    {
-      if (CameraControllerStack.Instance != null)
-        CameraControllerStack.Instance.PopController(_cameraRig);
-
-      Destroy(_cameraRig.gameObject);
-    }
-  }
-
   private void Update()
   {
     Rewired.Player rewiredPlayer = Rewired.ReInput.players.GetPlayer(kRewiredPlayerId);
