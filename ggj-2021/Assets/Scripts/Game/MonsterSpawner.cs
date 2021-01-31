@@ -18,16 +18,19 @@ public class MonsterSpawner : MonoBehaviour
 
   private void Update()
   {
-    if (_spawnedMonster == null || _spawnedMonster.AIAnimator.IsDead)
+    if (GameStateManager.Instance.CurrentStage == GameStateManager.GameStage.Daytime)
     {
-      _respawnTimer -= Time.deltaTime;
-      if (_respawnTimer <= 0)
+      if (_spawnedMonster == null || _spawnedMonster.AIAnimator.IsDead)
       {
-        _respawnTimer = _respawnInterval.RandomValue;
+        _respawnTimer -= Time.deltaTime;
+        if (_respawnTimer <= 0)
+        {
+          _respawnTimer = _respawnInterval.RandomValue;
 
-        Vector3 spawnPos = transform.position;
-        PathFindManager.Instance.TryGetTraversablePoint(spawnPos, out spawnPos, 10);
-        _spawnedMonster = Instantiate(_monsterPrefab, spawnPos, transform.rotation);
+          Vector3 spawnPos = transform.position;
+          PathFindManager.Instance.TryGetTraversablePoint(spawnPos, out spawnPos, 10);
+          _spawnedMonster = Instantiate(_monsterPrefab, spawnPos, transform.rotation);
+        }
       }
     }
   }
