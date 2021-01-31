@@ -67,8 +67,11 @@ MonoBehaviour:
   AttackRange: 2
   AttackDuration: 2
   AttackTurnSpeed: 5
+  AttackCooldown: 5
+  _timeSinceAttack: -1
   CowerDuration: 2
-  _cowerScream: {fileID: 11400000, guid: b978187fd8bd7e4419615c4d095639ee, type: 2}
+  _cowerScream: {fileID: 11400000, guid: 5bdf42c97cc2c3742a1d7292c91d1c93, type: 2}
+  _attackScream: {fileID: 11400000, guid: 6b9acc86969668e43a30c116be4cfb97, type: 2}
   WaypointTolerance: 1
   DebugDrawPath: 0
 --- !u!114 &7166855244578791243
@@ -86,7 +89,7 @@ MonoBehaviour:
   MoveVector: {x: 0, y: 0, z: 0}
   MoveSpeedMultiplier: 1
   Acceleration: 1
-  MoveSpeed: 1
+  MoveSpeed: 2
   RunLeanAmount: 2
   TurnAnimationSpeed: 2
 --- !u!114 &7882694522141293232
@@ -192,6 +195,7 @@ MonoBehaviour:
   VisionAngleDegrees: 50
   CanSeeAngleMultiplier: 1.2
   VisionDistance: 6
+  CanSeeDistanceMultiplier: 2
   NearbyDistance: 3
   RefreshInterval: 0.1
   DrawDebug: 0
@@ -346,6 +350,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Slime
       objectReference: {fileID: 0}
+    - target: {fileID: 5866666021909216657, guid: b153c912c5c53ff4ca5f7fd275bed368,
+        type: 3}
+      propertyPath: m_Controller
+      value: 
+      objectReference: {fileID: 9100000, guid: fea741aa119241a49aa4e972282b7f41, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b153c912c5c53ff4ca5f7fd275bed368, type: 3}
 --- !u!4 &3554238046044242261 stripped
