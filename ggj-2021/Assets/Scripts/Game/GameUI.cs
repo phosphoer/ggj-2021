@@ -11,6 +11,7 @@ public class GameUI : Singleton<GameUI>
   public LoseGameUIHandler LoseGameUI;
   public WinGameUIHandler WinGameUI;
   public SettingsUIHandler SettingsUI;
+  public DialogUI DialogUI;
 
   private void Awake()
   {

@@ -34,7 +34,7 @@ BlendTree:
   m_Name: Blend Tree
   m_Childs:
   - serializedVersion: 2
-    m_Motion: {fileID: -6945076586018040393, guid: f8fc6946a7cb36747a6591164951d353,
+    m_Motion: {fileID: -6945076586018040393, guid: b153c912c5c53ff4ca5f7fd275bed368,
       type: 3}
     m_Threshold: 0
     m_Position: {x: 0, y: 0}
@@ -43,7 +43,7 @@ BlendTree:
     m_DirectBlendParameter: LocomotionState
     m_Mirror: 0
   - serializedVersion: 2
-    m_Motion: {fileID: 7234524285770931011, guid: f8fc6946a7cb36747a6591164951d353,
+    m_Motion: {fileID: 7234524285770931011, guid: b153c912c5c53ff4ca5f7fd275bed368,
       type: 3}
     m_Threshold: 1
     m_Position: {x: 0, y: 0}
@@ -64,7 +64,7 @@ AnimatorController:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: CrabAnimator
+  m_Name: SlimeAnimator
   serializedVersion: 5
   m_AnimatorParameters:
   - m_Name: LocomotionState
@@ -223,7 +223,7 @@ BlendTree:
   m_Name: Blend Tree
   m_Childs:
   - serializedVersion: 2
-    m_Motion: {fileID: -998496362607748373, guid: f8fc6946a7cb36747a6591164951d353,
+    m_Motion: {fileID: -3100369314251171874, guid: b153c912c5c53ff4ca5f7fd275bed368,
       type: 3}
     m_Threshold: 0
     m_Position: {x: 0, y: 0}
@@ -232,7 +232,7 @@ BlendTree:
     m_DirectBlendParameter: Blend
     m_Mirror: 0
   - serializedVersion: 2
-    m_Motion: {fileID: 1358262452650834379, guid: f8fc6946a7cb36747a6591164951d353,
+    m_Motion: {fileID: 1358262452650834379, guid: b153c912c5c53ff4ca5f7fd275bed368,
       type: 3}
     m_Threshold: 1
     m_Position: {x: 0, y: 0}
