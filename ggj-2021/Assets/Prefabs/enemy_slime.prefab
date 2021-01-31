@@ -59,6 +59,7 @@ MonoBehaviour:
     type: 3}
   _deathFX: {fileID: 5639098239645709990, guid: 2d8aeb3b8091130459eec3082bd71fb5,
     type: 3}
+  _deathSound: {fileID: 11400000, guid: 294bdcc255f6f2a45a62404f4b0bdf3e, type: 2}
   IdleMinDuration: 0.5
   IdleMaxDuration: 3
   WanderRange: 10
@@ -136,6 +137,7 @@ MonoBehaviour:
   _screamController: {fileID: 6775419858961808674}
   _screamVisualPrefab: {fileID: 1877114886516284848, guid: f970b019ccd90c24a81f7be59480f843,
     type: 3}
+  _spawnAnchorOverride: {fileID: 0}
 --- !u!114 &232956710904395898
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -9,6 +9,7 @@ public class AIPerceptionComponent : MonoBehaviour
   public float VisionDistance = 10;
   public float CanSeeDistanceMultiplier = 2.0f;
   public float NearbyDistance = 3;
+  public float HearingDistance = 8;
   public float RefreshInterval = 0.1f;
   public bool DrawDebug = true;
 
@@ -30,6 +31,12 @@ public class AIPerceptionComponent : MonoBehaviour
   public bool CanSeePlayer
   {
     get { return _canSeePlayer; }
+  }
+
+  private bool _canHearPlayer = false;
+  public bool CanHearPlayer
+  {
+    get { return _canHearPlayer; }
   }
 
   private float _awareness = 0;
@@ -103,8 +110,10 @@ public class AIPerceptionComponent : MonoBehaviour
     if (_refreshTimer <= 0)
     {
       _refreshTimer = RefreshInterval;
-      RefreshPlayerSensoryInformation();
+      RefreshPlayerVisualInformation();
     }
+
+    RefreshPlayerHearingInformation();
 
     if (_canSeePlayer)
     {
@@ -156,7 +165,44 @@ public class AIPerceptionComponent : MonoBehaviour
     return _timeSinceLastSeenPlayer >= 0.0f && _timeSinceLastSeenPlayer < timeOut;
   }
 
-  void RefreshPlayerSensoryInformation()
+  void RefreshPlayerHearingInformation()
+  {
+    Transform playerTransform = PlayerCharacterController.Instance.AIVisibilityTarget;
+    Vector3 playerLocation = playerTransform.position;
+    float actorDistance = Vector3.Distance(transform.position, playerLocation);
+    bool isPlayerSneaking = PlayerCharacterController.Instance.IsSneaking;
+
+    _canHearPlayer = actorDistance < HearingDistance && !isPlayerSneaking;
+
+    if (DrawDebug)
+    {
+      Vector3 origin = transform.position;
+      Vector3 forward = transform.forward;
+      Vector3 up = transform.up;
+      Vector3 right = transform.right;
+      int subdiv = 20;
+
+      Vector3 prevFrontPoint = origin + right * HearingDistance;
+      for (int j = 0; j < 2; j++)
+      {
+        float radius = HearingDistance + (float)j * 0.25f;
+
+        for (int i = 1; i <= subdiv; ++i)
+        {
+          float radians = Mathf.Deg2Rad * ((float)i * 360.0f / (float)subdiv);
+          Vector3 nextFrontPoint = origin + right * radius * Mathf.Cos(radians) + forward * radius * Mathf.Sin(radians);
+
+          Debug.DrawLine(
+            prevFrontPoint, nextFrontPoint,
+            _canHearPlayer ? Color.red : Color.gray,
+            _refreshTimer);
+          prevFrontPoint = nextFrontPoint;
+        }
+      }
+    }
+  }
+
+  void RefreshPlayerVisualInformation()
   {
     Transform playerTransform = PlayerCharacterController.Instance.AIVisibilityTarget;
     Vector3 playerLocation = playerTransform.position;

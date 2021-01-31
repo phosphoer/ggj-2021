@@ -59,12 +59,17 @@ MonoBehaviour:
     type: 3}
   _deathFX: {fileID: 5639098239645709990, guid: 2d8aeb3b8091130459eec3082bd71fb5,
     type: 3}
+  _deathSound: {fileID: 11400000, guid: 294bdcc255f6f2a45a62404f4b0bdf3e, type: 2}
+  IdleMinDuration: 0.5
+  IdleMaxDuration: 3
   WanderRange: 10
   ChaseTimeOut: 10
   MaxChaseDistance: 100
   AttackRange: 2
   AttackDuration: 2
   AttackTurnSpeed: 5
+  AttackCooldown: 5
+  _timeSinceAttack: -1
   CowerDuration: 2
   _cowerScream: {fileID: 11400000, guid: b978187fd8bd7e4419615c4d095639ee, type: 2}
   _attackScream: {fileID: 11400000, guid: 95a4d1cacab310b4eaff4fddd1de6d05, type: 2}
@@ -132,6 +137,7 @@ MonoBehaviour:
   _screamController: {fileID: 6775419858961808674}
   _screamVisualPrefab: {fileID: 1877114886516284848, guid: f970b019ccd90c24a81f7be59480f843,
     type: 3}
+  _spawnAnchorOverride: {fileID: 0}
 --- !u!114 &4285552693713919782
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -189,7 +195,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   VisionAngleDegrees: 30
+  CanSeeAngleMultiplier: 1.2
   VisionDistance: 10
+  CanSeeDistanceMultiplier: 2
+  NearbyDistance: 3
   RefreshInterval: 0.1
   DrawDebug: 0
   _visionCone: {fileID: 7835278409065593958}
