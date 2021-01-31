@@ -11,6 +11,11 @@ public class AIPerceptionComponent : MonoBehaviour
 
   private float _refreshTimer = 0.0f;
 
+  public GameObject VisionCone => _visionCone;
+
+  [SerializeField]
+  private GameObject _visionCone = null;
+
   private bool _canSeePlayer = false;
   public bool CanSeePlayer
   {
@@ -32,6 +37,14 @@ public class AIPerceptionComponent : MonoBehaviour
   void Start()
   {
     _refreshTimer = Random.Range(0, RefreshInterval); // Randomly offset that that minimize AI spawned the same frame updating at the same time
+
+    float halfAngleRadians = Mathf.Deg2Rad * VisionAngleDegrees * 0.5f;
+    Vector3 adjustedScale = new Vector3(2.0f * VisionDistance * Mathf.Tan(halfAngleRadians), 1.0f, VisionDistance);
+
+    if (_visionCone != null)
+    {
+      _visionCone.transform.localScale = adjustedScale;
+    }
   }
 
   void Update()
