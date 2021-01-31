@@ -13,3 +13,9 @@ Crab:
 49-97 :: Idle
 98-128 :: Scare
 129-159 :: Scared
+
+Skeleton:
+1-48 :: Move
+49-97 :: Idle
+98-128 :: Scare
+129-159 :: Scared
