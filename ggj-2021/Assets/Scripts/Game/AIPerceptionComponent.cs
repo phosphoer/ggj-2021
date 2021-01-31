@@ -15,6 +15,13 @@ public class AIPerceptionComponent : MonoBehaviour
 
   [SerializeField]
   private GameObject _visionCone = null;
+  private Renderer _visionConeRenderer = null;
+
+  [SerializeField]
+  private Material _normalMaterial = null;
+
+  [SerializeField]
+  private Material _attackMaterial = null;
 
   private bool _canSeePlayer = false;
   public bool CanSeePlayer
@@ -39,11 +46,12 @@ public class AIPerceptionComponent : MonoBehaviour
     _refreshTimer = Random.Range(0, RefreshInterval); // Randomly offset that that minimize AI spawned the same frame updating at the same time
 
     float halfAngleRadians = Mathf.Deg2Rad * VisionAngleDegrees * 0.5f;
-    Vector3 adjustedScale = new Vector3(2.0f * VisionDistance * Mathf.Tan(halfAngleRadians), 1.0f, VisionDistance);
+    Vector3 adjustedScale = new Vector3(2.0f * VisionDistance * Mathf.Tan(halfAngleRadians), 1.0f, -VisionDistance);
 
     if (_visionCone != null)
     {
       _visionCone.transform.localScale = adjustedScale;
+      _visionConeRenderer = _visionCone.GetComponent<Renderer>();
     }
   }
 
@@ -93,14 +101,31 @@ public class AIPerceptionComponent : MonoBehaviour
         RaycastHit hit;
         if (!Physics.Raycast(transform.position, (playerLocation - transform.position), out hit, VisionDistance, mask))
         {
-          _canSeePlayer = true;
+          SetCanSeePlayer(true);
           _lastSeenPlayerLocation = playerLocation;
           return;
         }
       }
     }
 
-    _canSeePlayer = false;
+    SetCanSeePlayer(false);
+  }
+
+  void SetCanSeePlayer(bool newCanSee)
+  {
+    if (_visionConeRenderer != null)
+    {
+      if (!_canSeePlayer && newCanSee)
+      {
+        _visionConeRenderer.material = _attackMaterial;
+      }
+      else if (_canSeePlayer && !newCanSee)
+      {
+        _visionConeRenderer.material = _normalMaterial;
+      }
+    }
+
+    _canSeePlayer = newCanSee;
   }
 
   void DrawDebugCone()

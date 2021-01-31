@@ -34,13 +34,20 @@ public class AICharacterController : MonoBehaviour
   [SerializeField]
   private ScreamDamageable _screamDamageable = null;
 
+  [SerializeField]
+  private GameObject _deathBottleSpawn = null;
+
+  [SerializeField]
+  private GameObject _deathFX = null;
+
   // Behavior State
   private BehaviorState _behaviorState = BehaviorState.Wander;
   private float _timeInBehavior = 0.0f;
   //-- Wander --
   public float WanderRange = 10.0f;
   //-- Chase --
-  public float MaxChaseDistance = 50.0f;
+  public float ChaseTimeOut = 4.0f;
+  public float MaxChaseDistance = 30.0f;
   //-- Attack --
   public float AttackRange = 2.0f;
   public float AttackDuration = 2.0f;
@@ -202,8 +209,8 @@ public class AICharacterController : MonoBehaviour
   {
     BehaviorState nextBehavior = BehaviorState.Chase;
 
-    // Too far from spawn point?
-    if (!IsWithingDistanceToTarget2D(_spawnLocation, MaxChaseDistance))
+    // Too far from spawn point or chasing for too long?
+    if (_timeInBehavior >= ChaseTimeOut || !IsWithingDistanceToTarget2D(_spawnLocation, MaxChaseDistance))
     {
       nextBehavior = BehaviorState.Flee;
     }
@@ -259,7 +266,7 @@ public class AICharacterController : MonoBehaviour
 
   BehaviorState UpdateBehavior_Cower()
   {
-    BehaviorState nextBehavior = BehaviorState.Attack;
+    BehaviorState nextBehavior = BehaviorState.Cower;
 
     if (_timeInBehavior > CowerDuration)
     {
@@ -342,6 +349,10 @@ public class AICharacterController : MonoBehaviour
         _throttleUrgency = 0.0f; // Stop and sh*t yourself
         _pathRefreshPeriod = -1.0f; // manual refresh
         _aiAnimation.PlayEmote(AIAnimatorController.EmoteState.Cower);
+        // Set animation dead flag early so that we don't leave emote state
+        _aiAnimation.IsDead = true;
+        // Hide the vision cone
+        _perceptionComponent.gameObject.SetActive(false);
         break;
       case BehaviorState.Attack:
         _throttleUrgency = 0.0f; // Stop and attack in place
@@ -361,7 +372,23 @@ public class AICharacterController : MonoBehaviour
         RecomputePathTo(_spawnLocation);
         break;
       case BehaviorState.Dead:
-        _aiAnimation.IsDead = true;
+        // Play death effects to cover the transition
+        if (_deathFX != null)
+        {
+          Instantiate(_deathFX, transform.position, Quaternion.identity);
+        }
+        // Spawn a death bottles in out place
+        if (_deathBottleSpawn != null)
+        {
+          GameObject bottle = Instantiate(_deathBottleSpawn, transform.position, Quaternion.identity);
+          ScreamContainer screamContainer = bottle.GetComponent<ScreamContainer>();
+          if (screamContainer != null)
+          {
+            screamContainer.FillScream(new List<ScreamSoundDefinition>() { _cowerScream });
+          }
+        }
+        // Clean ourselves up after a moment
+        Destroy(this, 0.1f);
         break;
     }
   }

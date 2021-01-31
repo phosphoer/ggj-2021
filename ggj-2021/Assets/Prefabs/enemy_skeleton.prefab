@@ -55,7 +55,11 @@ MonoBehaviour:
   _aiAnimation: {fileID: 7882694522141293232}
   _screamController: {fileID: 6775419858961808674}
   _screamDamageable: {fileID: 232956710904395898}
+  _deathBottleSpawn: {fileID: 3751806036467726573, guid: a8083e68275e8e440bd3c6ccdea9bedb,
+    type: 3}
+  _deathFX: {fileID: 0}
   WanderRange: 10
+  ChaseTimeOut: 4
   MaxChaseDistance: 50
   AttackRange: 2
   AttackDuration: 2
@@ -187,6 +191,8 @@ MonoBehaviour:
   RefreshInterval: 0.1
   DrawDebug: 0
   _visionCone: {fileID: 1165450378906764570}
+  _normalMaterial: {fileID: 2100000, guid: 80bcb3135eea1a74cad0519057f91f36, type: 2}
+  _attackMaterial: {fileID: 2100000, guid: dfe3a6e98715dd248b57d8a67ebbf652, type: 2}
 --- !u!1001 &2084580726188554315
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -217,7 +223,7 @@ PrefabInstance:
     - target: {fileID: -8679921383154817045, guid: 73864e5167772cd4e82d5a9178687850,
         type: 3}
       propertyPath: m_LocalRotation.w
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 73864e5167772cd4e82d5a9178687850,
         type: 3}
@@ -227,7 +233,7 @@ PrefabInstance:
     - target: {fileID: -8679921383154817045, guid: 73864e5167772cd4e82d5a9178687850,
         type: 3}
       propertyPath: m_LocalRotation.y
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 73864e5167772cd4e82d5a9178687850,
         type: 3}
@@ -242,7 +248,7 @@ PrefabInstance:
     - target: {fileID: -8679921383154817045, guid: 73864e5167772cd4e82d5a9178687850,
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.y
-      value: 180
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 73864e5167772cd4e82d5a9178687850,
         type: 3}
