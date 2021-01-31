@@ -4,26 +4,25 @@ using System.Collections;
 
 public class ScreamController : MonoBehaviour
 {
-  public event System.Action<string> ScreamStarted;
+  public event System.Action ScreamStarted;
   public event System.Action ScreamEnded;
   public event System.Action<ScreamSoundDefinition> ScreamSoundPlayed;
 
   public bool IsScreaming => _screamRoutine != null;
 
   [SerializeField]
-  private ScreamMappingDefinition _screamMapping = null;
-
-  [SerializeField]
   private RangedFloat _screamInterval = new RangedFloat(0.5f, 1.0f);
 
-  private List<string> _screamParts = new List<string>();
+  [SerializeField]
+  private List<ScreamSoundDefinition> _screamSounds = new List<ScreamSoundDefinition>();
+
   private List<AudioSource> _audioSources = new List<AudioSource>();
   private Coroutine _screamRoutine;
   private float _volumeScale;
   private bool _loopScream;
 
   [SerializeField]
-  private string _testScream = "aah eeh ooh";
+  private ScreamSoundDefinition[] _testScream = null;
 
   [ContextMenu("Test Scream")]
   public void DebugTestScream()
@@ -37,7 +36,7 @@ public class ScreamController : MonoBehaviour
     StartScream(_testScream, loopScream: true);
   }
 
-  public void StartScream(string screamString, bool loopScream, float volumeScale = 1.0f)
+  public void StartScream(IReadOnlyList<ScreamSoundDefinition> screamSounds, bool loopScream, float volumeScale = 1.0f)
   {
     if (IsScreaming)
     {
@@ -46,12 +45,12 @@ public class ScreamController : MonoBehaviour
 
     _volumeScale = volumeScale;
     _loopScream = loopScream;
+    _screamSounds.Clear();
+    _screamSounds.AddRange(screamSounds);
 
-    _screamParts.Clear();
-    _screamParts.AddRange(screamString.Split(' '));
     _screamRoutine = StartCoroutine(ScreamLoopAsync());
 
-    ScreamStarted?.Invoke(screamString);
+    ScreamStarted?.Invoke();
   }
 
   public void StopScream()
@@ -66,17 +65,9 @@ public class ScreamController : MonoBehaviour
   {
     do
     {
-      for (int i = 0; i < _screamParts.Count; ++i)
+      for (int i = 0; i < _screamSounds.Count; ++i)
       {
-        // Pick the appropriate scream
-        string screamPart = _screamParts[i];
-        ScreamSoundDefinition screamSound = _screamMapping.GetScream(screamPart);
-        if (screamSound == null)
-        {
-          Debug.LogWarning($"Failed to get scream for sound: {screamPart}");
-          continue;
-        }
-
+        ScreamSoundDefinition screamSound = _screamSounds[i];
         AudioSource audioSource = GetAvailableAudioSource();
         AudioManager.ConfigureSourceForSound(audioSource, screamSound.Sound);
         AudioManager.PrepareSourceToPlay(audioSource, screamSound.Sound);

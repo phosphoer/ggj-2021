@@ -1,12 +1,12 @@
 using UnityEngine;
+using System.Collections.Generic;
 
 public class ScreamContainer : MonoBehaviour
 {
-  [SerializeField]
-  private ScreamController _screamController = null;
+  public IReadOnlyList<ScreamSoundDefinition> ScreamSounds => _screamSounds;
 
   [SerializeField]
-  private string _screamString = "eeh ooh aah";
+  private ScreamController _screamController = null;
 
   [SerializeField]
   private Interactable _mixInteractable = null;
@@ -14,23 +14,22 @@ public class ScreamContainer : MonoBehaviour
   [SerializeField]
   private HoldableObject _holdable = null;
 
-  public string[] GetScreamNotes()
-  {
-    return _screamString.Split(new char[] { ' ' });
-  }
+  [SerializeField]
+  private List<ScreamSoundDefinition> _screamSounds = null;
 
-  public void FillScream(string inputScream)
+  public void FillScream(IReadOnlyList<ScreamSoundDefinition> screamSounds)
   {
-    _screamString = inputScream;
+    _screamSounds.Clear();
+    _screamSounds.AddRange(screamSounds);
     Start();
   }
 
   public void ReleaseScream()
   {
-    if (!string.IsNullOrEmpty(_screamString))
+    if (_screamSounds.Count > 0)
     {
-      _screamController.StartScream(_screamString, loopScream: false, volumeScale: 1);
-      _screamString = null;
+      _screamController.StartScream(_screamSounds, loopScream: false, volumeScale: 1);
+      _screamSounds.Clear();
     }
   }
 
@@ -48,9 +47,9 @@ public class ScreamContainer : MonoBehaviour
 
   private void Start()
   {
-    if (!string.IsNullOrEmpty(_screamString))
+    if (_screamSounds.Count > 0)
     {
-      _screamController.StartScream(_screamString, loopScream: true, volumeScale: 0.25f);
+      _screamController.StartScream(_screamSounds, loopScream: true, volumeScale: 0.25f);
     }
   }
 

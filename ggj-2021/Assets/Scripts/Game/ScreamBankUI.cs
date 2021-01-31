@@ -24,6 +24,7 @@ public class ScreamBankUI : MonoBehaviour
     {
       ScreamItemUI screamItemUI = Instantiate(_screamItemPrefab, _listLayoutRoot);
       screamItemUI.ScreamSound = requestList[i];
+      _screamItems.Add(screamItemUI);
     }
   }
 

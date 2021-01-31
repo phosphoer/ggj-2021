@@ -259,6 +259,75 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 1f2e96c54fd18b1468da05f3259de592, type: 3}
+--- !u!1001 &811460959
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 3751806036467726562, guid: a8083e68275e8e440bd3c6ccdea9bedb,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 3751806036467726562, guid: a8083e68275e8e440bd3c6ccdea9bedb,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 17.12
+      objectReference: {fileID: 0}
+    - target: {fileID: 3751806036467726562, guid: a8083e68275e8e440bd3c6ccdea9bedb,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 1.3293204
+      objectReference: {fileID: 0}
+    - target: {fileID: 3751806036467726562, guid: a8083e68275e8e440bd3c6ccdea9bedb,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0.87
+      objectReference: {fileID: 0}
+    - target: {fileID: 3751806036467726562, guid: a8083e68275e8e440bd3c6ccdea9bedb,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3751806036467726562, guid: a8083e68275e8e440bd3c6ccdea9bedb,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3751806036467726562, guid: a8083e68275e8e440bd3c6ccdea9bedb,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3751806036467726562, guid: a8083e68275e8e440bd3c6ccdea9bedb,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3751806036467726562, guid: a8083e68275e8e440bd3c6ccdea9bedb,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3751806036467726562, guid: a8083e68275e8e440bd3c6ccdea9bedb,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3751806036467726562, guid: a8083e68275e8e440bd3c6ccdea9bedb,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3751806036467726573, guid: a8083e68275e8e440bd3c6ccdea9bedb,
+        type: 3}
+      propertyPath: m_Name
+      value: BottledScream
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: a8083e68275e8e440bd3c6ccdea9bedb, type: 3}
 --- !u!1001 &1568451723
 PrefabInstance:
   m_ObjectHideFlags: 0
