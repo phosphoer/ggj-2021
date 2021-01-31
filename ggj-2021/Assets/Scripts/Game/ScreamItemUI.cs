@@ -24,5 +24,6 @@ public class ScreamItemUI : MonoBehaviour
   private void RefreshUI()
   {
     _text.text = _screamSound.Letters.ToUpper();
+    _text.color = _screamSound.Color;
   }
 }
