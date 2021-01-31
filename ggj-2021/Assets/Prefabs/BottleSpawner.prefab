@@ -1,0 +1,277 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &2187044213888419619
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2187044213888419616}
+  m_Layer: 0
+  m_Name: bottle-spawn (3)
+  m_TagString: Untagged
+  m_Icon: {fileID: -964228994112308473, guid: 0000000000000000d000000000000000, type: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &2187044213888419616
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2187044213888419619}
+  m_LocalRotation: {x: -0, y: -0.16937043, z: -0, w: 0.9855525}
+  m_LocalPosition: {x: 83.3, y: 0, z: -134.9}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 2187044214377985694}
+  m_RootOrder: 3
+  m_LocalEulerAnglesHint: {x: 0, y: -19.502, z: 0}
+--- !u!1 &2187044214377985664
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2187044214377985694}
+  - component: {fileID: 2187044214377985665}
+  m_Layer: 0
+  m_Name: BottleSpawner
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &2187044214377985694
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2187044214377985664}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children:
+  - {fileID: 2187044215383484846}
+  - {fileID: 2187044215165563475}
+  - {fileID: 2187044215493125547}
+  - {fileID: 2187044213888419616}
+  - {fileID: 2187044215674494143}
+  - {fileID: 2187044214908327926}
+  - {fileID: 2187044214768461216}
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &2187044214377985665
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2187044214377985664}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d5da6a4e9b64b4440b199883ab8ba914, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _spawnPoints:
+  - {fileID: 2187044215383484846}
+  - {fileID: 2187044215165563475}
+  - {fileID: 2187044215493125547}
+  - {fileID: 2187044213888419616}
+  - {fileID: 2187044215674494143}
+  - {fileID: 2187044214908327926}
+  - {fileID: 2187044214768461216}
+  _spawnInterval:
+    MinValue: 30
+    MaxValue: 45
+  _screamBottlePrefab: {fileID: 3751806036467726560, guid: a8083e68275e8e440bd3c6ccdea9bedb,
+    type: 3}
+  _bottlePossibleScreams: {fileID: 11400000, guid: d3b185cb46e9e0f439346076acb7d6ef,
+    type: 2}
+--- !u!1 &2187044214768461219
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2187044214768461216}
+  m_Layer: 0
+  m_Name: bottle-spawn (6)
+  m_TagString: Untagged
+  m_Icon: {fileID: -964228994112308473, guid: 0000000000000000d000000000000000, type: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &2187044214768461216
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2187044214768461219}
+  m_LocalRotation: {x: -0, y: -0.8792091, z: -0, w: 0.47643617}
+  m_LocalPosition: {x: 94.5, y: 0, z: 118.1}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 2187044214377985694}
+  m_RootOrder: 6
+  m_LocalEulerAnglesHint: {x: 0, y: -123.09401, z: 0}
+--- !u!1 &2187044214908327929
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2187044214908327926}
+  m_Layer: 0
+  m_Name: bottle-spawn (5)
+  m_TagString: Untagged
+  m_Icon: {fileID: -964228994112308473, guid: 0000000000000000d000000000000000, type: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &2187044214908327926
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2187044214908327929}
+  m_LocalRotation: {x: -0, y: -0.707025, z: -0, w: 0.7071886}
+  m_LocalPosition: {x: 138.5, y: 0, z: 65.3}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 2187044214377985694}
+  m_RootOrder: 5
+  m_LocalEulerAnglesHint: {x: 0, y: -89.98701, z: 0}
+--- !u!1 &2187044215165563474
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2187044215165563475}
+  m_Layer: 0
+  m_Name: bottle-spawn (1)
+  m_TagString: Untagged
+  m_Icon: {fileID: -964228994112308473, guid: 0000000000000000d000000000000000, type: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &2187044215165563475
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2187044215165563474}
+  m_LocalRotation: {x: -0, y: 0.40741414, z: -0, w: 0.9132436}
+  m_LocalPosition: {x: -70.4, y: 0, z: -78.4}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 2187044214377985694}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 48.085003, z: 0}
+--- !u!1 &2187044215383484817
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2187044215383484846}
+  m_Layer: 0
+  m_Name: bottle-spawn
+  m_TagString: Untagged
+  m_Icon: {fileID: -964228994112308473, guid: 0000000000000000d000000000000000, type: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &2187044215383484846
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2187044215383484817}
+  m_LocalRotation: {x: -0, y: 0.45036468, z: -0, w: 0.89284474}
+  m_LocalPosition: {x: -104.3, y: 0, z: -20.1}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 2187044214377985694}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 53.534004, z: 0}
+--- !u!1 &2187044215493125546
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2187044215493125547}
+  m_Layer: 0
+  m_Name: bottle-spawn (2)
+  m_TagString: Untagged
+  m_Icon: {fileID: -964228994112308473, guid: 0000000000000000d000000000000000, type: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &2187044215493125547
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2187044215493125546}
+  m_LocalRotation: {x: -0, y: 0.31472373, z: -0, w: 0.94918334}
+  m_LocalPosition: {x: -22.9, y: 0, z: -130.6}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 2187044214377985694}
+  m_RootOrder: 2
+  m_LocalEulerAnglesHint: {x: 0, y: 36.688004, z: 0}
+--- !u!1 &2187044215674494142
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2187044215674494143}
+  m_Layer: 0
+  m_Name: bottle-spawn (4)
+  m_TagString: Untagged
+  m_Icon: {fileID: -964228994112308473, guid: 0000000000000000d000000000000000, type: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &2187044215674494143
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2187044215674494142}
+  m_LocalRotation: {x: -0, y: -0.56811774, z: -0, w: 0.8229473}
+  m_LocalPosition: {x: 139.3, y: 0, z: -60.6}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 2187044214377985694}
+  m_RootOrder: 4
+  m_LocalEulerAnglesHint: {x: 0, y: -69.23801, z: 0}
