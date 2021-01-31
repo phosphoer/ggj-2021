@@ -262,6 +262,19 @@ public class GameStateManager : Singleton<GameStateManager>
           _playerSanity.OnStartedDay(CurrentDay);
           _screamBank.OnStartedDay(CurrentDay);
 
+          if (_currentDay == 0)
+          {
+            GameUI.Instance.DialogUI.ShowDialog("Looks like I crashed my boat again...time to explore!", 5, PlayerCharacterController.Instance.transform, Vector3.up * 3);
+          }
+          else if (_currentDay == 1)
+          {
+            GameUI.Instance.DialogUI.ShowDialog("Oh boy another day!", 5, PlayerCharacterController.Instance.transform, Vector3.up * 3);
+          }
+          else if (_currentDay == 2)
+          {
+            GameUI.Instance.DialogUI.ShowDialog("I feel like this might be my last day here!", 5, PlayerCharacterController.Instance.transform, Vector3.up * 3);
+          }
+
           DaytimeStarted?.Invoke();
         }
         break;
