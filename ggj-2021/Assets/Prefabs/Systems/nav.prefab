@@ -47,3 +47,5 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 512
   _buildOnStart: 1
+  _minBounds: {x: -150, y: -150, z: -150}
+  _maxBounds: {x: 150, y: 150, z: 150}
