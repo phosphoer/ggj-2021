@@ -432,6 +432,7 @@ public class AICharacterController : MonoBehaviour
       case BehaviorState.Chase:
         // Stop forcing line of sight checks 
         _perceptionComponent.ForceLineOfSightCheck = false;
+        _perceptionComponent.ResetPlayerSpotTimer();
         // Stop dropping player sanity while pursuit active
         GameStateManager.Instance.PlayerSanity.OnPursuitStopped();
         break;
