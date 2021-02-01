@@ -15,7 +15,8 @@ GameObject:
   - component: {fileID: 3394197015677297142}
   - component: {fileID: 438642521417592592}
   - component: {fileID: 3228035037229868375}
-  m_Layer: 0
+  - component: {fileID: 3298720072919107865}
+  m_Layer: 5
   m_Name: GameUI
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -159,18 +160,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 10efa70eea88e69459c632aac286892d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  rewiredInputManager: {fileID: 0}
+  rewiredInputManager: {fileID: 4175110851365222446, guid: 1ae28feeab196dc44956af0b76055a50,
+    type: 3}
   useAllRewiredGamePlayers: 1
   useRewiredSystemPlayer: 0
   rewiredPlayerIds: 00000000
   usePlayingPlayersOnly: 0
   playerMice: []
-  moveOneElementPerAxisPress: 0
-  setActionsById: 0
-  horizontalActionId: -1
-  verticalActionId: -1
-  submitActionId: -1
-  cancelActionId: -1
+  moveOneElementPerAxisPress: 1
+  setActionsById: 1
+  horizontalActionId: 2
+  verticalActionId: 3
+  submitActionId: 1
+  cancelActionId: 0
   m_HorizontalAxis: UIHorizontal
   m_VerticalAxis: UIVertical
   m_SubmitButton: UISubmit
@@ -183,6 +185,18 @@ MonoBehaviour:
   m_deselectIfBackgroundClicked: 1
   m_deselectBeforeSelecting: 1
   m_ForceModuleActive: 0
+--- !u!114 &3298720072919107865
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3874714132845289615}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 75758103d19c0f44ea3ed0222fdd8d92, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &1517167633
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -327,6 +341,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 3874714132845289610}
     m_Modifications:
+    - target: {fileID: 1909495679863264541, guid: 1418a4e222187904b8afcc4fe55d0c16,
+        type: 3}
+      propertyPath: m_Layer
+      value: 5
+      objectReference: {fileID: 0}
     - target: {fileID: 2013563412457799181, guid: 1418a4e222187904b8afcc4fe55d0c16,
         type: 3}
       propertyPath: m_AnchorMax.y
@@ -347,6 +366,16 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2156432887395379572, guid: 1418a4e222187904b8afcc4fe55d0c16,
+        type: 3}
+      propertyPath: m_Layer
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 2165589488841293690, guid: 1418a4e222187904b8afcc4fe55d0c16,
+        type: 3}
+      propertyPath: m_Layer
+      value: 5
+      objectReference: {fileID: 0}
     - target: {fileID: 2330180663120123542, guid: 1418a4e222187904b8afcc4fe55d0c16,
         type: 3}
       propertyPath: m_AnchorMax.y
@@ -386,6 +415,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_AnchoredPosition.y
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4546166720377494537, guid: 1418a4e222187904b8afcc4fe55d0c16,
+        type: 3}
+      propertyPath: m_Layer
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 4713633419316229850, guid: 1418a4e222187904b8afcc4fe55d0c16,
         type: 3}
@@ -536,6 +570,21 @@ PrefabInstance:
         type: 3}
       propertyPath: m_AnchoredPosition.y
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7212186556355205259, guid: 1418a4e222187904b8afcc4fe55d0c16,
+        type: 3}
+      propertyPath: m_Layer
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 7632364452839918850, guid: 1418a4e222187904b8afcc4fe55d0c16,
+        type: 3}
+      propertyPath: m_Layer
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 8909035354012832077, guid: 1418a4e222187904b8afcc4fe55d0c16,
+        type: 3}
+      propertyPath: m_Layer
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 9051655992512613025, guid: 1418a4e222187904b8afcc4fe55d0c16,
         type: 3}
@@ -725,6 +774,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: DialogUI
+      objectReference: {fileID: 0}
+    - target: {fileID: 4446091563273716307, guid: cb81844e05542484798731af3fedc476,
+        type: 3}
+      propertyPath: m_Layer
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 6464747438411189790, guid: cb81844e05542484798731af3fedc476,
         type: 3}
@@ -1273,6 +1327,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: WorldAttachedUI
+      objectReference: {fileID: 0}
+    - target: {fileID: 5125269727398105536, guid: e04d69f2f4dfc404d9fdf132c7574424,
+        type: 3}
+      propertyPath: m_Layer
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 5125269727398105537, guid: e04d69f2f4dfc404d9fdf132c7574424,
         type: 3}
