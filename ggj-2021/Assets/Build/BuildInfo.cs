@@ -1,0 +1,1 @@
+public static class BuildInfo { public static string Name = "Main"; public static string Date = "2/1/2021 1:41:38 PM"; public static long Number = 1612215698; }

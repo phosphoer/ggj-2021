@@ -213,6 +213,10 @@ public class GameStateManager : Singleton<GameStateManager>
           _playerSanity.OnCompletedDay();
           _screamBank.OnCompletedDay();
 
+          AudioManager.Instance.FadeOutSound(gameObject, MusicLow, 3);
+          AudioManager.Instance.FadeOutSound(gameObject, MusicMid, 3);
+          AudioManager.Instance.FadeOutSound(gameObject, MusicHigh, 3);
+
           GameUI.Instance.DaytimeUI.Hide();
         }
         break;
@@ -308,10 +312,6 @@ public class GameStateManager : Singleton<GameStateManager>
           GameUI.Instance.DayOutroUI.Show();
           _dayOutroUIHander = GameUI.Instance.DayOutroUI.GetComponent<DayOutroUIHandler>();
           CameraControllerStack.Instance.PushController(MenuCamera);
-
-          AudioManager.Instance.FadeOutSound(gameObject, MusicLow, 3);
-          AudioManager.Instance.FadeOutSound(gameObject, MusicMid, 3);
-          AudioManager.Instance.FadeOutSound(gameObject, MusicHigh, 3);
 
           DayOutroStarted?.Invoke();
         }

@@ -24,4 +24,5 @@ MonoBehaviour:
     MinValue: 0
     MaxValue: 0
   IsLooping: 1
-  AudioMixerGroup: {fileID: 0}
+  AudioMixerGroup: {fileID: -2623798778581837206, guid: 68a4e54d81b3b32479beacc0b84db587,
+    type: 2}

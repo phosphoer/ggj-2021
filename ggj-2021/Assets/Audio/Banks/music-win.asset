@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 4962cb04c01784b4db40edb5fec0fafc, type: 3}
-  m_Name: win
+  m_Name: music-win
   m_EditorClassIdentifier: 
   AudioClips:
   - {fileID: 8300000, guid: 5218281acdf21044985683d28449ad15, type: 3}
@@ -24,4 +24,5 @@ MonoBehaviour:
     MinValue: 0
     MaxValue: 0
   IsLooping: 0
-  AudioMixerGroup: {fileID: 0}
+  AudioMixerGroup: {fileID: -2623798778581837206, guid: 68a4e54d81b3b32479beacc0b84db587,
+    type: 2}
