@@ -13,11 +13,11 @@ MonoBehaviour:
   m_Name: music-mid
   m_EditorClassIdentifier: 
   AudioClips:
-  - {fileID: 8300000, guid: 412e767decc0f364e9f9627bb0afd2bf, type: 3}
+  - {fileID: 8300000, guid: 4b22c482c1cd1884a909d45f3fedc517, type: 3}
   IsSpatial: 0
   MaxDistance: 20
   MinDistance: 1
-  VolumeScale: 0.3
+  VolumeScale: 0.15
   DopplerLevel: 0
   PitchOffset: 0
   PitchOffsetRange:

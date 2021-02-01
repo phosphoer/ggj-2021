@@ -97,6 +97,11 @@ public class AIPerceptionComponent : MonoBehaviour
   private bool _isPlayerInSight = false;
   private float _spotPlayerTimer = 0;
 
+  public void ResetPlayerSpotTimer()
+  {
+    _spotPlayerTimer = 0;
+  }
+
   void Start()
   {
     _refreshTimer = Random.Range(0, RefreshInterval); // Randomly offset that that minimize AI spawned the same frame updating at the same time

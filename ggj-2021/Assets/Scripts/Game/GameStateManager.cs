@@ -185,7 +185,7 @@ public class GameStateManager : Singleton<GameStateManager>
         {
           if (MusicMenuLoop != null && newGameStage != GameStage.Settings)
           {
-            AudioManager.Instance.FadeOutSound(gameObject, MusicMenuLoop, 0.5f);
+            AudioManager.Instance.FadeOutSound(gameObject, MusicMenuLoop, 3f);
           }
 
           CameraControllerStack.Instance.PopController(MenuCamera);
