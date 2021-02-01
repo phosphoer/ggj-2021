@@ -6,7 +6,8 @@ public class ScreamDamageable : MonoBehaviour
   public event System.Action<IReadOnlyList<ScreamSoundDefinition>> ScreamedAt;
 
   private static List<ScreamDamageable> _instances = new List<ScreamDamageable>();
-  private const float kScreamRange = 5;
+  private const float kScreamMinRange = 1;
+  private const float kScreamRange = 6;
   private const float kScreamAngle = 90;
 
   public static void DoScream(IReadOnlyList<ScreamSoundDefinition> screamSounds, Vector3 fromPos, Vector3 dir, ScreamDamageable ignore = null)
@@ -22,7 +23,7 @@ public class ScreamDamageable : MonoBehaviour
       Vector3 toDamageable = damageable.transform.position - fromPos;
       float angle = Vector3.Angle(dir.WithY(0), toDamageable.WithY(0));
       float dist = toDamageable.magnitude;
-      if (dist < kScreamRange && angle < kScreamAngle)
+      if ((dist < kScreamRange && angle < kScreamAngle) || dist < kScreamMinRange)
       {
         Debug.Log($"Screaming at {damageable.name}");
         Debug.DrawRay(fromPos, toDamageable, Color.red, 10);
